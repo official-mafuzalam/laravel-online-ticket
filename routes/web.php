@@ -23,3 +23,5 @@ Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/add_trip', [HomeController::class, 'add_trip'])->name('add_trip');
 
 Route::post('/add_trip', [HomeController::class, 'add_trip_data'])->name('add_trip_data');
+
+Route::get('/getTripData', [HomeController::class, 'getTripData'])->name('getTripData');

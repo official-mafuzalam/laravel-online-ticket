@@ -9,6 +9,26 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        .btn-outline-primary {
+            width: 50px;
+        }
+
+        .seat {
+            /* margin-bottom: 10px; */
+            /* padding-right: 10px; */
+        }
+
+        .gap {
+            margin-right: 50px;
+        }
+
+        input[type=checkbox]:checked:not([disabled])+label {
+            background-color: red;
+        }
+    </style>
+
 </head>
 
 <body>
