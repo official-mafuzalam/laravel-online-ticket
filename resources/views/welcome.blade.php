@@ -70,7 +70,7 @@
         </div>
 
 
-        
+
 
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -97,5 +97,129 @@
                     });
                 });
             });
+        </script>
+
+        <script>
+            // function to update the selected items in the "selected-items" div
+            function updateSelectedItems() {
+                // get all the checkboxes with class "btn-check" that are checked
+                var selectedCheckboxes = document.querySelectorAll('.btn-check:checked');
+                // get the "selected-items" div
+                var selectedItemsDiv = document.getElementById('selected-items');
+                // get the seat-no input
+                var seatNoInput = document.getElementById('seat-no-input');
+                // remove all child elements from the "selected-items" div
+                selectedItemsDiv.innerHTML = '';
+                // iterate over the selected checkboxes
+                for (var i = 0; i < selectedCheckboxes.length; i++) {
+                    // skip over disabled checkboxes
+                    if (selectedCheckboxes[i].disabled) {
+                        continue;
+                    }
+                    // create a span element for each selected checkbox
+                    var selectedCheckboxSpan = document.createElement('span');
+                    selectedCheckboxSpan.className = 'badge bg-primary me-2';
+                    selectedCheckboxSpan.innerHTML = selectedCheckboxes[i].nextElementSibling.innerHTML;
+                    // add the span element to the "selected-items" div
+                    selectedItemsDiv.appendChild(selectedCheckboxSpan);
+                }
+                // set the value of the seat-no input to the selected items
+                seatNoInput.value = selectedItemsDiv.innerText;
+            }
+
+
+            // listen for changes in the state of any checkbox with class "btn-check"
+            // document.querySelectorAll('.btn-check').forEach(function(checkbox) {
+            //     checkbox.addEventListener('change', function() {
+            //         updateSelectedItems();
+            //     });
+            // });
+
+
+            // JS For Find Name by Mobile Number
+            function getName(mobile) {
+                // Send an AJAX request to the server
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // Update the name input field with the retrieved name
+                        document.getElementById("name").value = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
+                xhttp.send();
+            }
+        </script>
+
+        <!-- JS For Automatic Fare by Station -->
+        {{-- <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // add event listener to station select element
+                var stationSelect = document.getElementById("station-select");
+                stationSelect.addEventListener("change", function() {
+                    // get selected option
+                    var selectedOption = this.options[this.selectedIndex];
+                    // get fare value from selected option
+                    var fareValue = selectedOption.getAttribute("data-fare");
+                    // set fare input value to fare value
+                    var fareInput = document.getElementById("fare-input");
+                    fareInput.value = fareValue;
+                });
+            });
+        </script> --}}
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // add event listener to station select element
+                var stationSelect = document.getElementById("station-select");
+                var fareInput = document.getElementById("fare-input");
+
+                stationSelect.addEventListener("change", function() {
+                    // get selected option
+                    var selectedOption = this.options[this.selectedIndex];
+                    // get fare value from selected option
+                    var fareValue = selectedOption.getAttribute("data-fare");
+                    // set fare input value to fare value
+                    fareInput.value = fareValue;
+                    console.log = fareValue;
+                });
+            });
+        </script>
+
+
+
+        <!-- JS For Selected Seat Number -->
+        <script>
+            function updateNumSeats() {
+                // get all checkboxes with class "btn-check"
+                var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+                var numChecked = 0;
+                // loop through checkboxes to count number of checked checkboxes
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        numChecked++;
+                    }
+                }
+                // set num seats input value
+                var numSeatInput = document.getElementById("num-seat-input");
+                numSeatInput.value = numChecked;
+
+                var fareInput = document.getElementById("fare-input").value;
+
+                var discountInput = document.getElementById("discount-fare").value;
+
+                var totalFare = numChecked * (fareInput - discountInput);
+
+                var totalFareInput = document.getElementById("total-fare");
+                totalFareInput.value = totalFare;
+
+
+            }
+
+            // add event listeners to checkboxes
+            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener('change', updateNumSeats);
+            }
         </script>
     @endsection
