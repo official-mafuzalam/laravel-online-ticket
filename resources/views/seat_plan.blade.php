@@ -12,13 +12,13 @@
     </div>
 
     <div class="container text-center">
-        <div class="row">
+        <div class="row bg-success-subtle p-2">
             <div class="col">
                 <div class="form-check form-check-inline">
                     <div class="row seat">
                         <div class="col gap">
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a1"
-                                autocomplete="on">
+                                autocomplete="on" {{ $trip_data->A1 == 1 ? 'checked disabled' : '' }}>
                             <label class="btn btn-outline-primary" for="a1">A1</label>
 
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a2"
@@ -248,20 +248,53 @@
 
             </div>
             <div class="col seat">
-                <form action="sell_ticket.php" method="post">
+                <form action="{{ route('sell_ticket') }}" method="post">
+                    @csrf
                     <div class="row g-2 seat">
                         <div class="col-md">
 
 
+                            <select class="form-select" id="station-select" name="station" required>
+                                <option value="" selected disabled>Select Station</option>
+                                <?php
+                                
+                                $stations = explode(',', $trip_data->stations);
+                                
+                                foreach ($stations as $station) {
+                                    $station = trim($station);
+                                    $parts = explode('-', $station);
+                                    $name = trim($parts[0]);
+                                    $fare = trim($parts[1]);
+                                    echo '<option data-fare="' . $fare . '" value="' . $name . '">' . $name . ' - ' . $fare . '</option>';
+                                }
+                                ?>
+                            </select>
+
+                            <input id="" hidden class="form-control" type="text" name="route"
+                                value="{{ $trip_data->route }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="date"
+                                value="{{ $trip_data->date }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="time"
+                                value="{{ $trip_data->time }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="coach_no"
+                                value="{{ $trip_data->coach_no }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="trip_id"
+                                value="{{ $trip_data->trip_id }}" readonly>
+
+
+
+
+
+
+                            {{-- <input id="fare-input" class="form-control" type="number" name="fare" readonly> --}}
+
                         </div>
                     </div>
-                    <div class="row g-2 seat">
+                    <div class="row g-2 p-2 seat">
                         <div id="selected-items"></div>
-                        <br>
                         <input id="seat-no-input" class="form-control" type="text" name="seat_no" readonly>
                     </div>
-                    <br>
-                    <div class="row g-2 seat">
+                    <div class="row g-2 p-2 seat">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input id="fare-input" class="form-control" type="number" name="fare" readonly>
@@ -276,14 +309,13 @@
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input id="discount-fare" class="form-control" type="number" value="0"
-                                    name="discount_fare" required>
+                                <input id="discount-fare" class="form-control" type="number" value=""
+                                    name="discount_fare" onkeyup="updateNumSeats(this.value)" maxlength="3">
                                 <label for="mobile">Discount Per Seat</label>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="row g-2 seat">
+                    <div class="row g-2 p-2 seat">
                         <div class="col-md">
                             <select class="form-select" id="gender" name="gender" required>
                                 <option selected disabled>Select Gender</option>
@@ -298,8 +330,7 @@
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="row g-2 seat">
+                    <div class="row g-2 p-2 seat">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="tel" class="form-control" id="mobile" name="mobile"
@@ -322,4 +353,155 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        // function to update the selected items in the "selected-items" div
+        function updateSelectedItems() {
+            // get all the checkboxes with class "btn-check" that are checked
+            var selectedCheckboxes = document.querySelectorAll('.btn-check:checked');
+            // get the "selected-items" div
+            var selectedItemsDiv = document.getElementById('selected-items');
+            // get the seat-no input
+            var seatNoInput = document.getElementById('seat-no-input');
+            // remove all child elements from the "selected-items" div
+            selectedItemsDiv.innerHTML = '';
+            // iterate over the selected checkboxes
+            for (var i = 0; i < selectedCheckboxes.length; i++) {
+                // skip over disabled checkboxes
+                if (selectedCheckboxes[i].disabled) {
+                    continue;
+                }
+                // create a span element for each selected checkbox
+                var selectedCheckboxSpan = document.createElement('span');
+                selectedCheckboxSpan.className = 'badge bg-primary me-2';
+                selectedCheckboxSpan.innerHTML = selectedCheckboxes[i].nextElementSibling.innerHTML;
+                // add the span element to the "selected-items" div
+                selectedItemsDiv.appendChild(selectedCheckboxSpan);
+            }
+            // set the value of the seat-no input to the selected items
+            seatNoInput.value = selectedItemsDiv.innerText;
+        }
+
+
+        // listen for changes in the state of any checkbox with class "btn-check"
+        // document.querySelectorAll('.btn-check').forEach(function(checkbox) {
+        //     checkbox.addEventListener('change', function() {
+        //         updateSelectedItems();
+        //     });
+        // });
+
+
+        // JS For Find Name by Mobile Number
+        function getName(mobile) {
+            // Send an AJAX request to the server
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Update the name input field with the retrieved name
+                    document.getElementById("name").value = this.responseText;
+                }
+            };
+            xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
+            xhttp.send();
+        }
+
+        function discounFare(fare) {
+
+            // get all checkboxes with class "btn-check"
+            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+            var numChecked = 0;
+            // loop through checkboxes to count number of checked checkboxes
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    numChecked++;
+                }
+            }
+            // set num seats input value
+            var numSeatInput = document.getElementById("num-seat-input");
+            numSeatInput.value = numChecked;
+
+            var fareInput = document.getElementById("fare-input").value;
+
+            var discountInput = document.getElementById("discount-fare").value;
+
+            var totalFare = numChecked * (fareInput - fare);
+
+            var totalFareInput = document.getElementById("total-fare");
+            totalFareInput.value = totalFare;
+
+        }
+    </script>
+
+    <!-- JS For Automatic Fare by Station -->
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // add event listener to station select element
+            var stationSelect = document.getElementById("station-select");
+            stationSelect.addEventListener("change", function() {
+                // get selected option
+                var selectedOption = this.options[this.selectedIndex];
+                // get fare value from selected option
+                var fareValue = selectedOption.getAttribute("data-fare");
+                // set fare input value to fare value
+                var fareInput = document.getElementById("fare-input");
+                fareInput.value = fareValue;
+            });
+        });
+    </script> --}}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // add event listener to station select element
+            var stationSelect = document.getElementById("station-select");
+            var fareInput = document.getElementById("fare-input");
+
+            stationSelect.addEventListener("change", function() {
+                // get selected option
+                var selectedOption = this.options[this.selectedIndex];
+                // get fare value from selected option
+                var fareValue = selectedOption.getAttribute("data-fare");
+                // set fare input value to fare value
+                fareInput.value = fareValue;
+                // console.log(fareValue);
+            });
+        });
+    </script>
+
+
+
+    <!-- JS For Selected Seat Number -->
+    <script>
+        function updateNumSeats() {
+            // get all checkboxes with class "btn-check"
+            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+            var numChecked = 0;
+            // loop through checkboxes to count number of checked checkboxes
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    numChecked++;
+                }
+            }
+            // set num seats input value
+            var numSeatInput = document.getElementById("num-seat-input");
+            numSeatInput.value = numChecked;
+
+            var fareInput = document.getElementById("fare-input").value;
+
+            var discountInput = document.getElementById("discount-fare").value;
+
+            var totalFare = numChecked * (fareInput - discountInput);
+
+            var totalFareInput = document.getElementById("total-fare");
+            totalFareInput.value = totalFare;
+
+
+        }
+
+        // add event listeners to checkboxes
+        var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener('change', updateNumSeats);
+        }
+    </script>
 @endsection

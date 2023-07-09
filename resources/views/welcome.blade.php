@@ -28,7 +28,8 @@
                     </td>
 
                     <td class="text-success fw-bold">
-                        <button type="button" class="btn btn-success btn-sm">Active</button>
+                        <a class="text-decoration-none btn btn-success btn-sm" target="_blank" href="{{ route('seat_plan', ['trip_id'=>$trip->trip_id]) }}">Book</a>
+                        {{-- <button type="button" class="btn btn-success btn-sm">Active</button> --}}
                     </td>
                     <td class="text-success fw-bold">
                         <button type="button" class="btn btn-warning btn-sm">Omit</button>

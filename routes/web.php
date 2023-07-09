@@ -26,6 +26,6 @@ Route::post('/add_trip', [HomeController::class, 'add_trip_data'])->name('add_tr
 
 Route::get('/getTripData', [HomeController::class, 'getTripData'])->name('getTripData');
 
-Route::get('/seat', function () {
-    return view('seat_plan');
-});
+Route::get('/seat_plan/{trip_id}', [HomeController::class, 'seat_plan'])->name('seat_plan');
+
+Route::post('sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');

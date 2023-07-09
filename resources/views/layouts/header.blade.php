@@ -16,8 +16,8 @@
         }
 
         .seat {
-            /* margin-bottom: 10px; */
-            /* padding-right: 10px; */
+            margin-bottom: 10px;
+            padding-right: 10px;
         }
 
         .gap {

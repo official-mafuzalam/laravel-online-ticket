@@ -63,6 +63,57 @@ class HomeController extends Controller
         // print_r($request->toArray());
     }
 
+    public function seat_plan($trip_id){
+
+        $trip_data = TripStatus::where('trip_id', $trip_id)->first();
+
+        $data = compact('trip_data');
+        return view('seat_plan')->with($data);
+
+
+
+    }
+
+
+
+    public function sell_ticket(Request $request){
+
+
+         echo 'pre';
+        print_r($request->toArray());
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function getTripData(Request $request)
