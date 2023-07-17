@@ -4,9 +4,9 @@
     <div class="container text-center">
         <div class="container text-center">
             <div class="row">
-                <div class="col text-danger fw-bold"> Coach No: </div>
-                <div class="col text-danger fw-bold"> Date: </div>
-                <div class="col text-danger fw-bold"> Time: </div>
+                <div class="col text-danger fw-bold"> Coach No: {{$trip_data->coach_no}}</div>
+                <div class="col text-danger fw-bold"> Date:  {{$trip_data->date}}</div>
+                <div class="col text-danger fw-bold"> Time:  {{$trip_data->time}}</div>
             </div>
         </div>
     </div>
