@@ -1,32 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <nav aria-label="...">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <i class="bi bi-caret-left"></i>
-                    Pre Day
-                </a>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">Today's Trip</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    Next Day
-                    <i class="bi bi-caret-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav> --}}
 
-    <div class="container d-grid mb-2 gap-2 d-md-flex justify-content-md-center bg-body-secondary">
+    <div class="container p-2 text-center bg-warning-subtle">
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <select class="form-select form-select-sm" name="station_from">
+                    <option selected>Select from</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <select class="form-select form-select-sm" name="station_to">
+                    <option selected>Select to</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <input class="form-control form-control-sm" type="date" aria-label="form-control-sm example">
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <button class="btn btn-success btn-sm" type="submit">Search</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="container text-center">
+
+    </div>
+
+    <div class="container p-2 d-grid mb-2 gap-2 d-md-flex justify-content-md-center bg-warning-subtle">
         <button class="btn btn-info" type="button">
             <i class="bi bi-caret-left"></i>
             Pre. Day
         </button>
-        <button class="btn btn-outline-primary" type="button">Today <br> 17/07/2023</button>
+        <button class="btn btn-outline-success" type="button">Today <br> 17/07/2023</button>
         <button class="btn btn-info" type="button">
             Next Day
             <i class="bi bi-caret-right"></i>
@@ -35,47 +50,61 @@
 
     <div class="container">
         <table class="table table-hover text-center">
-            {{-- <thead>
-            <tr>
-                <th scope="col">Coach</th>
-                <th scope="col">Time</th>
-                <th scope="col">Route</th>
-                <th scope="col">Available</th>
-                <th scope="col">Action</th>
-                <th scope="col">Action</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead> --}}
+            <thead class="table-info">
+                <tr>
+                    <th scope="col">Coach</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Route</th>
+                    <th scope="col">Available</th>
+                    <th scope="col">Fare</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
             <tbody>
-                @foreach ($trips as $trip)
+                @if ($trips->isEmpty())
                     <tr>
-                        <td class="text-success fw-bold"> 
-                            <span class="font-monospace">Coach:</span>
-                            {{ $trip->coach_no }}
-                        </td>
-                        <td class="text-success fw-bold">{{ $trip->time }} <br> {{ $trip->date }}</td>
-                        <td class="text-success fw-bold">{{ $trip->route }}</td>
-                        <td class="text-success fw-bold">36</td>
-                        <td class="text-success fw-bold">
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-id="{{ $trip->trip_id }}">
-                                Book
-                            </button>
-                        </td>
-
-                        <td class="text-success fw-bold">
-                            <a class="text-decoration-none btn btn-success btn-sm" target="_blank"
-                                href="{{ route('seat_plan', ['trip_id' => $trip->trip_id]) }}">Book</a>
-                            {{-- <button type="button" class="btn btn-success btn-sm">Active</button> --}}
-                        </td>
-                        <td class="text-success fw-bold">
-                            <button type="button" class="btn btn-warning btn-sm">Omit</button>
-                        </td>
+                        <td>No trip found.</td>
                     </tr>
-                @endforeach
+                @else
+                    @foreach ($trips as $trip)
+                        <tr>
+                            <td class="text-success fw-bold">
+                                <span class="font-monospace">Coach:</span>
+                                {{ $trip->coach_no }}
+                            </td>
+                            <td class="text-success fw-bold">{{ $trip->time }}</td>
+                            <td class="text-success fw-bold">{{ $trip->route }}</td>
+                            <td class="text-success fw-bold">36</td>
+                            <td class="text-success fw-bold">
+                                @php
+                                    $stations = explode(',', $trip->stations);
+                                    $lastOption = end($stations);
+                                    $lastOptionValue = explode('-', $lastOption)[1];
+                                @endphp
+
+                                {{ $lastOptionValue }}
+                            </td>
+                            <td class="text-success fw-bold">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" data-id="{{ $trip->id }}">
+                                    Book
+                                </button>
+                            </td>
+
+                            {{-- <td class="text-success fw-bold">
+                                <a class="text-decoration-none btn btn-success btn-sm" target="_blank"
+                                    href="{{ route('seat_plan', ['trip_id' => $trip->trip_id]) }}">Book</a>
+                            </td>
+                            <td class="text-success fw-bold">
+                                <button type="button" class="btn btn-warning btn-sm">Omit</button> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>
+
 
     <!-- Modal For Seat Plane -->
     {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
@@ -114,151 +143,24 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            $(document).ready(function() {
-                $('#exampleModal').on('show.bs.modal', function(event) {
-                    var button = $(event.relatedTarget);
-                    var tripId = button.data('id');
+            $(document).on('show.bs.modal', '#exampleModal', function(event) {
+                var button = $(event.relatedTarget);
+                var tripId = button.data('id');
+                var modal = $(this);
 
-                    // Make an AJAX request to fetch data based on tripId
-                    $.ajax({
-                        url: '/getTripData', // Replace with your server route to fetch trip data
-                        method: 'GET',
-                        data: {
-                            tripId: tripId
-                        },
-                        success: function(response) {
-                            $('#modalContent').html(response.html);
-                        },
-
-                        error: function(xhr, status, error) {
-                            console.log(error);
-                        }
-                    });
+                $.ajax({
+                    url: '/trip/' + tripId,
+                    method: 'GET',
+                    success: function(response) {
+                        // Update the modal content with the fetched view page
+                        modal.find('.modal-body').html(response.html);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
                 });
             });
         </script>
 
-        <script>
-            // function to update the selected items in the "selected-items" div
-            function updateSelectedItems() {
-                // get all the checkboxes with class "btn-check" that are checked
-                var selectedCheckboxes = document.querySelectorAll('.btn-check:checked');
-                // get the "selected-items" div
-                var selectedItemsDiv = document.getElementById('selected-items');
-                // get the seat-no input
-                var seatNoInput = document.getElementById('seat-no-input');
-                // remove all child elements from the "selected-items" div
-                selectedItemsDiv.innerHTML = '';
-                // iterate over the selected checkboxes
-                for (var i = 0; i < selectedCheckboxes.length; i++) {
-                    // skip over disabled checkboxes
-                    if (selectedCheckboxes[i].disabled) {
-                        continue;
-                    }
-                    // create a span element for each selected checkbox
-                    var selectedCheckboxSpan = document.createElement('span');
-                    selectedCheckboxSpan.className = 'badge bg-primary me-2';
-                    selectedCheckboxSpan.innerHTML = selectedCheckboxes[i].nextElementSibling.innerHTML;
-                    // add the span element to the "selected-items" div
-                    selectedItemsDiv.appendChild(selectedCheckboxSpan);
-                }
-                // set the value of the seat-no input to the selected items
-                seatNoInput.value = selectedItemsDiv.innerText;
-            }
-
-
-            // listen for changes in the state of any checkbox with class "btn-check"
-            // document.querySelectorAll('.btn-check').forEach(function(checkbox) {
-            //     checkbox.addEventListener('change', function() {
-            //         updateSelectedItems();
-            //     });
-            // });
-
-
-            // JS For Find Name by Mobile Number
-            function getName(mobile) {
-                // Send an AJAX request to the server
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        // Update the name input field with the retrieved name
-                        document.getElementById("name").value = this.responseText;
-                    }
-                };
-                xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
-                xhttp.send();
-            }
-        </script>
-
-        <!-- JS For Automatic Fare by Station -->
-        {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // add event listener to station select element
-            var stationSelect = document.getElementById("station-select");
-            stationSelect.addEventListener("change", function() {
-                // get selected option
-                var selectedOption = this.options[this.selectedIndex];
-                // get fare value from selected option
-                var fareValue = selectedOption.getAttribute("data-fare");
-                // set fare input value to fare value
-                var fareInput = document.getElementById("fare-input");
-                fareInput.value = fareValue;
-            });
-        });
-    </script> --}}
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // add event listener to station select element
-                var stationSelect = document.getElementById("station-select");
-                var fareInput = document.getElementById("fare-input");
-
-                stationSelect.addEventListener("change", function() {
-                    // get selected option
-                    var selectedOption = this.options[this.selectedIndex];
-                    // get fare value from selected option
-                    var fareValue = selectedOption.getAttribute("data-fare");
-                    // set fare input value to fare value
-                    fareInput.value = fareValue;
-                    console.log = fareValue;
-                });
-            });
-        </script>
-
-
-
-        <!-- JS For Selected Seat Number -->
-        <script>
-            function updateNumSeats() {
-                // get all checkboxes with class "btn-check"
-                var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
-                var numChecked = 0;
-                // loop through checkboxes to count number of checked checkboxes
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].checked) {
-                        numChecked++;
-                    }
-                }
-                // set num seats input value
-                var numSeatInput = document.getElementById("num-seat-input");
-                numSeatInput.value = numChecked;
-
-                var fareInput = document.getElementById("fare-input").value;
-
-                var discountInput = document.getElementById("discount-fare").value;
-
-                var totalFare = numChecked * (fareInput - discountInput);
-
-                var totalFareInput = document.getElementById("total-fare");
-                totalFareInput.value = totalFare;
-
-
-            }
-
-            // add event listeners to checkboxes
-            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].addEventListener('change', updateNumSeats);
-            }
-        </script>
+        
     @endsection

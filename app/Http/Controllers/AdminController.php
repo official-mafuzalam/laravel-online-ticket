@@ -11,9 +11,10 @@ class AdminController extends Controller
 {
     //
 
-    public function welcome(){
+    public function welcome()
+    {
 
-        
+
         $tripStatus = new TripStatus();
         $trips = $tripStatus->get();
 
@@ -54,7 +55,8 @@ class AdminController extends Controller
         // print_r($request->toArray());
     }
 
-    public function seat_plan($trip_id){
+    public function seat_plan($trip_id)
+    {
 
         $trip_data = TripStatus::where('trip_id', $trip_id)->first();
 
@@ -67,12 +69,21 @@ class AdminController extends Controller
 
 
 
-    public function sell_ticket(Request $request){
+    public function sell_ticket(Request $request)
+    {
 
 
-         echo 'pre';
+        echo 'pre';
         print_r($request->toArray());
 
     }
-    
+
+    public function show($id)
+    {
+        $trip_data = TripStatus::find($id);
+        $html = view('seat', compact('trip_data'))->render();
+        return response()->json(['html' => $html]);
+    }
+
+
 }
