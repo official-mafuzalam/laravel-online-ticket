@@ -28,10 +28,36 @@ Route::get('/', function () {
         } else {
             return redirect()->route('agents.welcome');
         }
+    } else {
+        return redirect()->route('login')
+            ->with('error', 'Email-Address And Password Are Wrong.');
+    }
+});
+
+Route::get('/home', function () {
+
+    if (Auth::check()) {
+        if (auth()->user()->type == 'admin') {
+            return redirect()->route('admin.welcome');
+        } else if (auth()->user()->type == 'manager') {
+            return redirect()->route('manager.welcome');
+        } else {
+            return redirect()->route('agents.welcome');
+        }
+    } else {
+        return redirect()->route('login')
+            ->with('error', 'Email-Address And Password Are Wrong.');
     }
 });
 
 Auth::routes();
+
+Route::get('/session', function () {
+
+    $session = session()->all();
+    print_r($session);
+
+});
 
 /*------------------------------------------
 --------------------------------------------
@@ -83,12 +109,12 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
 // Route::get('/', [HomeController::class, 'welcome']);
 
-// Route::get('/add_trip', [HomeController::class, 'add_trip'])->name('add_trip');
+Route::get('/add_trip', [AdminController::class, 'add_trip'])->name('add_trip');
 
-// Route::post('/add_trip', [HomeController::class, 'add_trip_data'])->name('add_trip_data');
+Route::post('/add_trip', [AdminController::class, 'add_trip_data'])->name('add_trip_data');
 
-// Route::get('/getTripData', [HomeController::class, 'getTripData'])->name('getTripData');
+Route::get('/getTripData', [AdminController::class, 'getTripData'])->name('getTripData');
 
-// Route::get('/seat_plan/{trip_id}', [HomeController::class, 'seat_plan'])->name('seat_plan');
+Route::get('/seat_plan/{trip_id}', [AdminController::class, 'seat_plan'])->name('seat_plan');
 
-// Route::post('sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
+Route::post('sell_ticket', [AdminController::class, 'sell_ticket'])->name('sell_ticket');
