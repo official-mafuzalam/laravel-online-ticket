@@ -12,28 +12,28 @@
             <thead>
                 <tr>
                     <th scope="col">S/L</th>
-                    <th scope="col">Counter ID</th>
-                    <th scope="col">Main R.</th>
-                    <th scope="col">Counter Name</th>
-                    <th scope="col">Counter Address</th>
-                    <th scope="col">Time Deff</th>
+                    <th scope="col">Counter</th>
+                    <th scope="col">User ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Password</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($counter->isEmpty())
+                @if ($master->isEmpty())
                     <tr>
-                        <td class="text-center">No trip found.</td>
+                        <td class="text-center">No Counter Master found.</td>
                     </tr>
                 @else
-                    @foreach ($counter as $coun)
+                    @foreach ($master as $counterMaster)
                         <tr>
-                            <th>{{ $coun->id }}</th>
-                            <td>{{ $coun->counter_id }}</td>
-                            <td>{{ $coun->main_route }}</td>
-                            <td>{{ $coun->coun_name }}</td>
-                            <td>{{ $coun->coun_add }}</td>
-                            <td>{{ $coun->time_deff }}</td>
+                            <th>{{ $counterMaster->id }}</th>
+                            <td>{{ $counterMaster->coun_name }}</td>
+                            <td>{{ $counterMaster->user_id }}</td>
+                            <td>{{ $counterMaster->user_name }}</td>
+                            <td>{{ $counterMaster->user_mobile }}</td>
+                            <td>{{ $counterMaster->password }}</td>
                             <td>
                                 <a class="text-decoration-none" href="">Edit</a>
                             </td>
@@ -53,51 +53,55 @@
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.counter.add') }}" method="post">
+                <form action="{{ route('admin.user.add') }}" method="post">
                     @csrf
                     <div class="modal-body">
 
 
                         <div class="mb-3 row">
-                            <label for="coun_id" class="col-sm-2 col-form-label">Coun. ID</label>
+                            <label for="user_id" class="col-sm-2 col-form-label">User ID</label>
                             <div class="col-sm-10">
-                                <input name="counter_id" type="number" class="form-control" id="coun_id"
-                                    placeholder="ex: 101" required>
+                                <input name="user_id" type="number" class="form-control" id="user_id"
+                                    placeholder="ex: 1001" readonly value="{{ $newUserId }}">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
+                            <label for="main_route" class="col-sm-2 col-form-label">Counter</label>
                             <div class="col-sm-10">
-                                <select name="main_route" id="main_route" class="form-select form-select-sm"
+                                <select name="coun_name" id="main_route" class="form-select form-select-sm"
                                     aria-label=".form-select-sm example" required>
+
                                     <option selected>Select counter main route</option>
-                                    <option value="1">All Route</option>
-                                    <option value="5">Gabtoli - All</option>
-                                    <option value="10">Khulna - All</option>
-                                    <option value="15">Pirojpur - All</option>
+                                    @foreach ($counter as $coun)
+                                        <option value="{{ $coun->coun_name }}">
+                                            {{ $coun->coun_name }}
+                                        </option>
+                                    @endforeach
+
+
                                 </select>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="name" class="col-sm-2 col-form-label">Coun. Name</label>
+                            <label for="user_name" class="col-sm-2 col-form-label">User Name</label>
                             <div class="col-sm-10">
-                                <input name="coun_name" type="text" class="form-control" id="name"
+                                <input name="user_name" type="text" class="form-control" id="user_name"
                                     placeholder="ex: Gabtoli" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="coun_add" class="col-sm-2 col-form-label">Coun. Address</label>
+                            <label for="user_mobile" class="col-sm-2 col-form-label">User Mobile</label>
                             <div class="col-sm-10">
-                                <input name="coun_add" type="text" class="form-control" id="coun_add"
-                                    placeholder="ex: Gabtoli Terminal" required>
+                                <input name="user_mobile" type="text" class="form-control" id="user_mobile"
+                                    placeholder="ex: 01744445552" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="time_deff" class="col-sm-2 col-form-label">Time Deff (min)</label>
+                            <label for="password" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                                <input name="time_deff" type="number" class="form-control" id="time_deff"
-                                    placeholder="ex: 15" required>
+                                <input name="password" type="text" class="form-control" id="password"
+                                    placeholder="ex: xxxxx" required>
                             </div>
                         </div>
 

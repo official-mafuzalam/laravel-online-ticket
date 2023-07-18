@@ -76,6 +76,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/counter', [CounterController::class, 'counterAdd'])->name('admin.counter.add');
 
+        Route::get('/user', [CounterController::class, 'userPage'])->name('admin.user');
+
+        Route::post('/user', [CounterController::class, 'userAdd'])->name('admin.user.add');
+
     });
 });
 

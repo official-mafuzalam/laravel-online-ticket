@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Todays Trip</title>
+    <title>Todays Trip | Friends IT</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -67,8 +67,12 @@
                                         Add New Trip
                                     </a>
                                     <a class="dropdown-item" href="{{ route('admin.counter') }}">
-                                        <i class="bi bi-plus-circle"></i>
+                                        <i class="bi bi-house-check"></i>
                                         Counter's
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.user') }}">
+                                        <i class="bi bi-person-fill-check"></i>
+                                        Counter User
                                     </a>
 
                                 </div>
