@@ -2,6 +2,18 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+
     <div class="container p-2 text-center bg-warning-subtle">
 
         <div class="row">
@@ -162,5 +174,5 @@
             });
         </script>
 
-        
+
     @endsection

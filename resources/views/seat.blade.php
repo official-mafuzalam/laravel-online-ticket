@@ -49,7 +49,7 @@
                     <div class="row seat">
                         <div class="col gap">
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a1"
-                                autocomplete="on">
+                                autocomplete="on" {{ $trip_data->A1 == 1 ? 'checked disabled' : '' }}>
                             <label class="btn btn-outline-primary" for="a1">A1</label>
 
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a2"
@@ -57,24 +57,59 @@
                             <label class="btn btn-outline-primary" for="a2">A2</label>
                         </div>
                         <div class="col">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="a3">A3</label>
 
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="a4">A4</label>
+                            @if ($trip_data->A3 == 1)
+                                <input type="checkbox" class="btn-check" id="a3" autocomplete="on" checked
+                                    disabled>
+                                <label class="btn btn-outline-primary" for="a3">A3</label>
+                            @else
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="a3">A3</label>
+                            @endif
+
+                            @if ($trip_data->A4 == 1)
+                                <input type="checkbox" class="btn-check" id="a4" autocomplete="on" checked
+                                    disabled>
+                                <label class="btn btn-outline-primary" for="a4">A4</label>
+                            @else
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="a4">A4</label>
+                            @endif
+
+                            {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a3"
+                                autocomplete="on" {{ $trip_data->A3 == 1 ? 'checked disabled' : '' }}>
+                            <label class="btn btn-outline-primary" for="a3">A3</label> --}}
+
+                            {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
+                                autocomplete="on" {{ $trip_data->A4 == 1 ? 'checked disabled' : '' }}>
+                            <label class="btn btn-outline-primary" for="a4">A4</label> --}}
                         </div>
                     </div>
                     <div class="row seat">
                         <div class="col gap">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b1">B1</label>
+                            {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b1"
+                                autocomplete="on"> --}}
+                            {{-- <label class="btn btn-outline-primary" for="b1">B1</label> --}}
 
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b2"
+                            @if ($trip_data->B1 == 1)
+                                <button type="button" id="btn-seat-b1" class="btn btn-warning" disabled>B1</button>
+                            @else
+                                <button type="button" id="btn-seat-b1" class="btn btn-outline-success"
+                                    onclick="updateButton('B1')">B1</button>
+                            @endif
+
+                            @if ($trip_data->B2 == 1)
+                                <button type="button" id="btn-seat-b2" class="btn btn-warning" disabled>B2</button>
+                            @else
+                                <button type="button" id="btn-seat-b2" class="btn btn-outline-success"
+                                    onclick="updateButton('B2')">B2</button>
+                            @endif
+
+                            {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b2"
                                 autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b2">B2</label>
+                            <label class="btn btn-outline-primary" for="b2">B2</label> --}}
                         </div>
                         <div class="col">
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b3"
@@ -306,6 +341,18 @@
                             </select>
 
 
+                            <input id="" hidden class="form-control" type="text" name="route"
+                                value="{{ $trip_data->route }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="date"
+                                value="{{ $trip_data->date }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="time"
+                                value="{{ $trip_data->time }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="coach_no"
+                                value="{{ $trip_data->coach_no }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="trip_id"
+                                value="{{ $trip_data->trip_id }}" readonly>
+
+
 
 
 
@@ -318,7 +365,7 @@
                     </div>
                     <div class="row g-2 p-2 seat">
                         <div id="selected-items"></div>
-                        <input id="seat-no-input" class="form-control" type="text" name="seat_no" readonly>
+                        <input id="seat-no-input" class="form-control" type="text" name="seat" readonly>
                     </div>
                     <div class="row g-2 p-2 seat">
                         <div class="col-md">
@@ -345,7 +392,7 @@
                     <div class="row g-2 p-2 seat">
                         <div class="col-md">
                             <select class="form-select" id="gender" name="gender" required>
-                                <option selected disabled>Select Gender</option>
+                                <option disabled>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -383,6 +430,21 @@
     </div>
 
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <!-- Modal content goes here -->
+    </div>
+
+    <script>
+        function updateSelectedItems() {
+            var checkbox = document.getElementById('a4');
+            if (checkbox.checked) {
+                $('#myModal').modal('show');
+            }
+        }
+    </script>
 
 
     <script>
