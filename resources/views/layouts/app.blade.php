@@ -66,9 +66,9 @@
                                         <i class="bi bi-plus-circle"></i>
                                         Add New Trip
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('add_trip') }}">
+                                    <a class="dropdown-item" href="{{ route('admin.counter') }}">
                                         <i class="bi bi-plus-circle"></i>
-                                        Add New Trip
+                                        Counter's
                                     </a>
 
                                 </div>
