@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('counter_masters', function (Blueprint $table) {
             $table->id();
             $table->string('coun_name');
+            $table->integer('coun_id');
+            $table->integer('main_route');
+            $table->integer('user_type');
             $table->integer('user_id');
             $table->string('user_name');
             $table->string('user_mobile');
             $table->string('password');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

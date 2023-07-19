@@ -8,7 +8,7 @@
     </div>
 
     <div class="container">
-        <table class="table table-striped table-hover text-center">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">S/L</th>
@@ -72,10 +72,13 @@
                                 <select name="main_route" id="main_route" class="form-select form-select-sm"
                                     aria-label=".form-select-sm example" required>
                                     <option selected>Select counter main route</option>
-                                    <option value="1">All Route</option>
-                                    <option value="5">Gabtoli - All</option>
-                                    <option value="10">Khulna - All</option>
-                                    <option value="15">Pirojpur - All</option>
+
+                                    @foreach ($main_route as $route)
+                                        <option value="{{ $route->route_no }}">
+                                            {{ $route->route_name }}
+                                        </option>
+                                    @endforeach
+
                                 </select>
                             </div>
                         </div>

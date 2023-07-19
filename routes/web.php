@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CounterController;
+use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AgentController;
 
@@ -56,7 +57,7 @@ Auth::routes();
 Route::get('/session', function () {
 
     $session = session()->all();
-    print_r($session);
+    p($session);
 
 });
 
@@ -71,7 +72,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::group(['prefix' => '/admin'], function () {
 
         Route::get('/welcome', [AdminController::class, 'welcome'])->name('admin.welcome');
-        
+
         Route::get('/counter', [CounterController::class, 'counterPage'])->name('admin.counter');
 
         Route::post('/counter', [CounterController::class, 'counterAdd'])->name('admin.counter.add');
@@ -79,6 +80,22 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/user', [CounterController::class, 'userPage'])->name('admin.user');
 
         Route::post('/user', [CounterController::class, 'userAdd'])->name('admin.user.add');
+
+        Route::get('/main_route', [TripController::class, 'main_route'])->name('admin.main_route');
+
+        Route::post('/main_route', [TripController::class, 'main_routeAdd'])->name('admin.main_route.add');
+
+        Route::get('/add_trip', [TripController::class, 'add_trip'])->name('add_trip');
+
+        Route::post('/add_trip', [TripController::class, 'add_trip_data'])->name('add_trip_data');
+
+        Route::get('/sample_trip', [TripController::class, 'sample_trip'])->name('admin.sample_trip');
+
+        Route::post('/sample_trip', [TripController::class, 'sample_tripAdd'])->name('admin.sample_trip.add');
+
+        
+
+
 
     });
 });
@@ -124,9 +141,6 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
 // Route::get('/', [HomeController::class, 'welcome']);
 
-Route::get('/add_trip', [AdminController::class, 'add_trip'])->name('add_trip');
-
-Route::post('/add_trip', [AdminController::class, 'add_trip_data'])->name('add_trip_data');
 
 Route::get('/getTripData', [AdminController::class, 'getTripData'])->name('getTripData');
 

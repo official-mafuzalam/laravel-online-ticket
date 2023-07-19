@@ -63,7 +63,7 @@
                                     disabled>
                                 <label class="btn btn-outline-primary" for="a3">A3</label>
                             @else
-                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a3"
                                     autocomplete="on">
                                 <label class="btn btn-outline-primary" for="a3">A3</label>
                             @endif
@@ -89,27 +89,13 @@
                     </div>
                     <div class="row seat">
                         <div class="col gap">
-                            {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b1"
-                                autocomplete="on"> --}}
-                            {{-- <label class="btn btn-outline-primary" for="b1">B1</label> --}}
-
-                            @if ($trip_data->B1 == 1)
-                                <button type="button" id="btn-seat-b1" class="btn btn-warning" disabled>B1</button>
-                            @else
-                                <button type="button" id="btn-seat-b1" class="btn btn-outline-success"
-                                    onclick="updateButton('B1')">B1</button>
-                            @endif
-
-                            @if ($trip_data->B2 == 1)
-                                <button type="button" id="btn-seat-b2" class="btn btn-warning" disabled>B2</button>
-                            @else
-                                <button type="button" id="btn-seat-b2" class="btn btn-outline-success"
-                                    onclick="updateButton('B2')">B2</button>
-                            @endif
-
-                            {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b2"
+                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b1"
                                 autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b2">B2</label> --}}
+                            <label class="btn btn-outline-primary" for="b1">B1</label>
+
+                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b2"
+                                autocomplete="on">
+                            <label class="btn btn-outline-primary" for="b2">B2</label>
                         </div>
                         <div class="col">
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b3"

@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('trip_statuses', function (Blueprint $table) {
             $table->id();
+            $table->integer('main_route');
             $table->integer('trip_id');
             $table->string('coach_no');
             $table->string('date');

@@ -62,18 +62,35 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('add_trip') }}">
-                                        <i class="bi bi-plus-circle"></i>
-                                        Add New Trip
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.counter') }}">
-                                        <i class="bi bi-house-check"></i>
-                                        Counter's
-                                    </a>
+
+                                    @if (session('user.user_type', 'default') == 1)
+                                        <a class="dropdown-item" href="{{ route('admin.main_route') }}">
+                                            <i class="bi bi-signpost"></i>
+                                            Main Route
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('add_trip') }}">
+                                            <i class="bi bi-plus-circle"></i>
+                                            Add New Trip
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.sample_trip') }}">
+                                            <i class="bi bi-bus-front"></i>
+                                            Sample Trip
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.counter') }}">
+                                            <i class="bi bi-house-check"></i>
+                                            Counter's
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.user') }}">
+                                            <i class="bi bi-person-fill-check"></i>
+                                            Counter User
+                                        </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('admin.user') }}">
                                         <i class="bi bi-person-fill-check"></i>
-                                        Counter User
+                                        Selse Report
                                     </a>
+
 
                                 </div>
                             </li>

@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -55,6 +56,18 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+
+
+            $user = auth()->user();
+
+            $userDetails = DB::table('counter_masters')
+                    ->where('email', $user->email)
+                    ->first();
+
+             // Store the user's full details in the session
+             $request->session()->put('user', array_merge($user->toArray(), (array) $userDetails));
+
+
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.welcome');
             } else if (auth()->user()->type == 'manager') {

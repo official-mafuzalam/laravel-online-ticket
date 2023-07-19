@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\CounterList;
 use App\Models\CounterMaster;
+use App\Models\MainRoute;
+use App\Models\User;
 
 class CounterController extends Controller
 {
@@ -13,9 +16,11 @@ class CounterController extends Controller
 
     public function counterPage()
     {
+        $main_route = MainRoute::all();
+
         $counter = CounterList::all();
 
-        $data = compact('counter');
+        $data = compact('counter', 'main_route');
 
         return view('admin.counter')->with($data);
     }
@@ -48,8 +53,9 @@ class CounterController extends Controller
 
 
         $coun = CounterMaster::latest()->first();
-        $lastUserId = $coun->user_id;
-        $newUserId = $lastUserId + 1;
+        // $lastUserId = $coun->user_id;
+        $newUserId = 1000;
+
 
 
         $data = compact('master', 'counter', 'newUserId');
@@ -60,16 +66,26 @@ class CounterController extends Controller
     public function userAdd(Request $request)
     {
 
+        $coun_master = new CounterMaster;
 
-        $user = new CounterMaster;
+        $coun_master->coun_name = $request['coun_name'];
+        $coun_master->coun_id = $request['coun_id'];
+        $coun_master->main_route = $request['main_route'];
+        $coun_master->user_type = $request['type'];
+        $coun_master->user_id = $request['user_id'];
+        $coun_master->user_name = $request['user_name'];
+        $coun_master->user_mobile = $request['user_mobile'];
+        $coun_master->email = $request['user_email'];
+        $coun_master->password = $request['password'];
 
-        $user->coun_name = $request['coun_name'];
-        $user->user_id = $request['user_id'];
-        $user->user_name = $request['user_name'];
-        $user->user_mobile = $request['user_mobile'];
-        $user->password = $request['password'];
+        $coun_master->save();
 
-        $user->save();
+        User::create([
+            'name' => $request['user_name'],
+            'email' => $request['user_email'],
+            'type' => $request['type'],
+            'password' => Hash::make($request['password']),
+        ]);
 
         return redirect()->route('admin.user');
     }

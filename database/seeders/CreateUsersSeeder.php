@@ -8,6 +8,9 @@ use App\Models\User;
   
 class CreateUsersSeeder extends Seeder
 {
+
+    //  {php artisan db:seed --class=CreateUsersSeeder}
+    
     /**
      * Run the database seeds.
      *
@@ -18,19 +21,19 @@ class CreateUsersSeeder extends Seeder
         $users = [
             [
                'name'=>'Admin User',
-               'email'=>'admin@best.com',
+               'email'=>'admin@friendsit.com',
                'type'=>1,
                'password'=> bcrypt('123456'),
             ],
             [
                'name'=>'Manager User',
-               'email'=>'manager@best.com',
+               'email'=>'manager@friendsit.com',
                'type'=> 2,
                'password'=> bcrypt('123456'),
             ],
             [
                'name'=>'Agent User',
-               'email'=>'agent@best.com',
+               'email'=>'agent@friendsit.com',
                'type'=>0,
                'password'=> bcrypt('123456'),
             ],
