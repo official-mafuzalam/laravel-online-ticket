@@ -34,7 +34,17 @@
                 <div class="col text-danger fs-5 fw-bold"> Coach No: {{ $trip_data->coach_no }}</div>
                 <div class="col text-danger fs-5 fw-bold"> {{ $trip_data->route }}</div>
                 <div class="col text-danger fs-5 fw-bold">
-                    Start Time: {{ $trip_data->time }}
+                    <?php
+                    // Convert the trip time to a DateTime object for easier manipulation
+                    $tripTime = new DateTime($trip_data->time);
+                    
+                    // Get the time difference from the session (assuming it's given in minutes)
+                    $timeDifferenceInMinutes = session('user.time_deff');
+                    
+                    // Add the time difference to the trip time
+                    $adjustedTime = $tripTime->modify('+' . $timeDifferenceInMinutes . ' minutes')->format('h:i A');
+                    ?>
+                    Time: {{ $adjustedTime }}
                     <br>
                     Date: {{ $trip_data->date }}
                 </div>
@@ -332,7 +342,7 @@
                             <input id="" hidden class="form-control" type="text" name="date"
                                 value="{{ $trip_data->date }}" readonly>
                             <input id="" hidden class="form-control" type="text" name="time"
-                                value="{{ $trip_data->time }}" readonly>
+                                value="{{ $adjustedTime }}" readonly>
                             <input id="" hidden class="form-control" type="text" name="coach_no"
                                 value="{{ $trip_data->coach_no }}" readonly>
                             <input id="" hidden class="form-control" type="text" name="trip_id"

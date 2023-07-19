@@ -18,7 +18,7 @@
 
         <div class="row">
             <div class="col-md-4 col-sm-6">
-                <select class="form-select form-select-sm" name="station_from">
+                <select class="form-select form-select-sm" name="station_from" disabled>
                     <option selected>Select from</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div class="col-md-4 col-sm-6">
-                <select class="form-select form-select-sm" name="station_to">
+                <select class="form-select form-select-sm" name="station_to" disabled>
                     <option selected>Select to</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -49,15 +49,24 @@
     </div>
 
     <div class="container p-2 d-grid mb-2 gap-2 d-md-flex justify-content-md-center bg-warning-subtle">
-        <button class="btn btn-info" type="button">
+
+        <?php
+        $currentDate = date('Y-m-d');
+        $previousDate = date('Y-m-d', strtotime('-1 day', strtotime($currentDate)));
+        $nextDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+        ?>
+
+        <a class="btn btn-info" type="button" href="{{ route('admin.welcome', ['date' => $previousDate]) }}">
             <i class="bi bi-caret-left"></i>
             Pre. Day
-        </button>
-        <button class="btn btn-outline-success" type="button">Today <br> 17/07/2023</button>
-        <button class="btn btn-info" type="button">
+        </a>
+        <a class="btn btn-outline-success" type="button">Today | {{ date('d-m-Y') }}</a>
+        <a class="btn btn-info" type="button" href="{{ route('admin.next_day', ['date' => $nextDate]) }}">
             Next Day
             <i class="bi bi-caret-right"></i>
-        </button>
+        </a>
+
+
     </div>
 
     <div class="container">

@@ -55,7 +55,7 @@ class AdminController extends Controller
     {
         $trip_data = TripStatus::find($id);
 
-        $html = view('seat', compact('trip_data'))->render();
+        $html = view('admin.seat', compact('trip_data'))->render();
         return response()->json(['html' => $html]);
     }
 
@@ -141,6 +141,35 @@ class AdminController extends Controller
         }
     }
 
+    public function pre_day($date){
+
+        $formattedDate = date('Y-m-d');
+
+        $trips = DB::table('trip_statuses')
+            ->where('date', $date)
+            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+            ->get();
+
+        $data = compact('trips');
+
+        return view('admin.welcome')->with($data);
+
+    }
+
+    public function next_day($date){
+
+        $formattedDate = date('Y-m-d');
+
+        $trips = DB::table('trip_statuses')
+            ->where('date', $date)
+            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+            ->get();
+
+        $data = compact('trips');
+
+        return view('admin.welcome')->with($data);
+
+    }
 
 
 

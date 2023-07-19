@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th scope="col">S/L</th>
-                    <th scope="col">Coach No</th>
+                    <th scope="col">Coach</th>
                     <th scope="col">Route</th>
                     <th scope="col">Station</th>
                     <th scope="col">Time</th>

@@ -43,10 +43,17 @@ class TripController extends Controller
     {
         $main_route = MainRoute::all();
 
-
         $sam_trip = SampleTrip::all();
 
-        $data = compact('main_route', 'sam_trip');
+        $formattedDate = date('Y-m-d');
+
+        $trips = DB::table('trip_statuses')
+            ->where('date', $formattedDate)
+            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+            ->get();
+
+
+        $data = compact('main_route', 'sam_trip', 'trips');
 
         return view('admin.add_trip')->with($data);
     }

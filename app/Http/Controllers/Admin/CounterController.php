@@ -51,14 +51,16 @@ class CounterController extends Controller
 
         $master = CounterMaster::all();
 
+        $main_route = MainRoute::all();
+
 
         $coun = CounterMaster::latest()->first();
-        // $lastUserId = $coun->user_id;
-        $newUserId = 1000;
+        $lastUserId = $coun->user_id;
+        $newUserId = $lastUserId + 1;
 
 
 
-        $data = compact('master', 'counter', 'newUserId');
+        $data = compact('master', 'counter', 'newUserId', 'main_route');
 
         return view('admin.user')->with($data);
     }

@@ -23,7 +23,7 @@
             <tbody>
                 @if ($counter->isEmpty())
                     <tr>
-                        <td class="text-center">No trip found.</td>
+                        <td class="text-center">No counter found.</td>
                     </tr>
                 @else
                     @foreach ($counter as $coun)

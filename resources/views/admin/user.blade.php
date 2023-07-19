@@ -115,10 +115,16 @@
                                     aria-label=".form-select-sm example" required>
 
                                     <option selected>Select user main route</option>
-                                    <option value="1">All Route</option>
+                                    {{-- <option value="1">All Route</option>
                                     <option value="5">Gabtoli - All</option>
                                     <option value="10">Khulna - All</option>
-                                    <option value="15">Pirojpur - All</option>
+                                    <option value="15">Pirojpur - All</option> --}}
+
+                                    @foreach ($main_route as $route)
+                                        <option value="{{ $route->route_no }}">
+                                            {{ $route->route_name }}
+                                        </option>
+                                    @endforeach
 
                                 </select>
                             </div>

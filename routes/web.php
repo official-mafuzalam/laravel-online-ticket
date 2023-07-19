@@ -94,6 +94,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('/sample_trip', [TripController::class, 'sample_tripAdd'])->name('admin.sample_trip.add');
 
         
+        Route::get('/pre_day/{date}', [AdminController::class, 'pre_day'])->name('admin.pre_day');
+
+        Route::get('/next_day/{date}', [AdminController::class, 'next_day'])->name('admin.next_day');
 
 
 

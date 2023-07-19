@@ -61,11 +61,22 @@ class LoginController extends Controller
             $user = auth()->user();
 
             $userDetails = DB::table('counter_masters')
-                    ->where('email', $user->email)
-                    ->first();
+                ->where('email', $user->email)
+                ->first();
 
-             // Store the user's full details in the session
-             $request->session()->put('user', array_merge($user->toArray(), (array) $userDetails));
+
+            if ($userDetails) {
+                // If the user details were found, proceed to retrieve the corresponding counDetails
+                $counDetails = DB::table('counter_lists')
+                    ->where('counter_id', $userDetails->coun_id)
+                    ->first();
+            } else {
+                // Handle the case where user details were not found (optional)
+                $counDetails = null;
+            }
+
+            // Store the user's full details in the session
+            $request->session()->put('user', array_merge($user->toArray(), (array) $userDetails, (array) $counDetails));
 
 
             if (auth()->user()->type == 'admin') {

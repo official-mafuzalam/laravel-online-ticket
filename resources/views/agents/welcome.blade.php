@@ -84,7 +84,21 @@
                                 <span class="font-monospace">Coach:</span>
                                 {{ $trip->coach_no }}
                             </td>
-                            <td class="text-success fw-bold">{{ $trip->time }}</td>
+                            <td class="text-success fw-bold">
+
+                                <?php
+                                // Convert the trip time to a DateTime object for easier manipulation
+                                $tripTime = new DateTime($trip->time);
+                                
+                                // Get the time difference from the session (assuming it's given in minutes)
+                                $timeDifferenceInMinutes = session('user.time_deff');
+                                
+                                // Add the time difference to the trip time
+                                $adjustedTime = $tripTime->modify('+' . $timeDifferenceInMinutes . ' minutes')->format('h:i A');
+                                ?>
+                                {{ $adjustedTime }}
+
+                            </td>
                             <td class="text-success fw-bold">{{ $trip->route }}</td>
                             <td class="text-success fw-bold">36</td>
                             <td class="text-success fw-bold">
