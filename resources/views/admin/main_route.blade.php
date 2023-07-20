@@ -15,6 +15,7 @@
                     <th scope="col">Route No</th>
                     <th scope="col">Route Name</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,11 +26,20 @@
                 @else
                     @foreach ($route as $route)
                         <tr>
-                            <th>{{ $route->id }}</th>
+                            <td>{{ $route->id }}</td>
                             <td>{{ $route->route_no }}</td>
                             <td>{{ $route->route_name }}</td>
                             <td>
-                                <a class="text-decoration-none" href="">Edit</a>
+                                <a class="text-decoration-none"
+                                    href="{{ route('admin.main_route.edit', ['id' => $route->id]) }}">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a class="text-decoration-none text-danger"
+                                    href="{{ route('admin.main_route.delete', ['id' => $route->id]) }}">
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                     @endforeach

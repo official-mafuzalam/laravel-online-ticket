@@ -85,6 +85,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/main_route', [TripController::class, 'main_routeAdd'])->name('admin.main_route.add');
 
+        Route::get('/main_route/{id}', [TripController::class, 'main_routeEdit'])->name('admin.main_route.edit');
+
+        Route::post('/main_route/{id}', [TripController::class, 'main_routeUpdate'])->name('admin.main_route.update');
+
+        Route::get('/main_route/delete/{id}', [TripController::class, 'main_routeDelete'])->name('admin.main_route.delete');
+
         Route::get('/add_trip', [TripController::class, 'add_trip'])->name('add_trip');
 
         Route::post('/add_trip', [TripController::class, 'add_trip_data'])->name('add_trip_data');
@@ -92,6 +98,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/sample_trip', [TripController::class, 'sample_trip'])->name('admin.sample_trip');
 
         Route::post('/sample_trip', [TripController::class, 'sample_tripAdd'])->name('admin.sample_trip.add');
+        
+        Route::get('/sample_trip/{id}', [TripController::class, 'sample_tripEdit'])->name('admin.sample_trip.edit');
+
+        Route::post('/sample_trip/{id}', [TripController::class, 'sample_tripUpdate'])->name('admin.sample_trip.update');
 
         
         Route::get('/pre_day/{date}', [AdminController::class, 'pre_day'])->name('admin.pre_day');

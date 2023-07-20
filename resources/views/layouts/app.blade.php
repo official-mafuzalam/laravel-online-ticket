@@ -55,26 +55,25 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Menu
-                                </a>
+                            @if (session('user.type', 'default') == 'admin')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Menu
+                                    </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                    @if (session('user.user_type', 'default') == 1)
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('admin.main_route') }}">
                                             <i class="bi bi-signpost"></i>
                                             Main Route
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('add_trip') }}">
-                                            <i class="bi bi-plus-circle"></i>
-                                            Add New Trip
-                                        </a>
                                         <a class="dropdown-item" href="{{ route('admin.sample_trip') }}">
                                             <i class="bi bi-bus-front"></i>
                                             Sample Trip
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('add_trip') }}">
+                                            <i class="bi bi-plus-circle"></i>
+                                            Add Trip
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.counter') }}">
                                             <i class="bi bi-house-check"></i>
@@ -84,16 +83,9 @@
                                             <i class="bi bi-person-fill-check"></i>
                                             Counter User
                                         </a>
-                                    @endif
-
-                                    <a class="dropdown-item" href="{{ route('admin.user') }}">
-                                        <i class="bi bi-person-fill-check"></i>
-                                        Selse Report
-                                    </a>
-
-
-                                </div>
-                            </li>
+                                    </div>
+                                </li>
+                            @endif
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -120,10 +112,48 @@
             </div>
         </nav>
 
+        @if (session('success'))
+            <div class="container">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+        @if (session('success-trash'))
+            <div class="container">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success-trash') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+        @if (session('success-delete'))
+            <div class="container">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success-delete') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
+        <!-- Example using a tooltip on a button -->
+        {{-- <button type="button" class="btn btn-primary" data-toggle="tooltip" title="This is a tooltip">
+            Hover me for a tooltip
+        </button> --}}
+
+
         <main class="py-2">
             @yield('content')
         </main>
     </div>
+
+    {{-- <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script> --}}
+
 </body>
 
 </html>

@@ -74,6 +74,7 @@
             <thead class="table-info">
                 <tr>
                     <th scope="col">Coach</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Time</th>
                     <th scope="col">Route</th>
                     <th scope="col">Available</th>
@@ -92,6 +93,13 @@
                             <td class="text-success fw-bold">
                                 <span class="font-monospace">Coach:</span>
                                 {{ $trip->coach_no }}
+                            </td>
+                            <td class="text-success fw-bold">
+                                <?php
+                                // Assuming $trip->date contains "2023-07-20"
+                                $date = date('d-m-Y', strtotime($trip->date));
+                                echo $date; // Output: 20-07-2023
+                                ?>
                             </td>
                             <td class="text-success fw-bold">{{ $trip->time }}</td>
                             <td class="text-success fw-bold">{{ $trip->route }}</td>

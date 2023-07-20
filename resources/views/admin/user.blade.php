@@ -54,7 +54,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Counter Master Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('admin.user.add') }}" method="post">
@@ -147,7 +147,7 @@
                             <label for="user_email" class="col-sm-2 col-form-label">User Email</label>
                             <div class="col-sm-10">
                                 <input name="user_email" type="email" class="form-control" id="user_email"
-                                    placeholder="ex: user@company.com" required>
+                                    placeholder="ex: user@company.com" value="@friendsit.com" required>
                             </div>
                         </div>
                         <div class="mb-3 row">

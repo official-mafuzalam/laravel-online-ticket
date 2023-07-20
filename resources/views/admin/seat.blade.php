@@ -64,7 +64,8 @@
 
                             <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a2"
                                 autocomplete="on">
-                            <label class="btn btn-outline-primary" for="a2">A2</label>
+                            <label class="btn btn-outline-primary" for="a2" data-toggle="tooltip"
+                            title="This is a tooltip">A2</label>
                         </div>
                         <div class="col">
 

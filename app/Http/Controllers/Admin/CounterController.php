@@ -89,6 +89,9 @@ class CounterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
+        // Show success notification
+        session()->flash('success', 'Counter master added successfully.');
+
         return redirect()->route('admin.user');
     }
 

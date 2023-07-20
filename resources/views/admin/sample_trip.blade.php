@@ -34,7 +34,10 @@
                             <td>{{ $trip->stations }}</td>
                             <td>{{ $trip->time }}</td>
                             <td>
-                                <a class="text-decoration-none" href="">Edit</a>
+                                <a class="text-decoration-none"
+                                    href="{{ route('admin.sample_trip.edit', ['id' => $trip->id]) }}">
+                                    Edit
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -49,7 +52,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Sample Trip Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('admin.sample_trip.add') }}" method="post">
@@ -74,7 +77,7 @@
                             <label for="time" class="col-sm-2 col-form-label">Starting Time</label>
                             <div class="col-sm-10">
                                 <input name="time" type="text" class="form-control" id="time"
-                                    placeholder="ex: 07:00 AM" required>
+                                    placeholder="ex: 07:00 AM" value="00:00 AM" required>
                             </div>
                         </div>
                         <div class="mb-3 row">

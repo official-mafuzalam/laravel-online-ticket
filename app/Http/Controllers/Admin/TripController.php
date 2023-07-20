@@ -34,10 +34,53 @@ class TripController extends Controller
         $route->route_name = $request['route_name'];
         $route->save();
 
+        // Show success notification
+        session()->flash('success', 'Main route added successfully.');
+
         return redirect()->route('admin.main_route');
 
     }
 
+    public function main_routeEdit($id)
+    {
+
+        $main_route = MainRoute::find($id);
+
+        $data = compact('main_route');
+
+        return view('admin.main_route_edit')->with($data);
+    }
+
+    public function main_routeUpdate(Request $request, $id)
+    {
+
+        $route = MainRoute::find($id);
+
+        $route->route_no = $request['route_no'];
+        $route->route_name = $request['route_name'];
+        $route->save();
+
+        // Show success notification
+        session()->flash('success', 'Main route update successfully.');
+
+        return redirect()->route('admin.main_route');
+
+    }
+
+    public function main_routeDelete($id)
+    {
+
+        $main_route = MainRoute::find($id);
+
+        if (!is_null($main_route)) {
+
+            $main_route->forceDelete();
+
+            // Show success notification
+            session()->flash('success-delete', 'Main route permanently deleted successfully.');
+            return redirect()->back();
+        }
+    }
 
     public function add_trip()
     {
@@ -108,12 +151,30 @@ class TripController extends Controller
         $trip->time = $request['time'];
         $trip->save();
 
+        // Show success notification
+        session()->flash('success', 'New sample trip added successfully.');
+
         return redirect()->route('admin.sample_trip');
 
 
     }
 
+    public function sample_tripEdit($id)
+    {
 
+        $sample_trip = SampleTrip::find($id);
+
+        $data = compact('sample_trip');
+
+        return view('admin.sample_trip_edit')->with($data);
+
+
+    }
+
+    public function sample_tripUpdate(Request $request){
+
+        p($request->toArray());
+    }
 
 
 
