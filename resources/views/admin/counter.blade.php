@@ -35,7 +35,7 @@
                             <td>{{ $coun->coun_add }}</td>
                             <td>{{ $coun->time_deff }}</td>
                             <td>
-                                <a class="text-decoration-none" href="">Edit</a>
+                                <a class="text-decoration-none" href="{{ route('admin.counter.edit', ['id'=>$coun->id]) }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach

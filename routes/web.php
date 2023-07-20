@@ -77,9 +77,20 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/counter', [CounterController::class, 'counterAdd'])->name('admin.counter.add');
 
+        Route::get('/counter', [CounterController::class, 'counterPage'])->name('admin.counter');
+
+        Route::get('/counter/{id}', [CounterController::class, 'counterEdit'])->name('admin.counter.edit');
+
+        Route::post('/counter/{id}', [CounterController::class, 'counterUpdate'])->name('admin.counter.update');
+
         Route::get('/user', [CounterController::class, 'userPage'])->name('admin.user');
 
         Route::post('/user', [CounterController::class, 'userAdd'])->name('admin.user.add');
+
+        Route::get('/user/{id}', [CounterController::class, 'userEdit'])->name('admin.user.edit');
+
+        Route::post('/user/{id}', [CounterController::class, 'userUpdate'])->name('admin.user.update');
+
 
         Route::get('/main_route', [TripController::class, 'main_route'])->name('admin.main_route');
 

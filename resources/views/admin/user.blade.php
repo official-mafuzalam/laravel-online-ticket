@@ -39,7 +39,10 @@
                             <td>{{ $counterMaster->email }}</td>
                             <td>{{ $counterMaster->password }}</td>
                             <td>
-                                <a class="text-decoration-none" href="">Edit</a>
+                                <a class="text-decoration-none"
+                                    href="{{ route('admin.user.edit', ['id' => $counterMaster->id]) }}">
+                                    Edit
+                                </a>
                             </td>
                         </tr>
                     @endforeach

@@ -171,9 +171,22 @@ class TripController extends Controller
 
     }
 
-    public function sample_tripUpdate(Request $request){
+    public function sample_tripUpdate(Request $request, $id){
 
-        p($request->toArray());
+        $trip = SampleTrip::find($id);
+        
+        $trip->coach_no = $request['coach_no'];
+        $trip->route = $request['route'];
+        $trip->stations = $request['stations'];
+        $trip->time = $request['time'];
+        $trip->save();
+
+        // Show success notification
+        session()->flash('success', 'Sample trip updated successfully.');
+
+        return redirect()->route('admin.sample_trip');
+
+
     }
 
 

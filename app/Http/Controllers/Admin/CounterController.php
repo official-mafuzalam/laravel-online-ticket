@@ -39,8 +39,40 @@ class CounterController extends Controller
 
         $counter->save();
 
+        // Show success notification
+        session()->flash('success', 'New Counter added successfully.');
+
         return redirect()->route('admin.counter');
 
+    }
+
+    public function counterEdit($id)
+    {
+
+        $counter = CounterList::find($id);
+
+        $data = compact('counter');
+
+        return view('admin.counter_edit')->with($data);
+
+    }
+
+    public function counterUpdate(Request $request, $id)
+    {
+
+        $counter = CounterList::find($id);
+
+        $counter->main_route = $request['main_route'];
+        $counter->coun_name = $request['coun_name'];
+        $counter->coun_add = $request['coun_add'];
+        $counter->time_deff = $request['time_deff'];
+
+        $counter->save();
+
+        // Show success notification
+        session()->flash('success', 'Counter details updated successfully.');
+
+        return redirect()->route('admin.counter');
 
     }
 
@@ -95,6 +127,40 @@ class CounterController extends Controller
         return redirect()->route('admin.user');
     }
 
+    public function userEdit($id)
+    {
+
+        $coun_master = CounterMaster::find($id);
+
+        $data = compact('coun_master');
+
+        return view('admin.user_edit')->with($data);
+
+    }
+
+    public function userUpdate(Request $request, $id)
+    {
+
+        $coun_master = CounterMaster::find($id);
+
+        $coun_master->coun_name = $request['coun_name'];
+        $coun_master->coun_id = $request['coun_id'];
+        $coun_master->main_route = $request['main_route'];
+        $coun_master->user_type = $request['type'];
+        $coun_master->user_id = $request['user_id'];
+        $coun_master->user_name = $request['user_name'];
+        $coun_master->user_mobile = $request['user_mobile'];
+        $coun_master->email = $request['user_email'];
+
+        $coun_master->save();
+
+        // Show success notification
+        session()->flash('success', 'Counter master details updated successfully.');
+
+        return redirect()->route('admin.user');
+
+
+    }
 
 
 
