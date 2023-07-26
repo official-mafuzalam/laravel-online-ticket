@@ -445,7 +445,7 @@
                 totalFareInput.value = totalFare;
 
 
-                // console.log(fareInput);
+                console.log(stationSelect);
             });
         });
     </script>
