@@ -4,437 +4,508 @@
     <div class="container text-center">
         <div class="container text-center">
             <div class="row">
-                <div class="col text-danger fw-bold"> Coach No: {{$trip_data->coach_no}}</div>
-                <div class="col text-danger fw-bold"> Date:  {{$trip_data->date}}</div>
-                <div class="col text-danger fw-bold"> Time:  {{$trip_data->time}}</div>
+                <div class="col text-danger fw-bold"> Coach No:</div>
+                <div class="col text-danger fw-bold"> Date: </div>
+                <div class="col text-danger fw-bold"> Time: /div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container text-center">
-        <div class="row bg-success-subtle p-2">
-            <div class="col">
-                <div class="form-check form-check-inline">
-                    <div class="row seat">
-                        <div class="col gap">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a1"
-                                autocomplete="on" {{ $trip_data->A1 == 1 ? 'checked disabled' : '' }}>
-                            <label class="btn btn-outline-primary" for="a1">A1</label>
+        <!-- Your "show" div -->
+        <div id="show">Seats:</div>
 
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a2"
+        <div class="container text-center">
+            <div class="row bg-success-subtle p-2">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <div class="row seat">
+                            <div class="col gap">
+                                {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a1"
+                                autocomplete="on" >
+                            <label class="btn btn-outline-primary" for="a1">A1</label> --}}
+
+                                {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a2"
                                 autocomplete="on">
-                            <label class="btn btn-outline-primary" for="a2">A2</label>
+                            <label class="btn btn-outline-primary" for="a2">A2</label> --}}
+
+
+
+                                <button type="button" class="btn 
+                                <?php echo $trip_data->A1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                                    onclick="buttonClicked(this)">A1</button>
+                                <button type="button" class="btn 
+                                <?php echo $trip_data->A2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                                    onclick="buttonClicked(this)">A2</button>
+
+
+
+                            </div>
+                            <div class="col">
+                                {{-- <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="a3">A3</label>
+
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="a4">A4</label> --}}
+
+                                <button type="button" class="btn 
+                                <?php echo $trip_data->A3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                                    onclick="buttonClicked(this)">A3</button>
+                                <button type="button" class="btn 
+                                <?php echo $trip_data->A4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                                    onclick="buttonClicked(this)">A4</button>
+
+                            </div>
                         </div>
-                        <div class="col">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="a3">A3</label>
+                        <div class="row seat">
+                            <div class="col gap">
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="b1">B1</label>
 
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="a4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="a4">A4</label>
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="b2">B2</label>
+                            </div>
+                            <div class="col">
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="b3">B3</label>
+
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="b4">B4</label>
+                            </div>
                         </div>
+                        <div class="row seat">
+                            <div class="col gap">
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="c1">C1</label>
+
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="c2">C2</label>
+                            </div>
+                            <div class="col">
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="c3">C3</label>
+
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="c4">C4</label>
+                            </div>
+                        </div>
+                        <div class="row seat">
+                            <div class="col gap">
+                                <!-- Seat D1 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="d1">D1</label>
+                                <!-- Seat D2 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="d2">D2</label>
+                            </div>
+                            <div class="col">
+                                <!-- Seat D3 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="d3">D3</label>
+                                <!-- Seat D4 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="d4">D4</label>
+                            </div>
+                        </div>
+
+                        <!-- Continue with the remaining rows and seats -->
+                        <div class="row seat">
+                            <div class="col gap">
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="e1">E1</label>
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="e2">E2</label>
+                            </div>
+                            <div class="col">
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="e3">E3</label>
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="e4">E4</label>
+                            </div>
+                        </div>
+
+                        <!-- Seat F1 to J4 -->
+                        <div class="row seat">
+                            <div class="col gap">
+                                <!-- Seat F1 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="f1">F1</label>
+                                <!-- Seat F2 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="f2">F2</label>
+                            </div>
+                            <div class="col">
+                                <!-- Seat F3 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="f3">F3</label>
+                                <!-- Seat F4 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="f4">F4</label>
+                            </div>
+                        </div>
+
+                        <!-- Seat G1 to J4 -->
+                        <div class="row seat">
+                            <div class="col gap">
+                                <!-- Seat G1 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="g1">G1</label>
+                                <!-- Seat G2 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="g2">G2</label>
+                            </div>
+                            <div class="col">
+                                <!-- Seat G3 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="g3">G3</label>
+                                <!-- Seat G4 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="g4">G4</label>
+                            </div>
+                        </div>
+
+                        <!-- Seat H1 to J4 -->
+                        <div class="row seat">
+                            <div class="col gap">
+                                <!-- Seat H1 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="h1">H1</label>
+                                <!-- Seat H2 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="h2">H2</label>
+                            </div>
+                            <div class="col">
+                                <!-- Seat H3 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="h3">H3</label>
+                                <!-- Seat H4 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="h4">H4</label>
+                            </div>
+                        </div>
+
+                        <!-- Seat I1 to J4 -->
+                        <div class="row seat">
+                            <div class="col gap">
+                                <!-- Seat I1 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="i1">I1</label>
+                                <!-- Seat I2 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="i2">I2</label>
+                            </div>
+                            <div class="col">
+                                <!-- Seat I3 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="i3">I3</label>
+                                <!-- Seat I4 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="i4">I4</label>
+                            </div>
+                        </div>
+
+                        <!-- Seat J1 to J4 -->
+                        <div class="row seat">
+                            <div class="col">
+                                <!-- Seat J1 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j1"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="j1">J1</label>
+                                <!-- Seat J2 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j2"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="j2">J2</label>
+                            </div>
+
+                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j5"
+                                autocomplete="on">
+                            <label class="btn btn-outline-primary" for="j5">J5</label>
+
+                            <div class="col">
+                                <!-- Seat J3 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j3"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="j3">J3</label>
+                                <!-- Seat J4 -->
+                                <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j4"
+                                    autocomplete="on">
+                                <label class="btn btn-outline-primary" for="j4">J4</label>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div class="row seat">
-                        <div class="col gap">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b1">B1</label>
-
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b2">B2</label>
-                        </div>
-                        <div class="col">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b3">B3</label>
-
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="b4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="b4">B4</label>
-                        </div>
-                    </div>
-                    <div class="row seat">
-                        <div class="col gap">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="c1">C1</label>
-
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="c2">C2</label>
-                        </div>
-                        <div class="col">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="c3">C3</label>
-
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="c4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="c4">C4</label>
-                        </div>
-                    </div>
-                    <div class="row seat">
-                        <div class="col gap">
-                            <!-- Seat D1 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="d1">D1</label>
-                            <!-- Seat D2 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="d2">D2</label>
-                        </div>
-                        <div class="col">
-                            <!-- Seat D3 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="d3">D3</label>
-                            <!-- Seat D4 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="d4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="d4">D4</label>
-                        </div>
-                    </div>
-
-                    <!-- Continue with the remaining rows and seats -->
-                    <div class="row seat">
-                        <div class="col gap">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="e1">E1</label>
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="e2">E2</label>
-                        </div>
-                        <div class="col">
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="e3">E3</label>
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="e4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="e4">E4</label>
-                        </div>
-                    </div>
-
-                    <!-- Seat F1 to J4 -->
-                    <div class="row seat">
-                        <div class="col gap">
-                            <!-- Seat F1 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="f1">F1</label>
-                            <!-- Seat F2 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="f2">F2</label>
-                        </div>
-                        <div class="col">
-                            <!-- Seat F3 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="f3">F3</label>
-                            <!-- Seat F4 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="f4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="f4">F4</label>
-                        </div>
-                    </div>
-
-                    <!-- Seat G1 to J4 -->
-                    <div class="row seat">
-                        <div class="col gap">
-                            <!-- Seat G1 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="g1">G1</label>
-                            <!-- Seat G2 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="g2">G2</label>
-                        </div>
-                        <div class="col">
-                            <!-- Seat G3 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="g3">G3</label>
-                            <!-- Seat G4 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="g4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="g4">G4</label>
-                        </div>
-                    </div>
-
-                    <!-- Seat H1 to J4 -->
-                    <div class="row seat">
-                        <div class="col gap">
-                            <!-- Seat H1 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="h1">H1</label>
-                            <!-- Seat H2 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="h2">H2</label>
-                        </div>
-                        <div class="col">
-                            <!-- Seat H3 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="h3">H3</label>
-                            <!-- Seat H4 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="h4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="h4">H4</label>
-                        </div>
-                    </div>
-
-                    <!-- Seat I1 to J4 -->
-                    <div class="row seat">
-                        <div class="col gap">
-                            <!-- Seat I1 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="i1">I1</label>
-                            <!-- Seat I2 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="i2">I2</label>
-                        </div>
-                        <div class="col">
-                            <!-- Seat I3 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="i3">I3</label>
-                            <!-- Seat I4 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="i4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="i4">I4</label>
-                        </div>
-                    </div>
-
-                    <!-- Seat J1 to J4 -->
-                    <div class="row seat">
-                        <div class="col">
-                            <!-- Seat J1 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j1"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="j1">J1</label>
-                            <!-- Seat J2 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j2"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="j2">J2</label>
-                        </div>
-
-                        <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j5"
-                            autocomplete="on">
-                        <label class="btn btn-outline-primary" for="j5">J5</label>
-
-                        <div class="col">
-                            <!-- Seat J3 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j3"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="j3">J3</label>
-                            <!-- Seat J4 -->
-                            <input type="checkbox" onchange="updateSelectedItems()" class="btn-check" id="j4"
-                                autocomplete="on">
-                            <label class="btn btn-outline-primary" for="j4">J4</label>
-                        </div>
-                    </div>
-
 
                 </div>
-
-            </div>
-            <div class="col seat">
-                <form action="{{ route('sell_ticket') }}" method="post">
-                    @csrf
-                    <div class="row g-2 seat">
-                        <div class="col-md">
+                <div class="col seat">
+                    <form action="{{ route('sell_ticket_demo') }}" method="post">
+                        @csrf
+                        <div class="row g-2 seat">
+                            <div class="col-md">
 
 
-                            <select class="form-select" id="station-select" name="station" required>
-                                <option value="" selected disabled>Select Station</option>
-                                <?php
-                                
-                                $stations = explode(',', $trip_data->stations);
-                                
-                                foreach ($stations as $station) {
-                                    $station = trim($station);
-                                    $parts = explode('-', $station);
-                                    $name = trim($parts[0]);
-                                    $fare = trim($parts[1]);
-                                    echo '<option data-fare="' . $fare . '" value="' . $name . '">' . $name . ' - ' . $fare . '</option>';
-                                }
-                                ?>
-                            </select>
 
-                            <input id="" hidden class="form-control" type="text" name="route"
-                                value="{{ $trip_data->route }}" readonly>
-                            <input id="" hidden class="form-control" type="text" name="date"
-                                value="{{ $trip_data->date }}" readonly>
-                            <input id="" hidden class="form-control" type="text" name="time"
-                                value="{{ $trip_data->time }}" readonly>
-                            <input id="" hidden class="form-control" type="text" name="coach_no"
-                                value="{{ $trip_data->coach_no }}" readonly>
-                            <input id="" hidden class="form-control" type="text" name="trip_id"
-                                value="{{ $trip_data->trip_id }}" readonly>
+                                <select class="form-select" id="station-select" name="station" required=""
+                                    onchange="updateFare()">
+                                    <option value="0" selected="" disabled="">Droping Point</option>
+                                    <option data-fare="450" value="Vatiyapara">
+                                        Vatiyapara - 450</option>
+                                    <option data-fare="500" value="Gopalganj">
+                                        Gopalganj - 500</option>
+                                    <option data-fare="550" value="Fakirhat">
+                                        Fakirhat - 550</option>
+                                    <option data-fare="600" value="Katakhali">
+                                        Katakhali - 600</option>
+                                    <option data-fare="650" value="Khulna">
+                                        Khulna - 650</option>
+                                </select>
 
 
 
 
 
 
-                            {{-- <input id="fare-input" class="form-control" type="number" name="fare" readonly> --}}
 
-                        </div>
-                    </div>
-                    <div class="row g-2 p-2 seat">
-                        <div id="selected-items"></div>
-                        <input id="seat-no-input" class="form-control" type="text" name="seat_no" readonly>
-                    </div>
-                    <div class="row g-2 p-2 seat">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input id="fare-input" class="form-control" type="number" name="fare" readonly>
-                                <label for="fare-input">Seat Fare</label>
+                                {{-- <input id="fare-input" class="form-control" type="number" name="fare" readonly> --}}
+
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input id="num-seat-input" class="form-control" type="number" name="num_seat" readonly>
-                                <label for="mobile">Total Seat</label>
+                        <div class="row g-2 p-2 seat">
+                            <div id="selected-items"></div>
+                            <input id="seat-no-input" class="form-control" type="text" name="seat_no" readonly>
+                        </div>
+                        <div class="row g-2 p-2 seat">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input id="fare-input" class="form-control" type="number" name="fare" readonly>
+                                    <label for="fare-input">Seat Fare</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input id="num-seat-input" class="form-control" type="number" name="num_seat"
+                                        readonly>
+                                    <label for="mobile">Total Seat</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input id="discount-fare" class="form-control" type="number" value=""
+                                        name="discount_fare" onkeyup="updateNumSeats(this.value)" maxlength="3">
+                                    <label for="mobile">Discount Per Seat</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input id="discount-fare" class="form-control" type="number" value=""
-                                    name="discount_fare" onkeyup="updateNumSeats(this.value)" maxlength="3">
-                                <label for="mobile">Discount Per Seat</label>
+                        <div class="row g-2 p-2 seat">
+                            <div class="col-md">
+                                <select class="form-select" id="gender" name="gender">
+                                    <option selected disabled>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input id="total-fare" class="form-control" type="number" name="total_fare"
+                                        readonly>
+                                    <label for="mobile">Total Fare</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 p-2 seat">
-                        <div class="col-md">
-                            <select class="form-select" id="gender" name="gender" required>
-                                <option selected disabled>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input id="total-fare" class="form-control" type="number" name="total_fare" readonly>
-                                <label for="mobile">Total Fare</label>
+                        <div class="row g-2 p-2 seat">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="mobile" name="mobile"
+                                        placeholder="01751944774" maxlength="11" autocomplete="cc-number"
+                                        onkeyup="getName(this.value)">
+                                    <label for="mobile">Mobile Number</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="MR. X" value="MR. " maxlength="20">
+                                    <label for="name">Name</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 p-2 seat">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="tel" class="form-control" id="mobile" name="mobile"
-                                    placeholder="01751944774" maxlength="11" autocomplete="cc-number" required
-                                    onkeyup="getName(this.value)">
-                                <label for="mobile">Mobile Number</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="MR. X" value="MR. " maxlength="20" required>
-                                <label for="name">Name</label>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="submit" class="btn btn-success" value="Book">
-                </form>
+                        <br>
+                        <input type="submit" class="btn btn-success" value="Book">
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
+        <!-- Include the jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        // function to update the selected items in the "selected-items" div
-        function updateSelectedItems() {
-            // get all the checkboxes with class "btn-check" that are checked
-            var selectedCheckboxes = document.querySelectorAll('.btn-check:checked');
-            // get the "selected-items" div
-            var selectedItemsDiv = document.getElementById('selected-items');
-            // get the seat-no input
-            var seatNoInput = document.getElementById('seat-no-input');
-            // remove all child elements from the "selected-items" div
-            selectedItemsDiv.innerHTML = '';
-            // iterate over the selected checkboxes
-            for (var i = 0; i < selectedCheckboxes.length; i++) {
-                // skip over disabled checkboxes
-                if (selectedCheckboxes[i].disabled) {
-                    continue;
+        <script>
+            function buttonClicked(button) {
+                // Check if the clicked button already has the class "btn-warning"
+                if (!$(button).hasClass('btn-warning')) {
+                    // Toggle the class of the clicked button between "btn-outline-primary" and "btn-success"
+                    $(button).toggleClass('btn-outline-primary btn-success');
                 }
-                // create a span element for each selected checkbox
-                var selectedCheckboxSpan = document.createElement('span');
-                selectedCheckboxSpan.className = 'badge bg-primary me-2';
-                selectedCheckboxSpan.innerHTML = selectedCheckboxes[i].nextElementSibling.innerHTML;
-                // add the span element to the "selected-items" div
-                selectedItemsDiv.appendChild(selectedCheckboxSpan);
+
+                // Create an empty array to store the clicked button texts
+                var clickedButtons = [];
+
+                // Loop through all the buttons and find the ones with the "btn-success" class
+                $('.btn-success').each(function() {
+                    // Get the text of each clicked button and push it to the clickedButtons array
+                    clickedButtons.push($(this).text());
+                });
+
+                // Display the clicked button texts in the "show" div with "Seats:" text
+                $('#show').text('Seats: ' + clickedButtons.join(', '));
+
+                // Set the value of the number of selected buttons in a variable
+                var numSelectedButtons = $('.btn-success').length-1;
+
+                // Update the value of the "seat-no-input" input field
+                $('#seat-no-input').val(clickedButtons.join(''));
+
+                // Update the value of the "num-seat-input" input field with the count of selected buttons
+                $('#num-seat-input').val(numSelectedButtons);
+
+                var fareInput = document.getElementById("fare-input").value;
+
+                // var discountInput = document.getElementById("discount-fare").value;
+
+                var totalFare = numSelectedButtons * fareInput;
+
+                var totalFareInput = document.getElementById("total-fare");
+                totalFareInput.value = totalFare;
+
+
+
+
+
             }
-            // set the value of the seat-no input to the selected items
-            seatNoInput.value = selectedItemsDiv.innerText;
-        }
 
-
-        // listen for changes in the state of any checkbox with class "btn-check"
-        // document.querySelectorAll('.btn-check').forEach(function(checkbox) {
-        //     checkbox.addEventListener('change', function() {
-        //         updateSelectedItems();
-        //     });
-        // });
-
-
-        // JS For Find Name by Mobile Number
-        function getName(mobile) {
-            // Send an AJAX request to the server
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Update the name input field with the retrieved name
-                    document.getElementById("name").value = this.responseText;
+            // When the page loads, remove the "Welcome" text if it exists
+            $(document).ready(function() {
+                // Check if the "Welcome" text exists and remove it
+                if ($('#show').text().includes('Welcome')) {
+                    $('#show').text('Seats:');
                 }
-            };
-            xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
-            xhttp.send();
-        }
+            });
+        </script>
 
-        function discounFare(fare) {
 
-            // get all checkboxes with class "btn-check"
-            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
-            var numChecked = 0;
-            // loop through checkboxes to count number of checked checkboxes
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    numChecked++;
+        <script>
+            // function to update the selected items in the "selected-items" div
+            function updateSelectedItems() {
+                // get all the checkboxes with class "btn-check" that are checked
+                var selectedCheckboxes = document.querySelectorAll('.btn-check:checked');
+                // get the "selected-items" div
+                var selectedItemsDiv = document.getElementById('selected-items');
+                // get the seat-no input
+                var seatNoInput = document.getElementById('seat-no-input');
+                // remove all child elements from the "selected-items" div
+                selectedItemsDiv.innerHTML = '';
+                // iterate over the selected checkboxes
+                for (var i = 0; i < selectedCheckboxes.length; i++) {
+                    // skip over disabled checkboxes
+                    if (selectedCheckboxes[i].disabled) {
+                        continue;
+                    }
+                    // create a span element for each selected checkbox
+                    var selectedCheckboxSpan = document.createElement('span');
+                    selectedCheckboxSpan.className = 'badge bg-primary me-2';
+                    selectedCheckboxSpan.innerHTML = selectedCheckboxes[i].nextElementSibling.innerHTML;
+                    // add the span element to the "selected-items" div
+                    selectedItemsDiv.appendChild(selectedCheckboxSpan);
                 }
+                // set the value of the seat-no input to the selected items
+                seatNoInput.value = selectedItemsDiv.innerText;
             }
-            // set num seats input value
-            var numSeatInput = document.getElementById("num-seat-input");
-            numSeatInput.value = numChecked;
 
-            var fareInput = document.getElementById("fare-input").value;
 
-            var discountInput = document.getElementById("discount-fare").value;
+            // listen for changes in the state of any checkbox with class "btn-check"
+            // document.querySelectorAll('.btn-check').forEach(function(checkbox) {
+            //     checkbox.addEventListener('change', function() {
+            //         updateSelectedItems();
+            //     });
+            // });
 
-            var totalFare = numChecked * (fareInput - fare);
 
-            var totalFareInput = document.getElementById("total-fare");
-            totalFareInput.value = totalFare;
+            // JS For Find Name by Mobile Number
+            function getName(mobile) {
+                // Send an AJAX request to the server
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // Update the name input field with the retrieved name
+                        document.getElementById("name").value = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
+                xhttp.send();
+            }
 
-        }
-    </script>
+            function discounFare(fare) {
 
-    <!-- JS For Automatic Fare by Station -->
-    {{-- <script>
+                // get all checkboxes with class "btn-check"
+                var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+                var numChecked = 0;
+                // loop through checkboxes to count number of checked checkboxes
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        numChecked++;
+                    }
+                }
+                // set num seats input value
+                var numSeatInput = document.getElementById("num-seat-input");
+                numSeatInput.value = numChecked;
+
+                var fareInput = document.getElementById("fare-input").value;
+
+                var discountInput = document.getElementById("discount-fare").value;
+
+                var totalFare = numChecked * (fareInput - fare);
+
+                var totalFareInput = document.getElementById("total-fare");
+                totalFareInput.value = totalFare;
+
+            }
+        </script>
+
+        <!-- JS For Automatic Fare by Station -->
+        {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             // add event listener to station select element
             var stationSelect = document.getElementById("station-select");
@@ -450,58 +521,58 @@
         });
     </script> --}}
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // add event listener to station select element
-            var stationSelect = document.getElementById("station-select");
-            var fareInput = document.getElementById("fare-input");
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // add event listener to station select element
+                var stationSelect = document.getElementById("station-select");
+                var fareInput = document.getElementById("fare-input");
 
-            stationSelect.addEventListener("change", function() {
-                // get selected option
-                var selectedOption = this.options[this.selectedIndex];
-                // get fare value from selected option
-                var fareValue = selectedOption.getAttribute("data-fare");
-                // set fare input value to fare value
-                fareInput.value = fareValue;
-                // console.log(fareValue);
+                stationSelect.addEventListener("change", function() {
+                    // get selected option
+                    var selectedOption = this.options[this.selectedIndex];
+                    // get fare value from selected option
+                    var fareValue = selectedOption.getAttribute("data-fare");
+                    // set fare input value to fare value
+                    fareInput.value = fareValue;
+                    // console.log(fareValue);
+                });
             });
-        });
-    </script>
+        </script>
 
 
 
-    <!-- JS For Selected Seat Number -->
-    <script>
-        function updateNumSeats() {
-            // get all checkboxes with class "btn-check"
-            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
-            var numChecked = 0;
-            // loop through checkboxes to count number of checked checkboxes
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    numChecked++;
+        <!-- JS For Selected Seat Number -->
+        <script>
+            function updateNumSeats() {
+                // get all checkboxes with class "btn-check"
+                var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+                var numChecked = 0;
+                // loop through checkboxes to count number of checked checkboxes
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        numChecked++;
+                    }
                 }
+                // set num seats input value
+                var numSeatInput = document.getElementById("num-seat-input");
+                numSeatInput.value = numChecked;
+
+                var fareInput = document.getElementById("fare-input").value;
+
+                var discountInput = document.getElementById("discount-fare").value;
+
+                var totalFare = numChecked * (fareInput - discountInput);
+
+                var totalFareInput = document.getElementById("total-fare");
+                totalFareInput.value = totalFare;
+
+
             }
-            // set num seats input value
-            var numSeatInput = document.getElementById("num-seat-input");
-            numSeatInput.value = numChecked;
 
-            var fareInput = document.getElementById("fare-input").value;
-
-            var discountInput = document.getElementById("discount-fare").value;
-
-            var totalFare = numChecked * (fareInput - discountInput);
-
-            var totalFareInput = document.getElementById("total-fare");
-            totalFareInput.value = totalFare;
-
-
-        }
-
-        // add event listeners to checkboxes
-        var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].addEventListener('change', updateNumSeats);
-        }
-    </script>
-@endsection
+            // add event listeners to checkboxes
+            var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener('change', updateNumSeats);
+            }
+        </script>
+    @endsection

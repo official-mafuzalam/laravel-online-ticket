@@ -92,7 +92,7 @@
 
                         <div class="mb-3">
                             <input type="text" name="route" id="route" value="" class="form-control"
-                                readonly>
+                                required>
                         </div>
                         <div class="mb-3">
                             <input type="text" name="time" id="time" value="" class="form-control"

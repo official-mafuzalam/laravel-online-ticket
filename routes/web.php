@@ -168,9 +168,15 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
 Route::get('/getTripData', [AdminController::class, 'getTripData'])->name('getTripData');
 
-Route::get('/seat_plan/{trip_id}', [AdminController::class, 'seat_plan'])->name('seat_plan');
+Route::get('/seat_plan', [AdminController::class, 'seat_plan'])->name('seat_plan');
 
 Route::post('sell_ticket', [AdminController::class, 'sell_ticket'])->name('sell_ticket');
+
+
+
+
+
+Route::post('sell_ticket_demo', [AdminController::class, 'sell_ticket_demo'])->name('sell_ticket_demo');
 
 Route::get('/trip/{id}', [AdminController::class, 'show'])->name('trip.show');
 

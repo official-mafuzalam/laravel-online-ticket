@@ -36,10 +36,10 @@ class AdminController extends Controller
     }
 
 
-    public function seat_plan($trip_id)
+    public function seat_plan()
     {
 
-        $trip_data = TripStatus::where('trip_id', $trip_id)->first();
+        $trip_data = TripStatus::find(1);
 
         $data = compact('trip_data');
 
@@ -173,6 +173,17 @@ class AdminController extends Controller
 
     }
 
+
+
+
+    public function sell_ticket_demo(Request $request)
+    {
+
+
+        p($request->toArray());
+
+
+    }
 
 
 }

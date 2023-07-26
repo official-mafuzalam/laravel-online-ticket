@@ -81,7 +81,7 @@
                 </div>
                 <div class="d-flex flex-row-reverse">
                     <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="triggerId"
+                        <button class="btn btn-info dropdown-toggle" type="button" id="triggerId"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome
                         </button>

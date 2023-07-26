@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('coach_no');
             $table->string('date');
             $table->string('time');
-            $table->string('route');
+            $table->longText('route');
             $table->string('stations');
             $table->integer('status')->default(1);
 
