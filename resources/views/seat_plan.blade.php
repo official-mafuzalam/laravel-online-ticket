@@ -6,13 +6,9 @@
             <div class="row">
                 <div class="col text-danger fw-bold"> Coach No:</div>
                 <div class="col text-danger fw-bold"> Date: </div>
-                <div class="col text-danger fw-bold"> Time: /div>
-                </div>
+                <div class="col text-danger fw-bold"> Time: </div>
             </div>
         </div>
-
-        <!-- Your "show" div -->
-        <div id="show">Seats:</div>
 
         <div class="container text-center">
             <div class="row bg-success-subtle p-2">
@@ -32,10 +28,15 @@
 
                                 <button type="button" class="btn 
                                 <?php echo $trip_data->A1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
-                                    onclick="buttonClicked(this)">A1</button>
-                                <button type="button" class="btn 
-                                <?php echo $trip_data->A2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
-                                    onclick="buttonClicked(this)">A2</button>
+                                    onclick="buttonClicked(this)" title="<?php echo $trip_data->A1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">
+                                    A1
+                                </button>
+
+                                <button type="button" class="btn <?php echo $trip_data->A2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>" onclick="buttonClicked(this)"
+                                    title="<?php echo $trip_data->A2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">
+                                    A2
+                                </button>
+
 
 
 
@@ -278,8 +279,7 @@
 
 
 
-                                <select class="form-select" id="station-select" name="station" required=""
-                                    onchange="updateFare()">
+                                <select class="form-select" id="station-select" name="station" required>
                                     <option value="0" selected="" disabled="">Droping Point</option>
                                     <option data-fare="450" value="Vatiyapara">
                                         Vatiyapara - 450</option>
@@ -324,7 +324,7 @@
                             <div class="col-md">
                                 <div class="form-floating">
                                     <input id="discount-fare" class="form-control" type="number" value=""
-                                        name="discount_fare" onkeyup="updateNumSeats(this.value)" maxlength="3">
+                                        name="discount_fare" onkeyup="discounFare(this.value)" maxlength="3">
                                     <label for="mobile">Discount Per Seat</label>
                                 </div>
                             </div>
@@ -368,65 +368,120 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Include the jQuery library -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include the jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <script>
-            function buttonClicked(button) {
-                // Check if the clicked button already has the class "btn-warning"
-                if (!$(button).hasClass('btn-warning')) {
-                    // Toggle the class of the clicked button between "btn-outline-primary" and "btn-success"
-                    $(button).toggleClass('btn-outline-primary btn-success');
-                }
+    <script>
+        function buttonClicked(button) {
+            // Check if the clicked button already has the class "btn-warning"
+            if (!$(button).hasClass('btn-warning')) {
+                // Toggle the class of the clicked button between "btn-outline-primary" and "btn-success"
+                $(button).toggleClass('btn-outline-primary btn-success');
+            }
 
-                // Create an empty array to store the clicked button texts
-                var clickedButtons = [];
+            // Create an empty array to store the clicked button texts
+            var clickedButtons = [];
 
-                // Loop through all the buttons and find the ones with the "btn-success" class
-                $('.btn-success').each(function() {
-                    // Get the text of each clicked button and push it to the clickedButtons array
-                    clickedButtons.push($(this).text());
-                });
+            // Loop through all the buttons and find the ones with the "btn-success" class
+            $('.btn-success').each(function() {
+                // Get the text of each clicked button and push it to the clickedButtons array
+                clickedButtons.push($(this).text());
+            });
 
-                // Display the clicked button texts in the "show" div with "Seats:" text
-                $('#show').text('Seats: ' + clickedButtons.join(', '));
+            // Set the value of the number of selected buttons in a variable
+            var numSelectedButtons = $('.btn-success').length - 1;
 
-                // Set the value of the number of selected buttons in a variable
-                var numSelectedButtons = $('.btn-success').length-1;
+            // Update the value of the "seat-no-input" input field
+            $('#seat-no-input').val(clickedButtons.join(''));
 
-                // Update the value of the "seat-no-input" input field
-                $('#seat-no-input').val(clickedButtons.join(''));
+            // Update the value of the "num-seat-input" input field with the count of selected buttons
+            $('#num-seat-input').val(numSelectedButtons);
 
-                // Update the value of the "num-seat-input" input field with the count of selected buttons
-                $('#num-seat-input').val(numSelectedButtons);
+            var fareInput = document.getElementById("fare-input").value;
 
-                var fareInput = document.getElementById("fare-input").value;
+            var discountInput = document.getElementById("discount-fare").value;
 
-                // var discountInput = document.getElementById("discount-fare").value;
+            var totalFare = numSelectedButtons * (fareInput - discountInput);
 
-                var totalFare = numSelectedButtons * fareInput;
+            var totalFareInput = document.getElementById("total-fare");
+            totalFareInput.value = totalFare;
+
+        }
+
+        // When the page loads, remove the "Welcome" text if it exists
+        $(document).ready(function() {
+            // Check if the "Welcome" text exists and remove it
+            if ($('#show').text().includes('Welcome')) {
+                $('#show').text('Seats:');
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // add event listener to station select element
+            var stationSelect = document.getElementById("station-select");
+            // var fareInput = document.getElementById("fare-input");
+
+            stationSelect.addEventListener("change", function() {
+                // get selected option
+                var selectedOption = this.options[this.selectedIndex];
+                // get fare value from selected option
+                var fareValue = selectedOption.getAttribute("data-fare");
+
+                var fareInput = document.getElementById("fare-input");
+
+                var num_seat = document.getElementById("num-seat-input").value;
+
+                fareInput.value = fareValue;
+
+                var discountInput = document.getElementById("discount-fare").value;
+
+                var totalFare = num_seat * (fareValue - discountInput);
 
                 var totalFareInput = document.getElementById("total-fare");
                 totalFareInput.value = totalFare;
 
 
-
-
-
-            }
-
-            // When the page loads, remove the "Welcome" text if it exists
-            $(document).ready(function() {
-                // Check if the "Welcome" text exists and remove it
-                if ($('#show').text().includes('Welcome')) {
-                    $('#show').text('Seats:');
-                }
+                // console.log(fareInput);
             });
-        </script>
+        });
+    </script>
+
+    <script>
+        function discounFare(fare) {
+
+            // set num seats input value
+            var num_seat = document.getElementById("num-seat-input").value;
+
+            var fareInput = document.getElementById("fare-input").value;
+
+            var discountInput = document.getElementById("discount-fare").value;
+
+            var totalFare = num_seat * (fareInput - discountInput);
+
+            var totalFareInput = document.getElementById("total-fare");
+            totalFareInput.value = totalFare;
 
 
-        <script>
+            // console.log(totalFare);
+
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    {{-- <script>
             // function to update the selected items in the "selected-items" div
             function updateSelectedItems() {
                 // get all the checkboxes with class "btn-check" that are checked
@@ -476,36 +531,10 @@
                 xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
                 xhttp.send();
             }
+        </script> --}}
 
-            function discounFare(fare) {
-
-                // get all checkboxes with class "btn-check"
-                var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
-                var numChecked = 0;
-                // loop through checkboxes to count number of checked checkboxes
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].checked) {
-                        numChecked++;
-                    }
-                }
-                // set num seats input value
-                var numSeatInput = document.getElementById("num-seat-input");
-                numSeatInput.value = numChecked;
-
-                var fareInput = document.getElementById("fare-input").value;
-
-                var discountInput = document.getElementById("discount-fare").value;
-
-                var totalFare = numChecked * (fareInput - fare);
-
-                var totalFareInput = document.getElementById("total-fare");
-                totalFareInput.value = totalFare;
-
-            }
-        </script>
-
-        <!-- JS For Automatic Fare by Station -->
-        {{-- <script>
+    <!-- JS For Automatic Fare by Station -->
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             // add event listener to station select element
             var stationSelect = document.getElementById("station-select");
@@ -521,28 +550,12 @@
         });
     </script> --}}
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // add event listener to station select element
-                var stationSelect = document.getElementById("station-select");
-                var fareInput = document.getElementById("fare-input");
-
-                stationSelect.addEventListener("change", function() {
-                    // get selected option
-                    var selectedOption = this.options[this.selectedIndex];
-                    // get fare value from selected option
-                    var fareValue = selectedOption.getAttribute("data-fare");
-                    // set fare input value to fare value
-                    fareInput.value = fareValue;
-                    // console.log(fareValue);
-                });
-            });
-        </script>
 
 
 
-        <!-- JS For Selected Seat Number -->
-        <script>
+
+    <!-- JS For Selected Seat Number -->
+    {{-- <script>
             function updateNumSeats() {
                 // get all checkboxes with class "btn-check"
                 var checkboxes = document.querySelectorAll('.btn-check:not(:disabled)');
@@ -574,5 +587,5 @@
             for (var i = 0; i < checkboxes.length; i++) {
                 checkboxes[i].addEventListener('change', updateNumSeats);
             }
-        </script>
-    @endsection
+        </script> --}}
+@endsection

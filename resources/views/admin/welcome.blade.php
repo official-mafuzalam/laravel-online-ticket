@@ -37,7 +37,7 @@
                 <input class="form-control form-control-sm" type="date" aria-label="form-control-sm example">
             </div>
             <div class="col-md-2 col-sm-6">
-                <button class="btn btn-success btn-sm" type="submit">Search</button>
+                <button class="btn btn-info btn-sm" type="submit">Search</button>
             </div>
         </div>
 
