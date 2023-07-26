@@ -137,11 +137,12 @@ class AdminController extends Controller
                 ->where('trip_id', $trip_id)
                 ->update($updates);
 
-
+            return view('admin.welcome');
         }
     }
 
-    public function pre_day($date){
+    public function pre_day($date)
+    {
 
         $formattedDate = date('Y-m-d');
 
@@ -156,7 +157,8 @@ class AdminController extends Controller
 
     }
 
-    public function next_day($date){
+    public function next_day($date)
+    {
 
         $formattedDate = date('Y-m-d');
 
