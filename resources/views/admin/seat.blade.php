@@ -28,7 +28,7 @@
 <body>
 
 
-    <div class="container bg-success-subtle p-2 text-center">
+    <div class="container bg-success-subtle text-center">
         <div class="container text-center">
             <div class="row">
                 <div class="col text-danger fs-5 fw-bold"> Coach No: {{ $trip_data->coach_no }}</div>
@@ -60,20 +60,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->A1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->A1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->A1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->A1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->A2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->A2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->A2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->A2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->A3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->A3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->A3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->A3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->A4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->A4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->A4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->A4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A4</button>
 
                         </div>
@@ -82,20 +114,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->B1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->B1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->B1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->B1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->B2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->B2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->B2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->B2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->B3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->B3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->B3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->B3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->B4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->B4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->B4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->B4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B4</button>
 
                         </div>
@@ -104,20 +168,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->C1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->C1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->C1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->C1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->C2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->C2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->C2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->C2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->C3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->C3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->C3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->C3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->C4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->C4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->C4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->C4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C4</button>
 
                         </div>
@@ -126,20 +222,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->D1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->D1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->D1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->D1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->D2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->D2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->D2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->D2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->D3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->D3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->D3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->D3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->D4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->D4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->D4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->D4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D4</button>
 
                         </div>
@@ -150,20 +278,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->E1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->E1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->E1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->E1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->E2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->E2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->E2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->E2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->E3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->E3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->E3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->E3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->E4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->E4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->E4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->E4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E4</button>
 
                         </div>
@@ -174,20 +334,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->F1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->F1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->F1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->F1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->F2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->F2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->F2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->F2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->F3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->F3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->F3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->F3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->F4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->F4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->F4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->F4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F4</button>
 
                         </div>
@@ -198,20 +390,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->G1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->G1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->G1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->G1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->G2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->G2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->G2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->G2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->G3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->G3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->G3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->G3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->G4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->G4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->G4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->G4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G4</button>
 
                         </div>
@@ -222,20 +446,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->H1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->H1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->H1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->H1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->H2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->H2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->H2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->H2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->H3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->H3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->H3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->H3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->H4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->H4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->H4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->H4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H4</button>
 
                         </div>
@@ -246,20 +502,52 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->I1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->I1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->I1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->I1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->I2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->I2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->I2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->I2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->I3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->I3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->I3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->I3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->I4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->I4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->I4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->I4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I4</button>
 
                         </div>
@@ -270,10 +558,26 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->J1 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->J1 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->J1 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->J1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J1</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->J2 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->J2 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->J2 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->J2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J2</button>
 
                         </div>
@@ -281,10 +585,26 @@
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php echo $trip_data->J3 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->J3 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->J3 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->J3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J3</button>
                             <button type="button" class="btn 
-                            <?php echo $trip_data->J4 === 1 ? 'btn-warning' : 'btn-outline-primary'; ?>"
+                            <?php
+                            if ($trip_data->J4 === 1) {
+                                echo 'btn-warning';
+                            } elseif ($trip_data->J4 === 2) {
+                                echo 'btn-danger';
+                            } else {
+                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                            }
+                            ?>"
                                 onclick="buttonClicked(this)" title="<?php echo $trip_data->J4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J4</button>
 
                         </div>
@@ -295,9 +615,21 @@
 
             </div>
             <div class="col seat">
-                <form action="{{ route('sell_ticket_demo') }}" method="post">
+
+                <form action="{{ route('sell_ticket') }}" method="post">
                     @csrf
                     <div class="row g-2 seat">
+
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="booking_type" id="btnradio1"
+                                autocomplete="off" checked value="5">
+                            <label class="btn btn-outline-primary" for="btnradio1">Sell</label>
+
+                            <input type="radio" class="btn-check" name="booking_type" id="btnradio2"
+                                autocomplete="off" value="6" disabled>
+                            <label class="btn btn-outline-primary" for="btnradio2">Book</label>
+                        </div>
+
                         <div class="col-md">
 
 
@@ -318,6 +650,16 @@
                             </select>
 
 
+                            <input id="" hidden class="form-control" type="text" name="route"
+                                value="{{ $trip_data->route }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="date"
+                                value="{{ $trip_data->date }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="time"
+                                value="{{ $adjustedTime }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="coach_no"
+                                value="{{ $trip_data->coach_no }}" readonly>
+                            <input id="" hidden class="form-control" type="text" name="trip_id"
+                                value="{{ $trip_data->trip_id }}" readonly>
 
 
 
@@ -327,11 +669,10 @@
 
                         </div>
                     </div>
-                    <div class="row g-2 p-2 seat">
-                        <div id="selected-items"></div>
-                        <input id="seat-no-input" class="form-control" type="text" name="seat_no" readonly>
+                    <div class="row g-2 seat">
+                        <input id="seat-no-input" class="form-control" type="text" name="seat" readonly>
                     </div>
-                    <div class="row g-2 p-2 seat">
+                    <div class="row g-2 seat">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input id="fare-input" class="form-control" type="number" name="fare" readonly>
@@ -347,19 +688,25 @@
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input id="discount-fare" class="form-control" type="number" value=""
+                                <input id="discount-fare" class="form-control" type="number" value="0"
                                     name="discount_fare" onkeyup="discounFare(this.value)" maxlength="3">
                                 <label for="mobile">Discount Per Seat</label>
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2 p-2 seat">
-                        <div class="col-md">
-                            <select class="form-select" id="gender" name="gender">
-                                <option selected disabled>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
+                    <div class="row g-2 seat">
+                        <div class="col-md p-2">
+
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="gender" id="male"
+                                    autocomplete="off" value="1" checked>
+                                <label class="btn btn-outline-info" for="male">Male</label>
+
+                                <input type="radio" class="btn-check" name="gender" id="female"
+                                    autocomplete="off" value="2">
+                                <label class="btn btn-outline-info" for="female">Female</label>
+                            </div>
+
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
@@ -369,7 +716,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2 p-2 seat">
+                    <div class="row g-2 seat">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="tel" class="form-control" id="mobile" name="mobile"
@@ -416,8 +763,8 @@
 
     <script>
         function buttonClicked(button) {
-            // Check if the clicked button already has the class "btn-warning"
-            if (!$(button).hasClass('btn-warning')) {
+            // Check if the clicked button already has the class "btn-warning" or "btn-danger"
+            if (!$(button).hasClass('btn-warning') && !$(button).hasClass('btn-danger')) {
                 // Toggle the class of the clicked button between "btn-outline-primary" and "btn-success"
                 $(button).toggleClass('btn-outline-primary btn-success');
             }

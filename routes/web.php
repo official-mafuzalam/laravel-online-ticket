@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\TripController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AgentController;
 
@@ -71,9 +72,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::group(['prefix' => '/admin'], function () {
 
-        Route::get('/welcome', [AdminController::class, 'welcome'])->name('admin.welcome');
+        Route::get('/welcome', [HomeController::class, 'welcome'])->name('admin.welcome');
 
-        Route::get('/counter', [CounterController::class, 'counterPage'])->name('admin.counter');
+        Route::get('/counter', [HomeController::class, 'counterPage'])->name('admin.counter');
 
         Route::post('/counter', [CounterController::class, 'counterAdd'])->name('admin.counter.add');
 
@@ -115,12 +116,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('/sample_trip/{id}', [TripController::class, 'sample_tripUpdate'])->name('admin.sample_trip.update');
 
         
-        Route::get('/pre_day/{date}', [AdminController::class, 'pre_day'])->name('admin.pre_day');
+        Route::get('/pre_day/{date}', [HomeController::class, 'pre_day'])->name('admin.pre_day');
 
-        Route::get('/next_day/{date}', [AdminController::class, 'next_day'])->name('admin.next_day');
+        Route::get('/next_day/{date}', [HomeController::class, 'next_day'])->name('admin.next_day');
 
 
+        Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
 
+        Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
     });
 });
 
@@ -170,7 +173,7 @@ Route::get('/getTripData', [AdminController::class, 'getTripData'])->name('getTr
 
 Route::get('/seat_plan', [AdminController::class, 'seat_plan'])->name('seat_plan');
 
-Route::post('sell_ticket', [AdminController::class, 'sell_ticket'])->name('sell_ticket');
+
 
 
 

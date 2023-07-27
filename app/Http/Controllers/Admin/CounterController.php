@@ -154,6 +154,16 @@ class CounterController extends Controller
 
         $coun_master->save();
 
+        $user = User::where('email', $coun_master->email)->first(); // Use first() to get the model instance
+
+        if ($user) {
+            $user->type = $request['type'];
+            $user->save();
+        } else {
+            // Handle the case when the user with the given email is not found
+        }
+
+
         // Show success notification
         session()->flash('success', 'Counter master details updated successfully.');
 
