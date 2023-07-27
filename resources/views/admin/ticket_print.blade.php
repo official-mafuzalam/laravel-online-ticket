@@ -44,9 +44,9 @@
         }
     </style>
     <script language="javascript">
-        // window.onload = function() {
-        //     window.print();
-        // }
+        window.onload = function() {
+            window.print();
+        }
     </script>
 
 </head>
@@ -56,7 +56,7 @@
         <tbody>
             <tr class="noPrint">
                 <th width="219" style="width: 58mm;">Office-copy</th>
-                <th width="403" style="width: 99mm;">Passenger-copy</th>
+                <th width="400" style="width: 80mm;">Passenger-copy</th>
                 <th width="215" style="width: 58mm;">Guide-copy</th>
             </tr>
             <tr>
@@ -78,7 +78,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="75">
+                            <td>
                                 <strong>Coach:
                                     {{ $ticket->coach_no }}
                                 </strong>
@@ -115,7 +115,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td nowrap>Discount per Seat:
+                            <td nowrap>Discount per seat:
                                 {{ $ticket->discount }} TK
                             </td>
                         </tr>
@@ -143,77 +143,98 @@
                     <table>
                         <!--<caption><p align="left">Chair Coach<br />Golden Line (Ferry)</p></caption>-->
                         <tr>
-                            <td nowrap><strong>Date:</strong></td>
-                            <td class="large mono" nowrap>&nbsp;
+                            <td nowrap>
+                                <strong>
+                                    Date: {{ $ticket->date }}
+                                </strong>
+                            </td>
+                            <td class="large mono">
 
                             </td>
-                            <td nowrap="nowrap"><strong>Time:</strong></td>
+                            <td nowrap="nowrap">
+                                <strong>
+                                    Time:{{ $ticket->time }}
+                                </strong>
+                            </td>
                             <td class="large mono">
 
                             </td>
                         </tr>
                         <tr>
-                            <td width="65"><strong>Coach:</strong></td>
-                            <td width="30" class="large mono">
-                                </span>
+                            <td width="65">
+                                <strong>
+                                    Coach:{{ $ticket->coach_no }}
+                                </strong>
                             </td>
-                            <td width="88"><strong>PNR:</strong></td>
+                            <td width="30" class="large mono">
+
+                            </td>
+                            <td width="88">
+                                <strong>
+                                    PNR:{{ $ticket->ticket_id }}
+                                </strong>
+                            </td>
                             <td width="132">
                                 1
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Name:
-                                2
+                                {{ $ticket->name }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Mobile:
-                                3
+                                {{ $ticket->mobile }}
                             </td>
                         </tr>
                         <tr>
-                            <td>FROM:</td>
-                            <td>Hemayetpur</td>
-                            <td>TO:</td>
+                            <td>FROM: {{ $ticket->seller_counter }}</td>
+                            <td>
+
+                            </td>
+                            <td>TO: {{ $ticket->station }}</td>
                             <td style="font-weight:bold; font-size:12px">
-                                5
+
                             </td>
                         </tr>
                         <tr>
                             <td nowrap>Issue Date Time:</td>
                             <td nowrap>
-
+                                {{ $ticket->created_at }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Departure Place:
-                                4
+                                {{ $ticket->seller_counter }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Seat No:
-                                9
+                                {{ $ticket->seat }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2" nowrap>Ticket Price:
-                                6
+                                {{ $ticket->fare }} TK
                             </td>
                             <td colspan="2" nowrap>Discount Price:
-                                7
+                                {{ $ticket->discount }} TK
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" nowrap>Total Fare:
-                                8
+                                {{ $ticket->total_fare }} TK
                             </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td></td>
-                            <td colspan="2">
-                                10
+                            <td>
+                                For more info, visit:
+                                <strong>www.friendsit.xyz</strong>
+                            </td>
+                            <td>
+
                             </td>
                         </tr>
                     </table>
@@ -223,69 +244,77 @@
                     <table>
                         <!--<caption><p align="left">Chair Coach<br />Golden Line (Ferry)</p></caption>-->
                         <tr>
-                            <td><strong>Date:
+                            <td nowrap>
+                                <strong>Date:
+                                    {{ $ticket->date }}
+                                </strong>
+                            </td>
+                            <td colspan="3" nowrap>
 
-                                </strong></td>
-                            <td colspan="3" nowrap></td>
-                        </tr>
-                        <tr>
-                            <td nowrap><strong>Time:
-
-                                </strong></td>
-                        </tr>
-                        <tr>
-                            <td width="75"><strong>Coach:
-
-                                </strong></td>
-                        </tr>
-                        <tr>
-                            <td nowrap>PNR:
-                                1
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4">Name:
-                                2
+                            <td nowrap>
+                                <strong>Time:
+                                    {{ $ticket->time }}
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Coach:
+                                    {{ $ticket->coach_no }}
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap>PNR:
+                                {{ $ticket->ticket_id }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Mobile:
-                                3
+                                {{ $ticket->mobile }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Name:
+                                {{ $ticket->name }}
                             </td>
                         </tr>
                         <tr>
                             <td nowrap>FROM:
-                                4
+                                {{ $ticket->seller_counter }}
                             </td>
                         </tr>
                         <tr>
-                            <td nowrap>To:
-                                5
+                            <td nowrap>TO:
+                                {{ $ticket->station }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Ticket Price:
-                                6
+                                {{ $ticket->fare }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Discount Price:
-                                7
+                                {{ $ticket->discount }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Total Fare:
-                                8
+                                {{ $ticket->total_fare }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">Seat No:
-                                9
+                                {{ $ticket->seat }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                10
+                                {{ $ticket->created_at }}
                             </td>
                         </tr>
                     </table>

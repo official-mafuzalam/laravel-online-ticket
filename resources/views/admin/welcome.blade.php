@@ -60,7 +60,7 @@
             <i class="bi bi-caret-left"></i>
             Pre. Day
         </a>
-        <a class="btn btn-outline-success" type="button">Today | {{ date('d-m-Y') }}</a>
+        <a class="btn btn-outline-success" type="button" href="{{ route('admin.welcome') }}">Today | {{ date('d-m-Y') }}</a>
         <a class="btn btn-info" type="button" href="{{ route('admin.next_day', ['date' => $nextDate]) }}">
             Next Day
             <i class="bi bi-caret-right"></i>
@@ -166,31 +166,31 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).on('show.bs.modal', '#exampleModal', function(event) {
+            var button = $(event.relatedTarget);
+            var tripId = button.data('id');
+            var modal = $(this);
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).on('show.bs.modal', '#exampleModal', function(event) {
-                var button = $(event.relatedTarget);
-                var tripId = button.data('id');
-                var modal = $(this);
-
-                $.ajax({
-                    url: '/trip/' + tripId,
-                    method: 'GET',
-                    success: function(response) {
-                        // Update the modal content with the fetched view page
-                        modal.find('.modal-body').html(response.html);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
+            $.ajax({
+                url: '/trip/' + tripId,
+                method: 'GET',
+                success: function(response) {
+                    // Update the modal content with the fetched view page
+                    modal.find('.modal-body').html(response.html);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
             });
-        </script>
+        });
+    </script>
 
 
-    @endsection
+@endsection

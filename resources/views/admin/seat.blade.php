@@ -616,7 +616,8 @@
             </div>
             <div class="col seat">
 
-                <form action="{{ route('sell_ticket') }}" method="post">
+                <form action="{{ route('sell_ticket') }}" method="post" target="_blank"
+                    onsubmit="reloadFormPage()">
                     @csrf
                     <div class="row g-2 seat">
 
@@ -852,6 +853,12 @@
 
             // console.log(totalFare);
 
+        }
+    </script>
+
+    <script type="text/javascript">
+        function reloadFormPage() {
+            location.reload();
         }
     </script>
 
