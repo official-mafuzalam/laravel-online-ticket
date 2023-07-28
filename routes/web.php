@@ -118,7 +118,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         
         Route::get('/pre_day/{date}', [HomeController::class, 'pre_day'])->name('admin.pre_day');
 
-        Route::get('/next_day/{date}', [HomeController::class, 'next_day'])->name('admin.next_day');
+        Route::get('/date/{date}', [HomeController::class, 'date'])->name('admin.date');
 
 
         Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
@@ -126,6 +126,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
 
         Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
+
+        // Route::get('/get_name/{mobile}', [HomeController::class, 'get_name'])->name('admin.get_name');
     });
 });
 

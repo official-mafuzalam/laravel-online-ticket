@@ -31,10 +31,6 @@
     <div class="container bg-success-subtle text-center">
         <div class="container text-center">
             <div class="row">
-                <div class="col text-danger fs-5 fw-bold p-2">
-                    <a href="{{ route('admin.trip_sheet', ['id' => $trip_data->trip_id]) }}" target="_blank"
-                        class="btn btn-secondary btn-sm">Trip Sheet</a>
-                </div>
                 <div class="col text-danger fs-5 fw-bold">
                     Coach No: {{ $trip_data->coach_no }}
                     <br>{{ $trip_data->route }}
@@ -53,6 +49,10 @@
                     Time: {{ $adjustedTime }}
                     <br>
                     Date: {{ $trip_data->date }}
+                </div>
+                <div class="col text-danger fs-5 fw-bold p-2">
+                    <a href="{{ route('admin.trip_sheet', ['id' => $trip_data->trip_id]) }}" target="_blank"
+                        class="btn btn-secondary btn-sm">Trip Sheet</a>
                 </div>
             </div>
         </div>
@@ -879,7 +879,12 @@
                     document.getElementById("name").value = this.responseText;
                 }
             };
-            xhttp.open("GET", "get_name.php?mobile=" + mobile, true);
+
+            // Generate the URL using the named route 'get_name'
+            var url = "{{ route('get_name', ['mobile' => ':mobile']) }}";
+            url = url.replace(':mobile', mobile);
+
+            xhttp.open("GET", url, true);
             xhttp.send();
         }
     </script> --}}

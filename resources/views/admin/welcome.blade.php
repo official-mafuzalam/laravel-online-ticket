@@ -15,32 +15,32 @@
 
 
     <div class="container p-2 text-center bg-warning-subtle">
-
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <select class="form-select form-select-sm" name="station_from" disabled>
-                    <option selected>Select from</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+        <form role="search" action="">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <select class="form-select form-select-sm" name="station_from" disabled>
+                        <option selected>Select from</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <select class="form-select form-select-sm" name="station_to" disabled>
+                        <option selected>Select to</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <input class="form-control form-control-sm" type="date" name="date" aria-label="form-control-sm example">
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button class="btn btn-info btn-sm" type="submit">Search</button>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <select class="form-select form-select-sm" name="station_to" disabled>
-                    <option selected>Select to</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <input class="form-control form-control-sm" type="date" aria-label="form-control-sm example">
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <button class="btn btn-info btn-sm" type="submit">Search</button>
-            </div>
-        </div>
-
+        </form>
 
     </div>
 
@@ -56,12 +56,13 @@
         $nextDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
         ?>
 
-        <a class="btn btn-info" type="button" href="{{ route('admin.welcome', ['date' => $previousDate]) }}">
+        <a class="btn btn-info" type="button" href="{{ route('admin.date', ['date' => $previousDate]) }}">
             <i class="bi bi-caret-left"></i>
             Pre. Day
         </a>
-        <a class="btn btn-outline-success" type="button" href="{{ route('admin.welcome') }}">Today | {{ date('d-m-Y') }}</a>
-        <a class="btn btn-info" type="button" href="{{ route('admin.next_day', ['date' => $nextDate]) }}">
+        <a class="btn btn-outline-success" type="button" href="{{ route('admin.welcome') }}">Today |
+            {{ date('d-m-Y') }}</a>
+        <a class="btn btn-info" type="button" href="{{ route('admin.date', ['date' => $nextDate]) }}">
             Next Day
             <i class="bi bi-caret-right"></i>
         </a>

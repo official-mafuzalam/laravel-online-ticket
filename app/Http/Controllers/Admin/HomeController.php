@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     //
 
-    public function welcome()
+    public function welcome(Request $request)
     {
         // $main_route = session('user.main_route');
 
@@ -24,18 +24,34 @@ class HomeController extends Controller
 
         // $trips = TripStatus::where('main_route', $main_route)->get();
 
-        $formattedDate = date('Y-m-d');
 
-        $trips = DB::table('trip_statuses')
+        $search_date = isset($request['date']) ? $request['date'] : "";
+
+        if ($search_date != "") {
+
+            $trips = DB::table('trip_statuses')
+            ->where('date', $search_date)
+            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+            ->get();
+
+        } else {
+            $formattedDate = date('Y-m-d');
+
+            $trips = DB::table('trip_statuses')
             ->where('date', $formattedDate)
             ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
             ->get();
+        }
+
 
         $data = compact('trips');
 
         return view('admin.welcome')->with($data);
     }
 
+    // public function get_name($mobile){
+
+    // }
 
     public function sell_ticket(Request $request)
     {
@@ -192,25 +208,32 @@ class HomeController extends Controller
             }
         })->first($columns); // Use first() instead of get() to get only one row
 
-        // Filter the columns that have values 1 or 2
-        $result = [];
-        foreach ($columns as $column) {
-            if ($tripStatus->$column == 1 || $tripStatus->$column == 2) {
-                $result[$column] = $tripStatus->$column;
+        // Check if $tripStatus is not null before accessing its properties
+        if ($tripStatus) {
+            // Filter the columns that have values 1 or 2
+            $result = [];
+            foreach ($columns as $column) {
+                if ($tripStatus->$column == 1 || $tripStatus->$column == 2) {
+                    $result[$column] = $tripStatus->$column;
+                }
             }
-        }
 
-        // Loop through each seat and fetch data from SellTicketHis table
-        $sellTicketHisData = [];
-        foreach ($result as $seat => $value) {
-            $sellTicketHisData[$seat] = SellTicketHis::where('trip_id', $tripStatusId)
-                ->where('seat', 'LIKE', '%' . $seat . '%')
-                ->get();
+            // Loop through each seat and fetch data from SellTicketHis table
+            $sellTicketHisData = [];
+            foreach ($result as $seat => $value) {
+                $sellTicketHisData[$seat] = SellTicketHis::where('trip_id', $tripStatusId)
+                    ->where('seat', 'LIKE', '%' . $seat . '%')
+                    ->get();
+            }
+        } else {
+            // Handle the case where $tripStatus is null (optional)
+            // You can log an error or redirect to an error page, for example.
+            // For now, I'll just set $sellTicketHisData to an empty array.
+            $sellTicketHisData = [];
         }
-
 
         // Pass the data to the view
-        $data = compact('sellTicketHisData','trip_details');
+        $data = compact('sellTicketHisData', 'trip_details');
         return view('admin.trip_sheet')->with($data);
 
 
@@ -219,12 +242,7 @@ class HomeController extends Controller
 
         // dd($sellTicketHisData); // Add this debug statement
 
-
-
-        
-
         // p($sellTicketHisData);
-
 
     }
 
@@ -247,10 +265,10 @@ class HomeController extends Controller
 
     }
 
-    public function next_day($date)
+    public function date($date)
     {
 
-        $formattedDate = date('Y-m-d');
+        // $formattedDate = date('Y-m-d');
 
         $trips = DB::table('trip_statuses')
             ->where('date', $date)
