@@ -81,7 +81,11 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.user') }}">
                                             <i class="bi bi-person-fill-check"></i>
-                                            Counter User
+                                            Counter Master
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.supervisor') }}">
+                                            <i class="bi bi-person-fill-check"></i>
+                                            Supervisor
                                         </a>
                                     </div>
                                 </li>

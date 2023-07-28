@@ -15,7 +15,7 @@
 
 
     <div class="container p-2 text-center bg-warning-subtle">
-        <form role="search" action="">
+        <form role="search" action="{{ route('admin.welcome') }}">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <select class="form-select form-select-sm" name="station_from" disabled>

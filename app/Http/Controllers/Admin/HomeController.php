@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\TripStatus;
 use App\Models\MainRoute;
 use App\Models\SellTicketHis;
+use App\Models\Supervisor;
+use App\Models\TripSheet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,17 +32,17 @@ class HomeController extends Controller
         if ($search_date != "") {
 
             $trips = DB::table('trip_statuses')
-            ->where('date', $search_date)
-            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
-            ->get();
+                ->where('date', $search_date)
+                ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+                ->get();
 
         } else {
             $formattedDate = date('Y-m-d');
 
             $trips = DB::table('trip_statuses')
-            ->where('date', $formattedDate)
-            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
-            ->get();
+                ->where('date', $formattedDate)
+                ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+                ->get();
         }
 
 
@@ -184,6 +186,9 @@ class HomeController extends Controller
 
     public function trip_sheet($id)
     {
+        $super_details = Supervisor::all();
+
+        $trip_sheet = TripSheet::where('trip_id', $id)->first();
 
         // Inside your controller method
         $tripStatusId = $id; // Replace $id with the desired trip_status id
@@ -233,7 +238,7 @@ class HomeController extends Controller
         }
 
         // Pass the data to the view
-        $data = compact('sellTicketHisData', 'trip_details');
+        $data = compact('sellTicketHisData', 'trip_details', 'super_details', 'trip_sheet');
         return view('admin.trip_sheet')->with($data);
 
 
@@ -247,6 +252,36 @@ class HomeController extends Controller
     }
 
 
+    public function trip_sheetAdd(Request $request)
+    {
+
+
+        $random_num = null;
+        do {
+            $random_num = rand(10000, 99999);
+        } while (DB::table('trip_sheets')->where('trip_sheet_id', $random_num)->exists());
+
+
+        $trip = new TripSheet;
+
+        $trip->trip_id = $request['trip_id'];
+        $trip->trip_sheet_id = $random_num;
+        $trip->super_name = $request['super_name'];
+        $trip->super_mobile = $request['super_mobile'];
+        $trip->driver_name = $request['driver_name'];
+        $trip->reg_no = $request['reg_no'];
+
+        $trip->save();
+
+
+        return redirect()->back();
+
+
+
+        // p($request->toArray());
+
+
+    }
 
 
     public function pre_day($date)

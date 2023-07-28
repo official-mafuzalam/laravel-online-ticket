@@ -3,10 +3,12 @@
 @section('content')
     <div class="container">
         @if (session('user.type', 'default') == 'admin')
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-id="{{ $trip_details->first()->trip_id }}">
-                Book
-            </button>
+            <div class="container pb-2 d-grid d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-id="{{ $trip_details->first()->trip_id }}">
+                    Update Trip
+                </button>
+            </div>
         @endif
 
         <div class="bg-danger" style="width: 100%;">
@@ -44,27 +46,32 @@
                 </div>
                 <div>
                     <p>Supervisor:
-                        <span class="fw-bold">MR. X
+                        <span class="fw-bold">
+                            {{ $trip_sheet->super_name ?? 'N/A'}} ({{ $trip_sheet->super_mobile ?? 'N/A'}})
                         </span>
                     </p>
                     <p>Driver:
-                        <span class="fw-bold">Mr. Y
+                        <span class="fw-bold">
+                            {{ $trip_sheet->driver_name ?? 'N/A' }}
                         </span>
                     </p>
                     <p>Reg.No:
                         <span class="fw-bold">
-
+                            {{ $trip_sheet->reg_no ?? 'N/A'}}
                         </span>
                     </p>
                 </div>
                 <div>
-                    <p>Coach: <span class="fw-bold">
+                    <p>Coach:
+                        <span class="fw-bold">
                             {{ $trip_details->first()->coach_no }}
                         </span>
                     </p>
-                    <p>Challan Serial: <span class="fw-bold">
-
-                        </span></p>
+                    <p>Challan Serial:
+                        <span class="fw-bold">
+                            {{ $trip_sheet->trip_sheet_id ?? 'N/A'}}
+                        </span>
+                    </p>
                     <p>Bus Type: <span class="fw-bold">NON_AC</span></p>
                 </div>
             </div>
@@ -168,10 +175,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">Trip Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.counter.add') }}" method="post">
+                <form action="{{ route('admin.trip_sheet.add') }}" method="post" onsubmit="reloadFormPage()">
                     @csrf
                     <div class="modal-body">
-
 
                         <div class="mb-3 row">
                             <label for="trip_id_input" class="col-sm-2 col-form-label">Trip ID</label>
@@ -182,34 +188,39 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
+                            <label for="super_name" class="col-sm-2 col-form-label">Supervisor</label>
                             <div class="col-sm-10">
-                                <select name="main_route" id="main_route" class="form-select form-select-sm"
+                                <select name="super_name" id="super_name" class="form-select form-select-sm"
                                     aria-label=".form-select-sm example" required>
-                                    <option selected>Select counter main route</option>
-
+                                    <option selected>Select Supervisor</option>
+                                    @foreach ($super_details as $user)
+                                        <option data-value="{{ $user->mobile }}"
+                                            value="{{ $user->user_id . ' - ' . $user->user_name }}">
+                                            {{ $user->user_id . ' - ' . $user->user_name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="name" class="col-sm-2 col-form-label">Coun. Name</label>
+                            <label for="mobile" class="col-sm-2 col-form-label">Sup. Mobile</label>
                             <div class="col-sm-10">
-                                <input name="coun_name" type="text" class="form-control" id="name"
-                                    placeholder="ex: Gabtoli" required>
+                                <input name="super_mobile" type="text" class="form-control" id="mobile"
+                                    placeholder="ex: 017xxxxxxx" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="coun_add" class="col-sm-2 col-form-label">Coun. Address</label>
+                            <label for="driver_name" class="col-sm-2 col-form-label">Driver</label>
                             <div class="col-sm-10">
-                                <input name="coun_add" type="text" class="form-control" id="coun_add"
-                                    placeholder="ex: Gabtoli Terminal" required>
+                                <input name="driver_name" type="text" class="form-control" id="driver_name"
+                                    placeholder="ex: MR. Driver" value="MR. Driver" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="time_deff" class="col-sm-2 col-form-label">Time Deff (min)</label>
+                            <label for="reg_no" class="col-sm-2 col-form-label">Reg No</label>
                             <div class="col-sm-10">
-                                <input name="time_deff" type="number" class="form-control" id="time_deff"
-                                    placeholder="ex: 15" required>
+                                <input name="reg_no" type="text" class="form-control" id="reg_no"
+                                    placeholder="ex: 15-1050" required>
                             </div>
                         </div>
 
@@ -241,6 +252,13 @@
         });
     </script>
 
+    <script>
+        document.getElementById("super_name").addEventListener("change", function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var mobileValue = selectedOption.getAttribute("data-value");
+            document.getElementById("mobile").value = mobileValue;
+        });
+    </script>
 
 
 
@@ -259,6 +277,12 @@
         const tableBody = document.getElementById('my-table-body');
         const rowCount = tableBody.rows.length;
         document.getElementById("sold-seat").innerText = rowCount;
+    </script>
+
+    <script type="text/javascript">
+        function reloadFormPage() {
+            location.reload();
+        }
     </script>
 
     {{-- <table>

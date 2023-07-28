@@ -92,6 +92,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/user/{id}', [CounterController::class, 'userUpdate'])->name('admin.user.update');
 
+        Route::get('/supervisor', [CounterController::class, 'supervisorPage'])->name('admin.supervisor');
+
+        Route::post('/supervisor', [CounterController::class, 'supervisorAdd'])->name('admin.supervisor.add');
+
+
 
         Route::get('/main_route', [TripController::class, 'main_route'])->name('admin.main_route');
 
@@ -126,6 +131,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
 
         Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
+
+        Route::post('/trip_sheet', [HomeController::class, 'trip_sheetAdd'])->name('admin.trip_sheet.add');
 
         // Route::get('/get_name/{mobile}', [HomeController::class, 'get_name'])->name('admin.get_name');
     });

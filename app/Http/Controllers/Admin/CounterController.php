@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\CounterList;
 use App\Models\CounterMaster;
 use App\Models\MainRoute;
+use App\Models\Supervisor;
 use App\Models\User;
 
 class CounterController extends Controller
@@ -173,6 +174,43 @@ class CounterController extends Controller
     }
 
 
+    public function supervisorPage()
+    {
+
+        $sup_details = Supervisor::all();
+
+
+        $super = Supervisor::latest()->first();
+        $lastUserId = $super->user_id;
+        $newUserId = $lastUserId + 1;
+
+        $data = compact('newUserId', 'sup_details');
+
+        return view('admin.supervisor')->with($data);
+
+
+    }
+
+    public function supervisorAdd(Request $request)
+    {
+
+        $super = new Supervisor;
+
+        $super->user_id = $request['user_id'];
+        $super->user_name = $request['user_name'];
+        $super->mobile = $request['mobile'];
+        $super->save();
+
+        // Show success notification
+        session()->flash('success', 'New Supervisor added successfully.');
+
+        return redirect()->route('admin.supervisor');
+
+
+
+        // p($request->toArray());
+
+    }
 
 
 
