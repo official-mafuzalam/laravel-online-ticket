@@ -124,6 +124,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
 
         Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
+
+        Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
     });
 });
 

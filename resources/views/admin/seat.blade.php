@@ -31,8 +31,14 @@
     <div class="container bg-success-subtle text-center">
         <div class="container text-center">
             <div class="row">
-                <div class="col text-danger fs-5 fw-bold"> Coach No: {{ $trip_data->coach_no }}</div>
-                <div class="col text-danger fs-5 fw-bold"> {{ $trip_data->route }}</div>
+                <div class="col text-danger fs-5 fw-bold p-2">
+                    <a href="{{ route('admin.trip_sheet', ['id' => $trip_data->trip_id]) }}" target="_blank"
+                        class="btn btn-secondary btn-sm">Trip Sheet</a>
+                </div>
+                <div class="col text-danger fs-5 fw-bold">
+                    Coach No: {{ $trip_data->coach_no }}
+                    <br>{{ $trip_data->route }}
+                </div>
                 <div class="col text-danger fs-5 fw-bold">
                     <?php
                     // Convert the trip time to a DateTime object for easier manipulation

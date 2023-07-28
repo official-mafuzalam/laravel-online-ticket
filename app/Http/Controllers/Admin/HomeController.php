@@ -154,7 +154,8 @@ class HomeController extends Controller
     }
 
 
-    public function ticket_print($id){
+    public function ticket_print($id)
+    {
 
         $ticket = SellTicketHis::where('ticket_id', $id)->first();
 
@@ -165,6 +166,67 @@ class HomeController extends Controller
         return view('admin.ticket_print')->with($data);
     }
 
+    public function trip_sheet($id)
+    {
+
+        // Inside your controller method
+        $tripStatusId = $id; // Replace $id with the desired trip_status id
+
+        $trip_details = DB::table('trip_statuses')
+            ->where('trip_id', $id)
+            ->get();
+
+        // Create an array to store the column names A1 to J4
+        $columns = [];
+        for ($row = 'A'; $row <= 'J'; $row++) {
+            for ($i = 1; $i <= 4; $i++) {
+                $columns[] = $row . $i;
+            }
+        }
+
+        // Use Laravel's query builder to build the query
+        $tripStatus = TripStatus::where('trip_id', $tripStatusId)->where(function ($query) use ($columns) {
+            foreach ($columns as $column) {
+                $query->orWhere($column, '=', 1)
+                    ->orWhere($column, '=', 2);
+            }
+        })->first($columns); // Use first() instead of get() to get only one row
+
+        // Filter the columns that have values 1 or 2
+        $result = [];
+        foreach ($columns as $column) {
+            if ($tripStatus->$column == 1 || $tripStatus->$column == 2) {
+                $result[$column] = $tripStatus->$column;
+            }
+        }
+
+        // Loop through each seat and fetch data from SellTicketHis table
+        $sellTicketHisData = [];
+        foreach ($result as $seat => $value) {
+            $sellTicketHisData[$seat] = SellTicketHis::where('trip_id', $tripStatusId)
+                ->where('seat', 'LIKE', '%' . $seat . '%')
+                ->get();
+        }
+
+
+        // Pass the data to the view
+        $data = compact('sellTicketHisData','trip_details');
+        return view('admin.trip_sheet')->with($data);
+
+
+
+
+
+        // dd($sellTicketHisData); // Add this debug statement
+
+
+
+        
+
+        // p($sellTicketHisData);
+
+
+    }
 
 
 
