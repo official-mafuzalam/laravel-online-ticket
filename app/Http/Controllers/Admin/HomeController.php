@@ -12,6 +12,7 @@ use App\Models\TripSheet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -123,9 +124,13 @@ class HomeController extends Controller
             $ticket->name = $request['name'];
             $ticket->gender = $request['gender'];
 
-            $ticket->seller_name = 'Mafuz';
-            $ticket->seller_id = '10000';
-            $ticket->seller_counter = 'Gabtoli';
+            $seller_name = session('user.user_name', 'default');
+            $seller_id = session('user.user_id', 'default');
+            $seller_counter = session('user.coun_name', 'default');
+
+            $ticket->seller_name = $seller_name;
+            $ticket->seller_id = $seller_id;
+            $ticket->seller_counter = $seller_counter;
 
             $ticket->save();
 
@@ -284,21 +289,21 @@ class HomeController extends Controller
     }
 
 
-    public function pre_day($date)
-    {
+    // public function pre_day($date)
+    // {
 
-        $formattedDate = date('Y-m-d');
+    //     $formattedDate = date('Y-m-d');
 
-        $trips = DB::table('trip_statuses')
-            ->where('date', $date)
-            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
-            ->get();
+    //     $trips = DB::table('trip_statuses')
+    //         ->where('date', $date)
+    //         ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+    //         ->get();
 
-        $data = compact('trips');
+    //     $data = compact('trips');
 
-        return view('admin.welcome')->with($data);
+    //     return view('admin.welcome')->with($data);
 
-    }
+    // }
 
     public function date($date)
     {
@@ -315,4 +320,27 @@ class HomeController extends Controller
         return view('admin.welcome')->with($data);
 
     }
+
+    public function sells_report(Request $request)
+    {
+        $seller_id = session('user.user_id', 'default');
+
+        $date1 = isset($request['date1']) ? Carbon::parse($request['date1'])->startOfDay() : null;
+        $date2 = isset($request['date2']) ? Carbon::parse($request['date2'])->endOfDay() : null;
+
+        if ($date1 != "" && $date2 != "") {
+            $sells = SellTicketHis::where('seller_id', $seller_id)
+                ->whereBetween('created_at', [$date1, $date2])
+                ->get();
+        } else {
+            $sells = SellTicketHis::where('seller_id', $seller_id)->get();
+        }
+
+        $data = compact('sells');
+        return view('admin.sells_report')->with($data);
+
+    }
+
+
+
 }

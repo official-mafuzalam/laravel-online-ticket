@@ -121,17 +121,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('/sample_trip/{id}', [TripController::class, 'sample_tripUpdate'])->name('admin.sample_trip.update');
 
         
-        Route::get('/pre_day/{date}', [HomeController::class, 'pre_day'])->name('admin.pre_day');
+        // Route::get('/pre_day/{date}', [HomeController::class, 'pre_day'])->name('admin.pre_day');
 
         Route::get('/date/{date}', [HomeController::class, 'date'])->name('admin.date');
 
-
-        Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
-
-        Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
-
-        Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
-
+       
         Route::post('/trip_sheet', [HomeController::class, 'trip_sheetAdd'])->name('admin.trip_sheet.add');
 
         // Route::get('/get_name/{mobile}', [HomeController::class, 'get_name'])->name('admin.get_name');
@@ -139,7 +133,18 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 });
 
 
+// For all
 
+Route::get('/trip/{id}', [AdminController::class, 'show'])->name('trip.show');
+
+Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
+
+Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
+
+Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
+
+Route::get('/sells_report', [HomeController::class, 'sells_report'])->name('admin.sells_report');
+       
 
 
 /*------------------------------------------
@@ -152,6 +157,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::group(['prefix' => '/agents'], function () {
 
         Route::get('/welcome', [AgentController::class, 'welcome'])->name('agents.welcome');
+
+        Route::get('/pre_day/{date}', [AgentController::class, 'pre_day'])->name('agents.pre_day');
+
+        Route::get('/date/{date}', [AgentController::class, 'date'])->name('agents.date');
 
     });
 });
@@ -192,7 +201,7 @@ Route::get('/seat_plan', [AdminController::class, 'seat_plan'])->name('seat_plan
 
 Route::post('sell_ticket_demo', [AdminController::class, 'sell_ticket_demo'])->name('sell_ticket_demo');
 
-Route::get('/trip/{id}', [AdminController::class, 'show'])->name('trip.show');
+
 
 
 

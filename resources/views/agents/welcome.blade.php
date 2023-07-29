@@ -15,32 +15,32 @@
 
 
     <div class="container p-2 text-center bg-warning-subtle">
-
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <select class="form-select form-select-sm" name="station_from">
-                    <option selected>Select from</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+        <form role="search" action="{{ route('agents.welcome') }}">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <select class="form-select form-select-sm" name="station_from" disabled>
+                        <option selected>Select from</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <select class="form-select form-select-sm" name="station_to" disabled>
+                        <option selected>Select to</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <input class="form-control form-control-sm" type="date" name="date" aria-label="form-control-sm example">
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button class="btn btn-info btn-sm" type="submit">Search</button>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <select class="form-select form-select-sm" name="station_to">
-                    <option selected>Select to</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <input class="form-control form-control-sm" type="date" aria-label="form-control-sm example">
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <button class="btn btn-success btn-sm" type="submit">Search</button>
-            </div>
-        </div>
-
+        </form>
 
     </div>
 
@@ -49,15 +49,25 @@
     </div>
 
     <div class="container p-2 d-grid mb-2 gap-2 d-md-flex justify-content-md-center bg-warning-subtle">
-        <button class="btn btn-info" type="button">
+
+        <?php
+        $currentDate = date('Y-m-d');
+        $previousDate = date('Y-m-d', strtotime('-1 day', strtotime($currentDate)));
+        $nextDate = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+        ?>
+
+        <a class="btn btn-info" type="button" href="{{ route('agents.date', ['date' => $previousDate]) }}">
             <i class="bi bi-caret-left"></i>
             Pre. Day
-        </button>
-        <button class="btn btn-outline-success" type="button">Today <br> 17/07/2023</button>
-        <button class="btn btn-info" type="button">
+        </a>
+        <a class="btn btn-outline-success" type="button" href="{{ route('agents.welcome') }}">Today |
+            {{ date('d-m-Y') }}</a>
+        <a class="btn btn-info" type="button" href="{{ route('agents.date', ['date' => $nextDate]) }}">
             Next Day
             <i class="bi bi-caret-right"></i>
-        </button>
+        </a>
+
+
     </div>
 
     <div class="container">
@@ -65,6 +75,7 @@
             <thead class="table-info">
                 <tr>
                     <th scope="col">Coach</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Time</th>
                     <th scope="col">Route</th>
                     <th scope="col">Available</th>
@@ -85,20 +96,13 @@
                                 {{ $trip->coach_no }}
                             </td>
                             <td class="text-success fw-bold">
-
                                 <?php
-                                // Convert the trip time to a DateTime object for easier manipulation
-                                $tripTime = new DateTime($trip->time);
-                                
-                                // Get the time difference from the session (assuming it's given in minutes)
-                                $timeDifferenceInMinutes = session('user.time_deff');
-                                
-                                // Add the time difference to the trip time
-                                $adjustedTime = $tripTime->modify('+' . $timeDifferenceInMinutes . ' minutes')->format('h:i A');
+                                // Assuming $trip->date contains "2023-07-20"
+                                $date = date('d-m-Y', strtotime($trip->date));
+                                echo $date; // Output: 20-07-2023
                                 ?>
-                                {{ $adjustedTime }}
-
                             </td>
+                            <td class="text-success fw-bold">{{ $trip->time }}</td>
                             <td class="text-success fw-bold">{{ $trip->route }}</td>
                             <td class="text-success fw-bold">36</td>
                             <td class="text-success fw-bold">
@@ -142,7 +146,7 @@
 
         </div>
     </div>
-    </div> --}}
+</div> --}}
 
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -163,8 +167,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 
 
 
