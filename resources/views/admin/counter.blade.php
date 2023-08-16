@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="mb-3 row">
+                        {{-- <div class="mb-3 row">
                             <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
                             <div class="col-sm-10">
                                 <select name="main_route" id="main_route" class="form-select form-select-sm"
@@ -81,7 +81,7 @@
 
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-2 col-form-label">Coun. Name</label>
                             <div class="col-sm-10">

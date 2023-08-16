@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('coun_name');
             $table->integer('coun_id');
-            $table->integer('main_route');
             $table->integer('user_type');
             $table->integer('user_id');
             $table->string('user_name');

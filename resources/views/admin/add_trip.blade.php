@@ -15,8 +15,8 @@
                     <th scope="col">Coach</th>
                     <th scope="col">Time</th>
                     <th scope="col">Route</th>
-                    <th scope="col">Available</th>
-                    <th scope="col">Fare</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -34,21 +34,26 @@
                             </td>
                             <td class="text-success fw-bold">{{ $trip->time }}</td>
                             <td class="text-success fw-bold">{{ $trip->route }}</td>
-                            <td class="text-success fw-bold">36</td>
+                            <td class="text-success fw-bold">{{ $trip->status }}</td>
                             <td class="text-success fw-bold">
-                                @php
-                                    $stations = explode(',', $trip->stations);
-                                    $lastOption = end($stations);
-                                    $lastOptionValue = explode('-', $lastOption)[1];
-                                @endphp
+                                @if ($trip->status == 1)
+                                    <a type="button" class="btn btn-danger btn-sm"
+                                        href="{{ route('admin.main_trip.status', ['trip_id' => $trip->id, 'id' => 0]) }}">
+                                        Omit
+                                    </a>
+                                @else
+                                    <a type="button" class="btn btn-success btn-sm"
+                                        href="{{ route('admin.main_trip.status', ['trip_id' => $trip->id, 'id' => 1]) }}">
+                                        Active
+                                    </a>
+                                @endif
 
-                                {{ $lastOptionValue }}
                             </td>
                             <td class="text-success fw-bold">
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" data-id="{{ $trip->id }}">
-                                    Book
-                                </button>
+                                <a type="button" class="btn btn-primary btn-sm"
+                                    href="{{ route('admin.main_trip.edit', ['id' => $trip->id]) }}">
+                                    Update trip
+                                </a>
                             </td>
 
                             {{-- <td class="text-success fw-bold">
@@ -77,12 +82,13 @@
                         @csrf
                         <div class="mb-3">
                             <select class="form-select mr-4" name="coach_no"
-                                onchange="changeValue(), changeTime(), changeStation()">
+                                onchange="changeValue(), changeTime(), changeStation(), changeCounters()">
                                 <option selected>Select coach no</option>
 
                                 @foreach ($sam_trip as $trip)
                                     <option value="{{ $trip->coach_no }}" data-value="{{ $trip->route }}"
-                                        data-time="{{ $trip->time }}" data-station="{{ $trip->stations }}">
+                                        data-time="{{ $trip->time }}" data-station="{{ $trip->stations }}"
+                                        data-counters="{{ $trip->counters }}">
                                         {{ $trip->coach_no }}
                                     </option>
                                 @endforeach
@@ -107,16 +113,8 @@
                                 required />
                         </div>
                         <div class="mb-3">
-                            <select name="main_route" id="main_route" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example" required>
-
-                                <option selected>Select user main route</option>
-                                @foreach ($main_route as $route)
-                                    <option value="{{ $route->route_no }}">
-                                        {{ $route->route_name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <input name="counters" id="counters" type="text" value="" class="form-control"
+                                required />
                         </div>
 
                         <div class="modal-footer">
@@ -151,6 +149,12 @@
             var dropdown = document.getElementsByName("coach_no")[0];
             var inputBox = document.getElementById("station");
             inputBox.value = dropdown.options[dropdown.selectedIndex].getAttribute("data-station");
+        }
+        // Auto Change Counters by Coach No
+        function changeCounters() {
+            var dropdown = document.getElementsByName("coach_no")[0];
+            var inputBox = document.getElementById("counters");
+            inputBox.value = dropdown.options[dropdown.selectedIndex].getAttribute("data-counters");
         }
     </script>
 @endsection

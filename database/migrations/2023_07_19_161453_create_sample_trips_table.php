@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sample_trips', function (Blueprint $table) {
             $table->id();
             $table->integer('coach_no');
+            $table->string('counters');
             $table->string('route');
             $table->string('stations');
             $table->string('time');

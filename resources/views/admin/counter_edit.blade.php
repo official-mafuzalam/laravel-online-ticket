@@ -14,13 +14,6 @@
             </div>
 
             <div class="mb-3 row">
-                <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
-                <div class="col-sm-10">
-                    <input name="main_route" type="text" class="form-control" id="coun_id" placeholder="ex: 101"
-                        value="{{ $counter->main_route }}" required>
-                </div>
-            </div>
-            <div class="mb-3 row">
                 <label for="name" class="col-sm-2 col-form-label">Coun. Name</label>
                 <div class="col-sm-10">
                     <input name="coun_name" type="text" class="form-control" id="name" placeholder="ex: Gabtoli"

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\CounterList;
 use App\Models\CounterMaster;
-use App\Models\MainRoute;
 use App\Models\Supervisor;
 use App\Models\User;
 
@@ -17,11 +16,10 @@ class CounterController extends Controller
 
     public function counterPage()
     {
-        $main_route = MainRoute::all();
 
         $counter = CounterList::all();
 
-        $data = compact('counter', 'main_route');
+        $data = compact('counter');
 
         return view('admin.counter')->with($data);
     }
@@ -33,7 +31,6 @@ class CounterController extends Controller
         $counter = new CounterList;
 
         $counter->counter_id = $request['counter_id'];
-        $counter->main_route = $request['main_route'];
         $counter->coun_name = $request['coun_name'];
         $counter->coun_add = $request['coun_add'];
         $counter->time_deff = $request['time_deff'];
@@ -63,7 +60,6 @@ class CounterController extends Controller
 
         $counter = CounterList::find($id);
 
-        $counter->main_route = $request['main_route'];
         $counter->coun_name = $request['coun_name'];
         $counter->coun_add = $request['coun_add'];
         $counter->time_deff = $request['time_deff'];
@@ -84,7 +80,6 @@ class CounterController extends Controller
 
         $master = CounterMaster::all();
 
-        $main_route = MainRoute::all();
 
 
         $coun = CounterMaster::latest()->first();
@@ -93,7 +88,7 @@ class CounterController extends Controller
 
 
 
-        $data = compact('master', 'counter', 'newUserId', 'main_route');
+        $data = compact('master', 'counter', 'newUserId');
 
         return view('admin.user')->with($data);
     }
@@ -105,7 +100,6 @@ class CounterController extends Controller
 
         $coun_master->coun_name = $request['coun_name'];
         $coun_master->coun_id = $request['coun_id'];
-        $coun_master->main_route = $request['main_route'];
         $coun_master->user_type = $request['type'];
         $coun_master->user_id = $request['user_id'];
         $coun_master->user_name = $request['user_name'];
@@ -146,7 +140,6 @@ class CounterController extends Controller
 
         $coun_master->coun_name = $request['coun_name'];
         $coun_master->coun_id = $request['coun_id'];
-        $coun_master->main_route = $request['main_route'];
         $coun_master->user_type = $request['type'];
         $coun_master->user_id = $request['user_id'];
         $coun_master->user_name = $request['user_name'];

@@ -87,6 +87,22 @@
                                     placeholder="ex: Muksudpur - 450, Gopalgonj - 500" required>
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="counters" class="col-sm-2 col-form-label">Counters</label>
+                            <div class="col-sm-10">
+
+                                @foreach ($counters as $counter)
+                                    <div class="form-check form-check-inline">
+                                        <input name="counters[]" class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox{{ $counter->id }}" value="{{ $counter->counter_id }}">
+                                        <label class="form-check-label"
+                                            for="inlineCheckbox{{ $counter->id }}">{{ $counter->coun_name }}</label>
+                                    </div>
+                                @endforeach
+
+
+                            </div>
+                        </div>
 
 
                     </div>

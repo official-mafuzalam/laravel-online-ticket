@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('trip_statuses', function (Blueprint $table) {
             $table->id();
-            $table->integer('main_route');
             $table->integer('trip_id');
             $table->string('coach_no');
+            $table->string('counters');
             $table->string('date');
             $table->string('time');
             $table->longText('route');

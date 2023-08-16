@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('counter_lists', function (Blueprint $table) {
             $table->id();
             $table->integer('counter_id');
-            $table->integer('main_route');
             $table->string('coun_name');
             $table->string('coun_add');
             $table->integer('time_deff');

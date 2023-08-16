@@ -42,13 +42,13 @@
                     </select>
                 </div>
             </div>
-            <div class="mb-3 row">
+            {{-- <div class="mb-3 row">
                 <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
                 <div class="col-sm-10">
                     <input name="main_route" type="number" class="form-control" id="main_route" placeholder="ex: 105"
                         value="{{ $coun_master->main_route }}" required>
                 </div>
-            </div>
+            </div> --}}
             <div class="mb-3 row">
                 <label for="user_name" class="col-sm-2 col-form-label">User Name</label>
                 <div class="col-sm-10">

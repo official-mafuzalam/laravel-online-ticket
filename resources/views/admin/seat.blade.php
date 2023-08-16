@@ -643,18 +643,28 @@
 
                             <select class="form-select" id="station-select" name="station" required
                                 onchange="updateFare()">
-                                <option value="0" selected="" disabled="">Droping Point</option>
-                                <option data-fare="450" value="Vatiyapara">
-                                    Vatiyapara - 450</option>
-                                <option data-fare="500" value="Gopalganj">
-                                    Gopalganj - 500</option>
-                                <option data-fare="550" value="Fakirhat">
-                                    Fakirhat - 550</option>
-                                <option data-fare="600" value="Katakhali">
-                                    Katakhali - 600</option>
-                                <option data-fare="650" value="Khulna">
-                                    Khulna - 650</option>
+                                <option value="0" selected="">Droping Point</option>
+
+                                @php
+                                    $stationsArray = explode(', ', $trip_data->stations);
+                                @endphp
+
+                                @foreach ($stationsArray as $station)
+                                    @php
+                                        $stationData = explode(' - ', $station);
+                                        $stationName = $stationData[0];
+                                        $fare = isset($stationData[1]) ? $stationData[1] : '';
+                                    @endphp
+
+                                    <option data-fare="{{ $fare }}" value="{{ $stationName }}">
+                                        {{ $stationName }}{{ $fare ? " - $fare" : '' }}
+                                    </option>
+                                @endforeach
                             </select>
+
+
+
+
 
 
                             <input id="" hidden class="form-control" type="text" name="route"

@@ -3,88 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\TripStatus;
-use App\Models\MainRoute;
+use App\Models\CounterList;
 use App\Models\SampleTrip;
+use App\Models\TripStatus;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class TripController extends Controller
 {
     //
 
-    public function main_route()
-    {
-
-        $route = MainRoute::all();
-
-        $data = compact('route');
-
-        return view('admin.main_route')->with($data);
-    }
-
-    public function main_routeAdd(Request $request)
-    {
-
-        $route = new MainRoute;
-
-        $route->route_no = $request['route_no'];
-        $route->route_name = $request['route_name'];
-        $route->save();
-
-        // Show success notification
-        session()->flash('success', 'Main route added successfully.');
-
-        return redirect()->route('admin.main_route');
-
-    }
-
-    public function main_routeEdit($id)
-    {
-
-        $main_route = MainRoute::find($id);
-
-        $data = compact('main_route');
-
-        return view('admin.main_route_edit')->with($data);
-    }
-
-    public function main_routeUpdate(Request $request, $id)
-    {
-
-        $route = MainRoute::find($id);
-
-        $route->route_no = $request['route_no'];
-        $route->route_name = $request['route_name'];
-        $route->save();
-
-        // Show success notification
-        session()->flash('success', 'Main route update successfully.');
-
-        return redirect()->route('admin.main_route');
-
-    }
-
-    public function main_routeDelete($id)
-    {
-
-        $main_route = MainRoute::find($id);
-
-        if (!is_null($main_route)) {
-
-            $main_route->forceDelete();
-
-            // Show success notification
-            session()->flash('success-delete', 'Main route permanently deleted successfully.');
-            return redirect()->back();
-        }
-    }
 
     public function add_trip()
     {
-        $main_route = MainRoute::all();
 
         $sam_trip = SampleTrip::all();
 
@@ -96,7 +27,7 @@ class TripController extends Controller
             ->get();
 
 
-        $data = compact('main_route', 'sam_trip', 'trips');
+        $data = compact('sam_trip', 'trips');
 
         return view('admin.add_trip')->with($data);
     }
@@ -112,9 +43,9 @@ class TripController extends Controller
 
         $trip = new TripStatus;
 
-        $trip->main_route = $request['main_route'];
         $trip->trip_id = $random_num;
         $trip->coach_no = $request['coach_no'];
+        $trip->counters = $request['counters'];
         $trip->date = $request['date'];
         $trip->time = $request['time'];
         $trip->route = $request['route'];
@@ -127,14 +58,66 @@ class TripController extends Controller
 
     }
 
+    public function add_tripEdit($id)
+    {
 
+        $trip_data = TripStatus::find($id);
+
+        $counters = CounterList::all();
+
+        return view('admin.add_trip_edit', ['trip_data' => $trip_data, 'counters' => $counters]);
+        // p($trip_data);
+
+    }
+
+    public function add_tripUpdate(Request $request, $id)
+    {
+
+        $trip = TripStatus::find($id);
+
+        $trip->time = $request['time'];
+        $trip->route = $request['route'];
+        $trip->stations = $request['stations'];
+
+        // Convert the array to a comma-separated string
+        $countersArray = $request['counters'];
+        $countersString = implode(',', $countersArray);
+
+        $trip->counters = $countersString; // Assign the serialized string
+
+        $trip->save();
+
+        // Show success notification
+        session()->flash('success', 'Trip data updated successfully.');
+
+        return redirect()->route('add_trip');
+
+
+        // p($request->toArray());
+
+    }
+
+    public function add_tripStatus($trip_id, $id)
+    {
+
+        $trip = TripStatus::find($trip_id);
+
+        
+
+
+
+        // p($trip);
+        // echo $trip_id, $id;
+    }
 
     public function sample_trip()
     {
 
         $sam_trip = SampleTrip::all();
 
-        $data = compact('sam_trip');
+        $counters = CounterList::all();
+
+        $data = compact('sam_trip', 'counters');
 
         return view('admin.sample_trip')->with($data);
 
@@ -149,12 +132,21 @@ class TripController extends Controller
         $trip->route = $request['route'];
         $trip->stations = $request['stations'];
         $trip->time = $request['time'];
+
+        // Convert the array to a comma-separated string
+        $countersArray = $request['counters'];
+        $countersString = implode(',', $countersArray);
+
+        $trip->counters = $countersString; // Assign the serialized string
+
         $trip->save();
 
         // Show success notification
         session()->flash('success', 'New sample trip added successfully.');
 
         return redirect()->route('admin.sample_trip');
+
+        // p($request->toArray());
 
 
     }
@@ -164,21 +156,31 @@ class TripController extends Controller
 
         $sample_trip = SampleTrip::find($id);
 
-        $data = compact('sample_trip');
+        $counters = CounterList::all();
+
+        $data = compact('sample_trip', 'counters');
 
         return view('admin.sample_trip_edit')->with($data);
 
 
     }
 
-    public function sample_tripUpdate(Request $request, $id){
+    public function sample_tripUpdate(Request $request, $id)
+    {
 
         $trip = SampleTrip::find($id);
-        
+
         $trip->coach_no = $request['coach_no'];
         $trip->route = $request['route'];
         $trip->stations = $request['stations'];
         $trip->time = $request['time'];
+
+        // Convert the array to a comma-separated string
+        $countersArray = $request['counters'];
+        $countersString = implode(',', $countersArray);
+
+        $trip->counters = $countersString; // Assign the serialized string
+
         $trip->save();
 
         // Show success notification

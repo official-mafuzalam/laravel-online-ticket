@@ -63,10 +63,6 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('admin.main_route') }}">
-                                            <i class="bi bi-signpost"></i>
-                                            Main Route
-                                        </a>
                                         <a class="dropdown-item" href="{{ route('admin.sample_trip') }}">
                                             <i class="bi bi-bus-front"></i>
                                             Sample Trip

@@ -12,4 +12,13 @@ class CounterList extends Model
     protected $table = "counter_lists";
     protected $primaryKey = "id";
 
+
+    protected $fillable = [
+        'counter_id',
+        'main_route',
+        'coun_name',
+        'coun_add',
+        'time_deff'
+    ];
+
 }

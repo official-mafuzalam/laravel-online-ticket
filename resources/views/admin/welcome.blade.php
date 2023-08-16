@@ -34,7 +34,8 @@
                     </select>
                 </div>
                 <div class="col-md-2 col-sm-6">
-                    <input class="form-control form-control-sm" type="date" name="date" aria-label="form-control-sm example">
+                    <input class="form-control form-control-sm" type="date" name="date"
+                        aria-label="form-control-sm example">
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <button class="btn btn-info btn-sm" type="submit">Search</button>
@@ -90,7 +91,7 @@
                     </tr>
                 @else
                     @foreach ($trips as $trip)
-                        <tr>
+                        <tr class="{{ $trip->status == 0 ? 'table-danger' : 'table-light' }}">
                             <td class="text-success fw-bold">
                                 <span class="font-monospace">Coach:</span>
                                 {{ $trip->coach_no }}
@@ -115,10 +116,17 @@
                                 {{ $lastOptionValue }}
                             </td>
                             <td class="text-success fw-bold">
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" data-id="{{ $trip->id }}">
-                                    Book
-                                </button>
+
+                                @if ($trip->status == 1)
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-id="{{ $trip->id }}">
+                                        Book
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-danger disabled btn-sm" data-bs-toggle="modal">
+                                        Omit
+                                    </button>
+                                @endif
                             </td>
 
                             {{-- <td class="text-success fw-bold">

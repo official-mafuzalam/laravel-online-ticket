@@ -57,6 +57,8 @@ class AdminController extends Controller
 
         $html = view('admin.seat', compact('trip_data'))->render();
         return response()->json(['html' => $html]);
+
+        // return view('admin.seat', ['trip_data' => $trip_data]);
     }
 
 

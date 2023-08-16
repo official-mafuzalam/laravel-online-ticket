@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TripStatus;
-use App\Models\MainRoute;
 use App\Models\SellTicketHis;
 use App\Models\Supervisor;
 use App\Models\TripSheet;
@@ -20,7 +19,7 @@ class HomeController extends Controller
 
     public function welcome(Request $request)
     {
-        // $main_route = session('user.main_route');
+        $coun_id = session('user.coun_id');
 
         // $tripStatus = new TripStatus();
         // $trips = $tripStatus->get();
@@ -34,6 +33,7 @@ class HomeController extends Controller
 
             $trips = DB::table('trip_statuses')
                 ->where('date', $search_date)
+                ->whereIn('counters', [$coun_id]) // Adding this line to filter for counters = 14
                 ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
                 ->get();
 
@@ -42,6 +42,7 @@ class HomeController extends Controller
 
             $trips = DB::table('trip_statuses')
                 ->where('date', $formattedDate)
+                ->whereIn('counters', [$coun_id]) // Adding this line to filter for counters = 14
                 ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
                 ->get();
         }
