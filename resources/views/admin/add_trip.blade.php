@@ -8,6 +8,37 @@
         </button>
     </div>
 
+    <div class="container p-2 text-center bg-warning-subtle">
+        <form role="search" action="{{ route('add_trip') }}">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <select class="form-select form-select-sm" name="station_from" disabled>
+                        <option selected>Select from</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <select class="form-select form-select-sm" name="station_to" disabled>
+                        <option selected>Select to</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <input class="form-control form-control-sm" type="date" name="date"
+                        aria-label="form-control-sm example">
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button class="btn btn-info btn-sm" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    
     <div class="container">
         <table class="table table-hover text-center">
             <thead class="table-info">

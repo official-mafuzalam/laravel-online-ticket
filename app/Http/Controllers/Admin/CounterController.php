@@ -60,6 +60,7 @@ class CounterController extends Controller
 
         $counter = CounterList::find($id);
 
+        $counter->counter_id = $request['counter_id'];
         $counter->coun_name = $request['coun_name'];
         $counter->coun_add = $request['coun_add'];
         $counter->time_deff = $request['time_deff'];

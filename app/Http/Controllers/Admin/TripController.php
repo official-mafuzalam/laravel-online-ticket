@@ -14,18 +14,29 @@ class TripController extends Controller
     //
 
 
-    public function add_trip()
+    public function add_trip(Request $request)
     {
 
+        $search_date = isset($request['date']) ? $request['date'] : "";
+
+        if ($search_date != "") {
+
+            $trips = DB::table('trip_statuses')
+                ->where('date', $search_date)
+                ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+                ->get();
+
+        } else {
+            $formattedDate = date('Y-m-d');
+
+            $trips = DB::table('trip_statuses')
+                ->where('date', $formattedDate)
+                ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
+                ->get();
+        }
+
+
         $sam_trip = SampleTrip::all();
-
-        $formattedDate = date('Y-m-d');
-
-        $trips = DB::table('trip_statuses')
-            ->where('date', $formattedDate)
-            ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
-            ->get();
-
 
         $data = compact('sam_trip', 'trips');
 

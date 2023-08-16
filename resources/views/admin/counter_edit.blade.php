@@ -9,7 +9,7 @@
                 <label for="coun_id" class="col-sm-2 col-form-label">Coun. ID</label>
                 <div class="col-sm-10">
                     <input name="counter_id" type="number" class="form-control" id="coun_id" placeholder="ex: 101"
-                        value="{{ $counter->counter_id }}" readonly>
+                        value="{{ $counter->counter_id }}" required>
                 </div>
             </div>
 

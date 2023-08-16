@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show">
             <ul>
@@ -103,7 +102,25 @@
                                 echo $date; // Output: 20-07-2023
                                 ?>
                             </td>
-                            <td class="text-success fw-bold">{{ $trip->time }}</td>
+                            <td class="text-success fw-bold">
+                                @php
+                                    $time_deff = session('user.time_deff', 'default');
+                                    $trip_time = $trip->time;
+                                    
+                                    // Convert trip time to a DateTime object
+                                    $trip_datetime = new DateTime($trip_time);
+                                    
+                                    // Add the time difference
+                                    $trip_datetime->modify("+$time_deff minutes");
+                                    
+                                    // Format the result as "h:i A" (e.g., "06:15 AM")
+                                    $formatted_time = $trip_datetime->format('h:i A');
+                                @endphp
+
+                                {{ $formatted_time }}
+
+                                {{-- {{ $trip->time }} --}}
+                            </td>
                             <td class="text-success fw-bold">{{ $trip->route }}</td>
                             <td class="text-success fw-bold">36</td>
                             <td class="text-success fw-bold">
@@ -200,6 +217,4 @@
             });
         });
     </script>
-
-
 @endsection
