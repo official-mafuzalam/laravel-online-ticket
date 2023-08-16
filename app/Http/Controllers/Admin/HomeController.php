@@ -33,16 +33,17 @@ class HomeController extends Controller
 
             $trips = DB::table('trip_statuses')
                 ->where('date', $search_date)
-                ->whereIn('counters', [$coun_id]) // Adding this line to filter for counters = 14
+                ->whereRaw("FIND_IN_SET($coun_id, counters)") // Search for $coun_id in counters
                 ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
                 ->get();
+
 
         } else {
             $formattedDate = date('Y-m-d');
 
             $trips = DB::table('trip_statuses')
                 ->where('date', $formattedDate)
-                ->whereIn('counters', [$coun_id]) // Adding this line to filter for counters = 14
+                ->whereRaw("FIND_IN_SET($coun_id, counters)") // Search for $coun_id in counters
                 ->orderBy(DB::raw("STR_TO_DATE(time, '%h:%i %p')"))
                 ->get();
         }
@@ -286,8 +287,46 @@ class HomeController extends Controller
 
         // p($request->toArray());
 
+    }
+
+    public function trip_sheetEdit($id)
+    {
+
+        $super_details = Supervisor::all();
+
+        $trip = TripSheet::where('trip_id', $id)->first();
+
+        if (!$trip) {
+            $trip = new TripSheet;
+        }
+
+        return view('admin.trip_sheet_update', compact('trip', 'super_details', 'id'));
+
+        // p($trip);
+
 
     }
+
+    public function trip_sheetUpdate(Request $request, $id)
+    {
+        $trip = TripSheet::where('trip_id', $id)->first();
+
+        if ($trip) {
+            $trip->update([
+                'super_name' => $request['super_name'],
+                'super_mobile' => $request['super_mobile'],
+                'driver_name' => $request['driver_name'],
+                'reg_no' => $request['reg_no'],
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+
+
+
+
 
 
     // public function pre_day($date)

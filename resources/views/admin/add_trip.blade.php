@@ -34,7 +34,13 @@
                             </td>
                             <td class="text-success fw-bold">{{ $trip->time }}</td>
                             <td class="text-success fw-bold">{{ $trip->route }}</td>
-                            <td class="text-success fw-bold">{{ $trip->status }}</td>
+                            <td class="text-success fw-bold">
+                                @if ($trip->status == 1)
+                                    Active
+                                @else
+                                    Omit
+                                @endif
+                            </td>
                             <td class="text-success fw-bold">
                                 @if ($trip->status == 1)
                                     <a type="button" class="btn btn-danger btn-sm"
@@ -54,14 +60,6 @@
                                     href="{{ route('admin.main_trip.edit', ['id' => $trip->id]) }}">
                                     Update trip
                                 </a>
-                            </td>
-
-                            {{-- <td class="text-success fw-bold">
-                                <a class="text-decoration-none btn btn-success btn-sm" target="_blank"
-                                    href="{{ route('seat_plan', ['trip_id' => $trip->trip_id]) }}">Book</a>
-                            </td>
-                            <td class="text-success fw-bold">
-                                <button type="button" class="btn btn-warning btn-sm">Omit</button> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -114,7 +112,7 @@
                         </div>
                         <div class="mb-3">
                             <input name="counters" id="counters" type="text" value="" class="form-control"
-                                required />
+                                readonly />
                         </div>
 
                         <div class="modal-footer">

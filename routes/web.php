@@ -125,6 +125,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
        
         Route::post('/trip_sheet', [HomeController::class, 'trip_sheetAdd'])->name('admin.trip_sheet.add');
 
+        Route::get('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetEdit'])->name('admin.trip_sheet.edit');
+
+        Route::post('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetUpdate'])->name('admin.trip_sheet.update');
+
         // Route::get('/get_name/{mobile}', [HomeController::class, 'get_name'])->name('admin.get_name');
     });
 });

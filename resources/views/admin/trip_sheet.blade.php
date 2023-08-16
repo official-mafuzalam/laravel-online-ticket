@@ -4,10 +4,24 @@
     <div class="container">
         @if (session('user.type', 'default') == 'admin')
             <div class="container pb-2 d-grid d-md-flex justify-content-md-end">
+
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-id="{{ $trip_details->first()->trip_id }}">
-                    Update Trip
+                    Add Trip data
                 </button>
+                <a type="button" class="btn btn-primary btn-sm"
+                    href="{{ route('admin.trip_sheet.edit', ['id' => $trip_details->first()->trip_id]) }}">
+                    Update Trip
+                </a>
+
+
+
+            </div>
+        @endif
+
+        @if (session('user.type', 'default') == 'admin')
+            <div class="container pb-2 d-grid d-md-flex justify-content-md-end">
+
             </div>
         @endif
 
@@ -35,7 +49,7 @@
                     </p>
                     <p>Route:
                         <span class="fw-bold">
-                            {{ $trip_details->first()->main_route }}
+                            {{-- {{ $trip_details->first()->main_route }} --}}
                         </span>
                     </p>
                     <p>Date:
@@ -47,7 +61,7 @@
                 <div>
                     <p>Supervisor:
                         <span class="fw-bold">
-                            {{ $trip_sheet->super_name ?? 'N/A'}} ({{ $trip_sheet->super_mobile ?? 'N/A'}})
+                            {{ $trip_sheet->super_name ?? 'N/A' }} ({{ $trip_sheet->super_mobile ?? 'N/A' }})
                         </span>
                     </p>
                     <p>Driver:
@@ -57,7 +71,7 @@
                     </p>
                     <p>Reg.No:
                         <span class="fw-bold">
-                            {{ $trip_sheet->reg_no ?? 'N/A'}}
+                            {{ $trip_sheet->reg_no ?? 'N/A' }}
                         </span>
                     </p>
                 </div>
@@ -69,7 +83,7 @@
                     </p>
                     <p>Challan Serial:
                         <span class="fw-bold">
-                            {{ $trip_sheet->trip_sheet_id ?? 'N/A'}}
+                            {{ $trip_sheet->trip_sheet_id ?? 'N/A' }}
                         </span>
                     </p>
                     <p>Bus Type: <span class="fw-bold">NON_AC</span></p>

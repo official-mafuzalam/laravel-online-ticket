@@ -102,7 +102,18 @@ class TripController extends Controller
 
         $trip = TripStatus::find($trip_id);
 
-        
+        if ($trip) {
+            $trip->status = $id;
+            $trip->save();
+            // Show success notification
+            session()->flash('success', 'Trip data updated successfully.');
+            return redirect()->back();
+        } else {
+            // Show success notification
+            session()->flash('success-delete', 'Trip data not found.');
+            return redirect()->back();
+        }
+
 
 
 

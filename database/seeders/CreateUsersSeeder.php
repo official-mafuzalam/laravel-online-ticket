@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\CounterMaster;
 use App\Models\CounterList;
+use App\Models\Supervisor;
 
 class CreateUsersSeeder extends Seeder
 {
@@ -64,6 +65,15 @@ class CreateUsersSeeder extends Seeder
             ],
         ];
 
+        $guides = [
+            [
+                'user_id'=>5000,
+                'user_name'=>'Guid 1',
+                'mobile'=>'0174556',
+
+            ]
+        ];
+
         foreach ($users as $key => $user) {
             User::create($user);
         }
@@ -76,8 +86,12 @@ class CreateUsersSeeder extends Seeder
             CounterMaster::create($counter_master);
         }
 
+        foreach ($guides as $key => $guide) {
+            Supervisor::create($guide);
+        }
 
-       
+
+
 
     }
 }

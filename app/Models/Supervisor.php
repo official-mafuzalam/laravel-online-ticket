@@ -12,4 +12,10 @@ class Supervisor extends Model
     protected $table = "supervisors";
     protected $primaryKey = "id";
 
+    protected $fillable = [
+        'user_id',
+        'user_name',
+        'mobile',
+    ];
+
 }

@@ -13,7 +13,6 @@
                 <tr>
                     <th scope="col">S/L</th>
                     <th scope="col">Counter ID</th>
-                    <th scope="col">Main R.</th>
                     <th scope="col">Counter Name</th>
                     <th scope="col">Counter Address</th>
                     <th scope="col">Time Deff</th>
@@ -30,7 +29,6 @@
                         <tr>
                             <th>{{ $coun->id }}</th>
                             <td>{{ $coun->counter_id }}</td>
-                            <td>{{ $coun->main_route }}</td>
                             <td>{{ $coun->coun_name }}</td>
                             <td>{{ $coun->coun_add }}</td>
                             <td>{{ $coun->time_deff }}</td>
@@ -65,23 +63,6 @@
                                     placeholder="ex: 101" required>
                             </div>
                         </div>
-
-                        {{-- <div class="mb-3 row">
-                            <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
-                            <div class="col-sm-10">
-                                <select name="main_route" id="main_route" class="form-select form-select-sm"
-                                    aria-label=".form-select-sm example" required>
-                                    <option selected>Select counter main route</option>
-
-                                    @foreach ($main_route as $route)
-                                        <option value="{{ $route->route_no }}">
-                                            {{ $route->route_name }}
-                                        </option>
-                                    @endforeach
-
-                                </select>
-                            </div>
-                        </div> --}}
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-2 col-form-label">Coun. Name</label>
                             <div class="col-sm-10">

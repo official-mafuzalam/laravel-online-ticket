@@ -63,14 +63,6 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('admin.sample_trip') }}">
-                                            <i class="bi bi-bus-front"></i>
-                                            Sample Trip
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('add_trip') }}">
-                                            <i class="bi bi-plus-circle"></i>
-                                            Add Trip
-                                        </a>
                                         <a class="dropdown-item" href="{{ route('admin.counter') }}">
                                             <i class="bi bi-house-check"></i>
                                             Counter's
@@ -78,6 +70,14 @@
                                         <a class="dropdown-item" href="{{ route('admin.user') }}">
                                             <i class="bi bi-person-fill-check"></i>
                                             Counter Master
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.sample_trip') }}">
+                                            <i class="bi bi-bus-front"></i>
+                                            Sample Trip
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('add_trip') }}">
+                                            <i class="bi bi-plus-circle"></i>
+                                            Main Trip
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.supervisor') }}">
                                             <i class="bi bi-person-fill-check"></i>

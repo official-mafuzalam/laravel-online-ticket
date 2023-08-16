@@ -13,7 +13,6 @@
                 <tr>
                     <th scope="col">S/L</th>
                     <th scope="col">Counter</th>
-                    <th scope="col">Main R.</th>
                     <th scope="col">User Type</th>
                     <th scope="col">User</th>
                     <th scope="col">Mobile</th>
@@ -32,7 +31,6 @@
                         <tr>
                             <th>{{ $counterMaster->id }}</th>
                             <td>{{ $counterMaster->coun_id }} <br>{{ $counterMaster->coun_name }} </td>
-                            <td>{{ $counterMaster->main_route }}</td>
                             <td>{{ $counterMaster->user_type }}</td>
                             <td>{{ $counterMaster->user_id }} <br> {{ $counterMaster->user_name }} </td>
                             <td>{{ $counterMaster->user_mobile }}</td>
