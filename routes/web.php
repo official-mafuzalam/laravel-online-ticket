@@ -74,16 +74,43 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('/welcome', [HomeController::class, 'welcome'])->name('admin.welcome');
 
-        Route::get('/counter', [HomeController::class, 'counterPage'])->name('admin.counter');
+        Route::get('/trip/{id}', [HomeController::class, 'show_seat_plane'])->name('trip.show');
+
+        Route::get('/date/{date}', [HomeController::class, 'date'])->name('admin.date');
+
+        Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
+
+        Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
+
+
+
+        // Trip sheet section
+        Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
+
+        Route::post('/trip_sheet', [HomeController::class, 'trip_sheetAdd'])->name('admin.trip_sheet.add');
+
+        Route::get('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetEdit'])->name('admin.trip_sheet.edit');
+
+        Route::post('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetUpdate'])->name('admin.trip_sheet.update');
+
+        
+
+        // Sells report section
+        Route::get('/sells_report', [HomeController::class, 'sells_report'])->name('admin.sells_report');
+
+
+
+        // Counter section
+        Route::get('/counter', [CounterController::class, 'counterPage'])->name('admin.counter');
 
         Route::post('/counter', [CounterController::class, 'counterAdd'])->name('admin.counter.add');
-
-        Route::get('/counter', [CounterController::class, 'counterPage'])->name('admin.counter');
 
         Route::get('/counter/{id}', [CounterController::class, 'counterEdit'])->name('admin.counter.edit');
 
         Route::post('/counter/{id}', [CounterController::class, 'counterUpdate'])->name('admin.counter.update');
 
+
+        // Counter master section
         Route::get('/user', [CounterController::class, 'userPage'])->name('admin.user');
 
         Route::post('/user', [CounterController::class, 'userAdd'])->name('admin.user.add');
@@ -92,14 +119,27 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/user/{id}', [CounterController::class, 'userUpdate'])->name('admin.user.update');
 
+
+        // Supervisor section
         Route::get('/supervisor', [CounterController::class, 'supervisorPage'])->name('admin.supervisor');
 
         Route::post('/supervisor', [CounterController::class, 'supervisorAdd'])->name('admin.supervisor.add');
 
 
-        Route::get('/add_trip', [TripController::class, 'add_trip'])->name('add_trip');
+        // Sample trip section
+        Route::get('/sample_trip', [TripController::class, 'sample_trip'])->name('admin.sample_trip');
 
-        Route::post('/add_trip', [TripController::class, 'add_trip_data'])->name('add_trip_data');
+        Route::post('/sample_trip', [TripController::class, 'sample_tripAdd'])->name('admin.sample_trip.add');
+
+        Route::get('/sample_trip/{id}', [TripController::class, 'sample_tripEdit'])->name('admin.sample_trip.edit');
+
+        Route::post('/sample_trip/{id}', [TripController::class, 'sample_tripUpdate'])->name('admin.sample_trip.update');
+
+
+        // Main trip section
+        Route::get('/add_trip', [TripController::class, 'add_trip'])->name('admin.add_trip');
+
+        Route::post('/add_trip', [TripController::class, 'add_trip_data'])->name('admin.add_trip_data');
 
         Route::get('/add_trip/{id}', [TripController::class, 'add_tripEdit'])->name('admin.main_trip.edit');
 
@@ -109,43 +149,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
 
 
-        Route::get('/sample_trip', [TripController::class, 'sample_trip'])->name('admin.sample_trip');
 
-        Route::post('/sample_trip', [TripController::class, 'sample_tripAdd'])->name('admin.sample_trip.add');
-        
-        Route::get('/sample_trip/{id}', [TripController::class, 'sample_tripEdit'])->name('admin.sample_trip.edit');
 
-        Route::post('/sample_trip/{id}', [TripController::class, 'sample_tripUpdate'])->name('admin.sample_trip.update');
-
-        
-        // Route::get('/pre_day/{date}', [HomeController::class, 'pre_day'])->name('admin.pre_day');
-
-        Route::get('/date/{date}', [HomeController::class, 'date'])->name('admin.date');
-
-       
-        Route::post('/trip_sheet', [HomeController::class, 'trip_sheetAdd'])->name('admin.trip_sheet.add');
-
-        Route::get('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetEdit'])->name('admin.trip_sheet.edit');
-
-        Route::post('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetUpdate'])->name('admin.trip_sheet.update');
 
         // Route::get('/get_name/{mobile}', [HomeController::class, 'get_name'])->name('admin.get_name');
+
     });
 });
 
 
-// For all
-
-Route::get('/trip/{id}', [AdminController::class, 'show'])->name('trip.show');
-
-Route::post('/sell_ticket', [HomeController::class, 'sell_ticket'])->name('sell_ticket');
-
-Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
-
-Route::get('/trip_sheet/{id}', [HomeController::class, 'trip_sheet'])->name('admin.trip_sheet');
-
-Route::get('/sells_report', [HomeController::class, 'sells_report'])->name('admin.sells_report');
-       
 
 
 /*------------------------------------------

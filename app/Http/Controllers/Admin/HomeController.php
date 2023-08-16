@@ -54,6 +54,16 @@ class HomeController extends Controller
         return view('admin.welcome')->with($data);
     }
 
+    public function show_seat_plane($id)
+    {
+        $trip_data = TripStatus::find($id);
+
+        $html = view('admin.seat', compact('trip_data'))->render();
+        return response()->json(['html' => $html]);
+
+        // return view('admin.seat', ['trip_data' => $trip_data]);
+    }
+
     // public function get_name($mobile){
 
     // }

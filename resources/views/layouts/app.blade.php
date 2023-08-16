@@ -75,7 +75,7 @@
                                             <i class="bi bi-bus-front"></i>
                                             Sample Trip
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('add_trip') }}">
+                                        <a class="dropdown-item" href="{{ route('admin.add_trip') }}">
                                             <i class="bi bi-plus-circle"></i>
                                             Main Trip
                                         </a>

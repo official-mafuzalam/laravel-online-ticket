@@ -101,7 +101,7 @@ class TripController extends Controller
         // Show success notification
         session()->flash('success', 'Trip data updated successfully.');
 
-        return redirect()->route('add_trip');
+        return redirect()->route('admin.add_trip');
 
 
         // p($request->toArray());

@@ -9,7 +9,7 @@
     </div>
 
     <div class="container p-2 text-center bg-warning-subtle">
-        <form role="search" action="{{ route('add_trip') }}">
+        <form action="{{ route('admin.add_trip_data') }}">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <select class="form-select form-select-sm" name="station_from" disabled>
@@ -107,7 +107,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('add_trip_data') }}" method="POST">
+                    <form action="{{ route('admin.add_trip_data') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <select class="form-select mr-4" name="coach_no"

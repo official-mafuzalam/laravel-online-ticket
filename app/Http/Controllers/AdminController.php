@@ -51,18 +51,6 @@ class AdminController extends Controller
 
 
 
-    public function show($id)
-    {
-        $trip_data = TripStatus::find($id);
-
-        $html = view('admin.seat', compact('trip_data'))->render();
-        return response()->json(['html' => $html]);
-
-        // return view('admin.seat', ['trip_data' => $trip_data]);
-    }
-
-
-
 
 
     // public function sell_ticket(Request $request)

@@ -76,18 +76,13 @@ class CounterController extends Controller
 
     public function userPage()
     {
-
         $counter = CounterList::all();
 
         $master = CounterMaster::all();
 
-
-
         $coun = CounterMaster::latest()->first();
         $lastUserId = $coun->user_id;
         $newUserId = $lastUserId + 1;
-
-
 
         $data = compact('master', 'counter', 'newUserId');
 

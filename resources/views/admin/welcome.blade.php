@@ -205,7 +205,7 @@
             var modal = $(this);
 
             $.ajax({
-                url: '/trip/' + tripId,
+                url: '/admin/trip/' + tripId,
                 method: 'GET',
                 success: function(response) {
                     // Update the modal content with the fetched view page
