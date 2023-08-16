@@ -6,14 +6,9 @@
             <div class="container pb-2 d-grid d-md-flex justify-content-md-end">
 
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    data-id="{{ $trip_details->first()->trip_id }}">
+                    data-id="{{ $trip_details->trip_id }}">
                     Add Trip data
                 </button>
-                <a type="button" class="btn btn-primary btn-sm"
-                    href="{{ route('admin.trip_sheet.edit', ['id' => $trip_details->first()->trip_id]) }}">
-                    Update Trip
-                </a>
-
 
             </div>
         @endif
@@ -43,17 +38,17 @@
                 <div>
                     <p>Trip ID:
                         <span class="fw-bold">
-                            {{ $trip_details->first()->trip_id }}
+                            {{ $trip_details->trip_id }}
                         </span>
                     </p>
                     <p>Route:
                         <span class="fw-bold">
-                            {{-- {{ $trip_details->first()->main_route }} --}}
+                            {{ $trip_details->route }}
                         </span>
                     </p>
                     <p>Date:
                         <span class="fw-bold">
-                            {{ $trip_details->first()->date }}
+                            {{ $trip_details->date }}
                         </span>
                     </p>
                 </div>
@@ -77,7 +72,7 @@
                 <div>
                     <p>Coach:
                         <span class="fw-bold">
-                            {{ $trip_details->first()->coach_no }}
+                            {{ $trip_details->coach_no }}
                         </span>
                     </p>
                     <p>Challan Serial:
@@ -188,7 +183,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Trip Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.trip_sheet.add') }}" method="post" onsubmit="reloadFormPage()">
+                <form action="{{ $url }}" method="post" onsubmit="reloadFormPage()">
                     @csrf
                     <div class="modal-body">
 
@@ -208,7 +203,8 @@
                                     <option selected>Select Supervisor</option>
                                     @foreach ($super_details as $user)
                                         <option data-value="{{ $user->mobile }}"
-                                            value="{{ $user->user_id . ' - ' . $user->user_name }}">
+                                            value="{{ $user->user_id . ' - ' . $user->user_name }}"
+                                            {{ $user->user_id . ' - ' . $user->user_name === $trip_sheet->super_name ? 'selected' : '' }}>
                                             {{ $user->user_id . ' - ' . $user->user_name }}
                                         </option>
                                     @endforeach
@@ -219,21 +215,21 @@
                             <label for="mobile" class="col-sm-2 col-form-label">Sup. Mobile</label>
                             <div class="col-sm-10">
                                 <input name="super_mobile" type="text" class="form-control" id="mobile"
-                                    placeholder="ex: 017xxxxxxx" required>
+                                    placeholder="ex: 017xxxxxxx" value="{{ $trip_sheet->super_mobile }}" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="driver_name" class="col-sm-2 col-form-label">Driver</label>
                             <div class="col-sm-10">
                                 <input name="driver_name" type="text" class="form-control" id="driver_name"
-                                    placeholder="ex: MR. Driver" value="MR. Driver" required>
+                                    placeholder="ex: MR. Driver" value="{{ $trip_sheet->driver_name }}" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="reg_no" class="col-sm-2 col-form-label">Reg No</label>
                             <div class="col-sm-10">
                                 <input name="reg_no" type="text" class="form-control" id="reg_no"
-                                    placeholder="ex: 15-1050" required>
+                                    placeholder="ex: 15-1050" value="{{ $trip_sheet->reg_no }}" required>
                             </div>
                         </div>
 

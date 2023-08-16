@@ -42,25 +42,18 @@
                     </select>
                 </div>
             </div>
-            {{-- <div class="mb-3 row">
-                <label for="main_route" class="col-sm-2 col-form-label">Main Route</label>
-                <div class="col-sm-10">
-                    <input name="main_route" type="number" class="form-control" id="main_route" placeholder="ex: 105"
-                        value="{{ $coun_master->main_route }}" required>
-                </div>
-            </div> --}}
             <div class="mb-3 row">
                 <label for="user_name" class="col-sm-2 col-form-label">User Name</label>
                 <div class="col-sm-10">
                     <input name="user_name" type="text" class="form-control" id="user_name" placeholder="ex: Gabtoli"
-                    value="{{ $coun_master->user_name }}" required>
+                        value="{{ $coun_master->user_name }}" required>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="user_mobile" class="col-sm-2 col-form-label">User Mobile</label>
                 <div class="col-sm-10">
                     <input name="user_mobile" type="text" class="form-control" id="user_mobile"
-                        placeholder="ex: 01744445552" value="{{ $coun_master->user_mobile }}" required>
+                        placeholder="ex: 01744445552" maxlength="11" value="{{ $coun_master->user_mobile }}" required>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -74,7 +67,7 @@
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                     <input name="password" type="text" class="form-control" id="password" placeholder="ex: xxxxx"
-                    value="{{ $coun_master->password }}"  readonly>
+                        value="{{ $coun_master->password }}" required>
                 </div>
             </div>
             <div class="text-center">

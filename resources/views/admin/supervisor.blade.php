@@ -32,11 +32,10 @@
                             <td>{{ $sup->user_name }}</td>
                             <td>{{ $sup->mobile }}</td>
                             <td>
-                                {{-- <a class="text-decoration-none"
-                                    href="{{ route('admin.main_route.edit', ['id' => $sup->id]) }}">
+                                <a class="text-decoration-none"
+                                    href="{{ route('admin.supervisor.edit', ['id' => $sup->id]) }}">
                                     Edit
-                                </a> --}}
-                                Edit
+                                </a>
                             </td>
                         </tr>
                     @endforeach

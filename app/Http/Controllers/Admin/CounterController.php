@@ -141,6 +141,7 @@ class CounterController extends Controller
         $coun_master->user_name = $request['user_name'];
         $coun_master->user_mobile = $request['user_mobile'];
         $coun_master->email = $request['user_email'];
+        $coun_master->password = $request['password'];
 
         $coun_master->save();
 
@@ -148,6 +149,9 @@ class CounterController extends Controller
 
         if ($user) {
             $user->type = $request['type'];
+            $user->name = $request['user_name'];
+            $user->email = $request['user_email'];
+            $user->password = Hash::make($request['password']);
             $user->save();
         } else {
             // Handle the case when the user with the given email is not found
@@ -177,7 +181,6 @@ class CounterController extends Controller
 
         return view('admin.supervisor')->with($data);
 
-
     }
 
     public function supervisorAdd(Request $request)
@@ -195,11 +198,39 @@ class CounterController extends Controller
 
         return redirect()->route('admin.supervisor');
 
+        // p($request->toArray());
+    }
+
+    public function supervisorEdit($id)
+    {
+
+        $super = Supervisor::find($id);
+
+        return view('admin.supervisor_edit', ['super' => $super]);
+
+        // p($super);
+
+    }
+
+    public function supervisorUpdate(Request $request, $id)
+    {
+
+        $super = Supervisor::find($id);
+
+        $super->user_name = $request['user_name'];
+        $super->mobile = $request['mobile'];
+        $super->save();
+
+        // Show success notification
+        session()->flash('success', 'Supervisor data updated successfully.');
+
+        return redirect()->route('admin.supervisor');
 
 
         // p($request->toArray());
 
     }
+
 
 
 

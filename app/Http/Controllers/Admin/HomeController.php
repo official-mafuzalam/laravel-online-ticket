@@ -207,12 +207,20 @@ class HomeController extends Controller
 
         $trip_sheet = TripSheet::where('trip_id', $id)->first();
 
+        if (!$trip_sheet) {
+            $trip_sheet = new TripSheet;
+            $url = url('admin/trip_sheet');
+        } else {
+            $trip_sheet = TripSheet::where('trip_id', $id)->first();
+            $url = url('admin/trip_sheet/update') . "/" . $id;
+        }
+
         // Inside your controller method
         $tripStatusId = $id; // Replace $id with the desired trip_status id
 
         $trip_details = DB::table('trip_statuses')
             ->where('trip_id', $id)
-            ->get();
+            ->first();
 
         // Create an array to store the column names A1 to J4
         $columns = [];
@@ -255,7 +263,7 @@ class HomeController extends Controller
         }
 
         // Pass the data to the view
-        $data = compact('sellTicketHisData', 'trip_details', 'super_details', 'trip_sheet');
+        $data = compact('sellTicketHisData', 'trip_details', 'super_details', 'trip_sheet', 'url');
         return view('admin.trip_sheet')->with($data);
 
 
@@ -290,6 +298,8 @@ class HomeController extends Controller
 
         $trip->save();
 
+        // Show success notification
+        session()->flash('success', 'Trip sheet updated successfully.');
 
         return redirect()->back();
 
@@ -299,38 +309,29 @@ class HomeController extends Controller
 
     }
 
-    public function trip_sheetEdit($id)
-    {
-
-        $super_details = Supervisor::all();
-
-        $trip = TripSheet::where('trip_id', $id)->first();
-
-        if (!$trip) {
-            $trip = new TripSheet;
-        }
-
-        return view('admin.trip_sheet_update', compact('trip', 'super_details', 'id'));
-
-        // p($trip);
-
-
-    }
 
     public function trip_sheetUpdate(Request $request, $id)
     {
         $trip = TripSheet::where('trip_id', $id)->first();
 
         if ($trip) {
-            $trip->update([
-                'super_name' => $request['super_name'],
-                'super_mobile' => $request['super_mobile'],
-                'driver_name' => $request['driver_name'],
-                'reg_no' => $request['reg_no'],
-            ]);
+
+            $trip->super_name = $request['super_name'];
+            $trip->super_mobile = $request['super_mobile'];
+            $trip->driver_name = $request['driver_name'];
+            $trip->reg_no = $request['reg_no'];
+
+            $trip->save();
+            // Show success notification
+            session()->flash('success', 'Trip sheet updated successfully.');
+        } else {
+            // Show success notification
+            session()->flash('success-delete', 'Trip not found.');
         }
 
         return redirect()->back();
+
+        // p($request->toArray());
     }
 
 

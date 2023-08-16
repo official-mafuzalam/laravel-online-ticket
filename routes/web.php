@@ -89,8 +89,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/trip_sheet', [HomeController::class, 'trip_sheetAdd'])->name('admin.trip_sheet.add');
 
-        Route::get('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetEdit'])->name('admin.trip_sheet.edit');
-
         Route::post('/trip_sheet/update/{id}', [HomeController::class, 'trip_sheetUpdate'])->name('admin.trip_sheet.update');
 
         
@@ -125,6 +123,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::post('/supervisor', [CounterController::class, 'supervisorAdd'])->name('admin.supervisor.add');
 
+        Route::get('/supervisor/{id}', [CounterController::class, 'supervisorEdit'])->name('admin.supervisor.edit');
+
+        Route::post('/supervisor/{id}', [CounterController::class, 'supervisorUpdate'])->name('admin.supervisor.update');
 
         // Sample trip section
         Route::get('/sample_trip', [TripController::class, 'sample_trip'])->name('admin.sample_trip');
