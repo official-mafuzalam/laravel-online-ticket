@@ -73,8 +73,6 @@ class HomeController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-
-
             'trip_id' => ['required'],
             'coach_no' => ['required'],
             'station' => ['required'],
@@ -83,13 +81,12 @@ class HomeController extends Controller
             'time' => ['required'],
             'gender' => ['required'],
             'fare' => ['required'],
-            'total_fare' => ['required'],
+            'total_fare' => ['required', 'numeric', 'min:300'], // Ensure total_fare is a non-negative number
             'mobile' => ['required'],
             'name' => ['required'],
             'seat' => ['required'],
-
-
         ]);
+        
 
         if ($validator->fails()) {
 
@@ -103,48 +100,56 @@ class HomeController extends Controller
             // Booked Female = 4
             // Sell = 5
             // Book = 6
-
-
-
-
-            $ticket = new SellTicketHis;
-
             $ticket_id = uniqid();
 
+            $seat = $request['seat'];
 
-            $ticket->trip_id = $request['trip_id'];
-            $ticket->coach_no = $request['coach_no'];
-            $ticket->ticket_id = $ticket_id;
+            $seats = preg_split('/(?<=\d)(?=[A-Z])/', $seat); // split the string using a regular expression
 
-            $ticket->route = $request['route'];
-            $ticket->date = $request['date'];
-            $ticket->time = $request['time'];
-            $ticket->seat = $request['seat'];
+            // p($seats);
 
-            $fare = $request['fare'];
-            $total_fare = $request['total_fare'];
-            $discount_fare = $request['discount_fare'];
+            foreach ($seats as $seat) {
 
-            $ticket->fare = $fare;
-            $ticket->discount = $discount_fare;
+                $ticket = new SellTicketHis;
 
-            $ticket->discount_fare_per_seat = $fare - $discount_fare;
-            $ticket->total_fare = $total_fare;
+                $ticket->trip_id = $request['trip_id'];
+                $ticket->coach_no = $request['coach_no'];
+                $ticket->ticket_id = $ticket_id;
 
-            $ticket->station = $request['station'];
-            $ticket->mobile = $request['mobile'];
-            $ticket->name = $request['name'];
-            $ticket->gender = $request['gender'];
+                $ticket->route = $request['route'];
+                $ticket->date = $request['date'];
+                $ticket->time = $request['time'];
+                $ticket->seat = $seat;
 
-            $seller_name = session('user.user_name', 'default');
-            $seller_id = session('user.user_id', 'default');
-            $seller_counter = session('user.coun_name', 'default');
+                $fare = $request['fare'];
+                $total_fare = $request['total_fare'];
+                $discount_fare = $request['discount_fare'];
 
-            $ticket->seller_name = $seller_name;
-            $ticket->seller_id = $seller_id;
-            $ticket->seller_counter = $seller_counter;
+                $ticket->fare = $fare;
+                $ticket->discount = $discount_fare;
 
-            $ticket->save();
+                $ticket->discount_fare_per_seat = $fare - $discount_fare;
+                $ticket->total_fare = $total_fare;
+
+                $ticket->station = $request['station'];
+                $ticket->mobile = $request['mobile'];
+                $ticket->name = $request['name'];
+                $ticket->gender = $request['gender'];
+
+                $seller_name = session('user.user_name', 'default');
+                $seller_id = session('user.user_id', 'default');
+                $seller_counter = session('user.coun_name', 'default');
+
+                $ticket->seller_name = $seller_name;
+                $ticket->seller_id = $seller_id;
+                $ticket->seller_counter = $seller_counter;
+
+                $ticket->save();
+
+            }
+
+
+
 
 
             $booking_type = $request['booking_type'];
@@ -192,11 +197,11 @@ class HomeController extends Controller
     public function ticket_print($id)
     {
 
-        $ticket = SellTicketHis::where('ticket_id', $id)->first();
+        $tickets = SellTicketHis::where('ticket_id', $id)->get();
 
         // p($ticket->toArray());
 
-        $data = compact('ticket');
+        $data = compact('tickets');
 
         return view('admin.ticket_print')->with($data);
     }

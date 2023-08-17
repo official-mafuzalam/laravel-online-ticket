@@ -63,9 +63,10 @@ class TripController extends Controller
         $trip->stations = $request['station'];
         $trip->save();
 
+        // Show success notification
+        session()->flash('success', 'New trip added successfully.');
 
-
-        return redirect('/');
+        return redirect()->route('admin.add_trip');
 
     }
 

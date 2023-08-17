@@ -18,7 +18,7 @@
                 <div class="col-sm-10">
 
                     <input name="coun_name" type="text" class="form-control" id="coun_name" placeholder="ex: 1001"
-                        readonly value="{{ $coun_master->coun_name }}">
+                        required value="{{ $coun_master->coun_name }}">
 
                 </div>
             </div>
