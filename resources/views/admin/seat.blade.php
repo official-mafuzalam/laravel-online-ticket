@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Scripts -->
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         .btn-outline-primary {
             width: 50px;
@@ -66,16 +72,29 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->A1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->A1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->A1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A1</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->A1)[0]; // Extract the first part before the comma
+                                $mobileValue = explode(',', $trip_data->A1)[2]; // Extract the third part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Mobile: <?php echo $mobileValue; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo 'openModal()';
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">A1</button>
+
+
+
+
+
+
                             <button type="button" class="btn 
                             <?php
                             if ($trip_data->A2 === 1) {
@@ -756,6 +775,53 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Trip Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        <label for="trip_id_input" class="col-sm-2 col-form-label">Trip ID</label>
+                        <div class="col-sm-10">
+                            <input name="trip_id" type="text" class="form-control" id="trip_id_input"
+                                placeholder="ex: 101" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input class="btn btn-primary" type="submit" value="Save">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+        function openModal(a1Value) {
+            $('#myModal').modal('show'); // Use Bootstrap modal method to show the modal
+            $('#trip_id_input').val(a1Value);
+        }
+    </script>
+
+
+    {{-- <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>This is the modal content.</p>
+            <input name="trip_id" type="number" class="form-control" id="trip_id_input" placeholder="ex: 101"
+                readonly>
+        </div>
+    </div> --}}
+
 
 
 
