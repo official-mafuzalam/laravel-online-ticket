@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div class="col-md-2 col-sm-6">
-                    <input class="form-control form-control-sm" type="date" name="date"
+                    <input class="form-control form-control-sm" type="date" name="date" value="{{ date('Y-m-d') }}"
                         aria-label="form-control-sm example">
                 </div>
                 <div class="col-md-2 col-sm-6">
