@@ -81,12 +81,13 @@ class HomeController extends Controller
             'time' => ['required'],
             'gender' => ['required'],
             'fare' => ['required'],
-            'total_fare' => ['required', 'numeric', 'min:300'], // Ensure total_fare is a non-negative number
+            'total_fare' => ['required', 'numeric', 'min:300'],
+            // Ensure total_fare is a non-negative number
             'mobile' => ['required'],
             'name' => ['required'],
             'seat' => ['required'],
         ]);
-        
+
 
         if ($validator->fails()) {
 
@@ -180,7 +181,7 @@ class HomeController extends Controller
             $seats = preg_split('/(?<=\d)(?=[A-Z])/', $seat); // split the string using a regular expression
             $updates = [];
             foreach ($seats as $seat) {
-                $updates[$seat] = $gender;
+                $updates[$seat] = $gender . ',' . $seller_counter;
             }
 
             DB::table('trip_statuses')
@@ -199,12 +200,35 @@ class HomeController extends Controller
 
         $tickets = SellTicketHis::where('ticket_id', $id)->get();
 
-        // p($ticket->toArray());
+        // p($tickets->toArray());
 
         $data = compact('tickets');
 
         return view('admin.ticket_print')->with($data);
     }
+
+    public function ticketpreview($seat, $tripId)
+    {
+
+        $ticket = SellTicketHis::where('trip_id', $tripId)->where('seat', $seat)->first();
+
+        $tickets = SellTicketHis::where('ticket_id', $ticket->ticket_id)->get();
+
+
+
+        $data = compact('tickets');
+
+        return view('admin.ticket_print')->with($data);
+
+        // echo $ticket_id->ticket_id;
+
+        // p($tickets->toArray());
+    }
+
+
+
+
+
 
     public function trip_sheet($id)
     {
@@ -238,17 +262,18 @@ class HomeController extends Controller
         // Use Laravel's query builder to build the query
         $tripStatus = TripStatus::where('trip_id', $tripStatusId)->where(function ($query) use ($columns) {
             foreach ($columns as $column) {
-                $query->orWhere($column, '=', 1)
-                    ->orWhere($column, '=', 2);
+                $query->orWhere(function ($query) use ($column) {
+                    $query->where($column, 'LIKE', '%,%'); // Check if the column contains a comma (number and text)
+                });
             }
         })->first($columns); // Use first() instead of get() to get only one row
 
         // Check if $tripStatus is not null before accessing its properties
         if ($tripStatus) {
-            // Filter the columns that have values 1 or 2
+            // Filter the columns that have values with a number and some text
             $result = [];
             foreach ($columns as $column) {
-                if ($tripStatus->$column == 1 || $tripStatus->$column == 2) {
+                if (preg_match('/\d+,.+/', $tripStatus->$column)) { // Check for the pattern: number, some text
                     $result[$column] = $tripStatus->$column;
                 }
             }
@@ -270,6 +295,7 @@ class HomeController extends Controller
         // Pass the data to the view
         $data = compact('sellTicketHisData', 'trip_details', 'super_details', 'trip_sheet', 'url');
         return view('admin.trip_sheet')->with($data);
+
 
 
 

@@ -74,7 +74,7 @@
                             <button type="button" class="btn 
                                 <?php
                                 $numericValue = (int) explode(',', $trip_data->A1)[0]; // Extract the first part before the comma
-                                $mobileValue = explode(',', $trip_data->A1)[2]; // Extract the third part after the comma
+                                $counter = explode(',', $trip_data->A1)[1]; // Extract the fourth part after the comma
                                 
                                 if ($numericValue == 1) {
                                     echo 'btn-warning';
@@ -84,54 +84,71 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Mobile: <?php echo $mobileValue; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
-                                    echo 'openModal()';
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/A1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
                                 } ?>">A1</button>
 
-
-
-
-
-
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->A2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->A2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->A2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->A2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->A2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/A2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">A2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->A3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->A3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->A3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A3</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->A3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->A3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/A3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">A3</button>
+
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->A4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->A4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->A4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">A4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->A4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->A4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/A4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">A4</button>
 
                         </div>
                     </div>
@@ -139,162 +156,249 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->B1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->B1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->B1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B1</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->B1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->B1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/B1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">B1</button>
+
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->B2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->B2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->B2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->B2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->B2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/B2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">B2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->B3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->B3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->B3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->B4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->B4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->B4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">B4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->B3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->B3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/B3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">B3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->B4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->B4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/B4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">B4</button>
                         </div>
                     </div>
                     <div class="row seat">
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->C1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->C1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->C1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C1</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->C1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->C1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/C1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">C1</button>
+
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->C2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->C2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->C2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->C2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->C2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/C2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">C2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->C3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->C3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->C3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->C4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->C4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->C4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">C4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->C3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->C3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/C3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">C3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->C4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->C4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/C4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">C4</button>
                         </div>
                     </div>
                     <div class="row seat">
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->D1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->D1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->D1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D1</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->D1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->D1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/D1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">D1</button>
+
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->D2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->D2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->D2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->D2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->D2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/D2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">D2</button>
 
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->D3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->D3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->D3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->D4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->D4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->D4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">D4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->D3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->D3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/D3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">D3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->D4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->D4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/D4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">D4</button>
                         </div>
                     </div>
 
@@ -303,54 +407,82 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->E1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->E1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->E1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E1</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->E2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->E2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->E2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->E1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->E1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/E1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">E1</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->E2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->E2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/E2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">E2</button>
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
                             <?php
-                            if ($trip_data->E3 === 1) {
+                            $numericValue = (int) explode(',', $trip_data->E3)[0]; // Extract the first part before the comma
+                            $counter = explode(',', $trip_data->E3)[1]; // Extract the fourth part after the comma
+                            
+                            if ($numericValue == 1) {
                                 echo 'btn-warning';
-                            } elseif ($trip_data->E3 === 2) {
+                            } elseif ($numericValue == 2) {
                                 echo 'btn-danger';
                             } else {
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->E3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E3</button>
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/E3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">E3</button>
+
                             <button type="button" class="btn 
                             <?php
-                            if ($trip_data->E4 === 1) {
+                            $numericValue = (int) explode(',', $trip_data->E4)[0]; // Extract the first part before the comma
+                            $counter = explode(',', $trip_data->E4)[1]; // Extract the fourth part after the comma
+                            
+                            if ($numericValue == 1) {
                                 echo 'btn-warning';
-                            } elseif ($trip_data->E4 === 2) {
+                            } elseif ($numericValue == 2) {
                                 echo 'btn-danger';
                             } else {
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->E4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">E4</button>
-
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/E4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">E4</button>
                         </div>
                     </div>
 
@@ -360,53 +492,81 @@
 
                             <button type="button" class="btn 
                             <?php
-                            if ($trip_data->F1 === 1) {
+                            $numericValue = (int) explode(',', $trip_data->F1)[0]; // Extract the first part before the comma
+                            $counter = explode(',', $trip_data->F1)[1]; // Extract the fourth part after the comma
+                            
+                            if ($numericValue == 1) {
                                 echo 'btn-warning';
-                            } elseif ($trip_data->F1 === 2) {
+                            } elseif ($numericValue == 2) {
                                 echo 'btn-danger';
                             } else {
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->F1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F1</button>
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/F1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">F1</button>
+
                             <button type="button" class="btn 
                             <?php
-                            if ($trip_data->F2 === 1) {
+                            $numericValue = (int) explode(',', $trip_data->F2)[0]; // Extract the first part before the comma
+                            $counter = explode(',', $trip_data->F2)[1]; // Extract the fourth part after the comma
+                            
+                            if ($numericValue == 1) {
                                 echo 'btn-warning';
-                            } elseif ($trip_data->F2 === 2) {
+                            } elseif ($numericValue == 2) {
                                 echo 'btn-danger';
                             } else {
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->F2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F2</button>
-
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/F2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">F2</button>
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->F3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->F3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->F3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->F4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->F4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->F4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">F4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->F3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->F3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/F3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">F3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->F4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->F4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/F4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">F4</button>
                         </div>
                     </div>
 
@@ -415,54 +575,82 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->G1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->G1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->G1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G1</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->G2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->G2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->G2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->G1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->G1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/G1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">G1</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->G2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->G2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/G2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">G2</button>
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
                             <?php
-                            if ($trip_data->G3 === 1) {
+                            $numericValue = (int) explode(',', $trip_data->G3)[0]; // Extract the first part before the comma
+                            $counter = explode(',', $trip_data->G3)[1]; // Extract the fourth part after the comma
+                            
+                            if ($numericValue == 1) {
                                 echo 'btn-warning';
-                            } elseif ($trip_data->G3 === 2) {
+                            } elseif ($numericValue == 2) {
                                 echo 'btn-danger';
                             } else {
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->G3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G3</button>
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/G3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">G3</button>
+
                             <button type="button" class="btn 
                             <?php
-                            if ($trip_data->G4 === 1) {
+                            $numericValue = (int) explode(',', $trip_data->G4)[0]; // Extract the first part before the comma
+                            $counter = explode(',', $trip_data->G4)[1]; // Extract the fourth part after the comma
+                            
+                            if ($numericValue == 1) {
                                 echo 'btn-warning';
-                            } elseif ($trip_data->G4 === 2) {
+                            } elseif ($numericValue == 2) {
                                 echo 'btn-danger';
                             } else {
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->G4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">G4</button>
-
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/G4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">G4</button>
                         </div>
                     </div>
 
@@ -471,54 +659,82 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->H1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->H1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->H1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H1</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->H2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->H2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->H2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->H1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->H1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/H1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">H1</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->H2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->H2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/H2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">H2</button>
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->H3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->H3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->H3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->H4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->H4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->H4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">H4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->H3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->H3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/H3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">H3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->H4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->H4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/H4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">H4</button>
                         </div>
                     </div>
 
@@ -527,54 +743,82 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->I1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->I1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->I1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I1</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->I2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->I2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->I2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->I1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->I1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/I1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">I1</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->I2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->I2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/I2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">I2</button>
                         </div>
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->I3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->I3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->I3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->I4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->I4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->I4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">I4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->I3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->I3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/I3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">I3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->I4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->I4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/I4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">I4</button>
                         </div>
                     </div>
 
@@ -583,55 +827,83 @@
                         <div class="col gap">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->J1 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->J1 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->J1 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J1</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->J2 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->J2 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->J2 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J2</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->J1)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->J1)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/J1/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">J1</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->J2)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->J2)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/J2/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">J2</button>
                         </div>
 
                         <div class="col">
 
                             <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->J3 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->J3 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->J3 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J3</button>
-                            <button type="button" class="btn 
-                            <?php
-                            if ($trip_data->J4 === 1) {
-                                echo 'btn-warning';
-                            } elseif ($trip_data->J4 === 2) {
-                                echo 'btn-danger';
-                            } else {
-                                echo 'btn-outline-primary'; // Default class if none of the conditions match.
-                            }
-                            ?>"
-                                onclick="buttonClicked(this)" title="<?php echo $trip_data->J4 === 1 ? 'Name: ' . $trip_data->date . ' Date:' . $trip_data->date : 'Seat is unsold'; ?>">J4</button>
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->J3)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->J3)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/J3/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">J3</button>
 
+                            <button type="button" class="btn 
+                                <?php
+                                $numericValue = (int) explode(',', $trip_data->J4)[0]; // Extract the first part before the comma
+                                $counter = explode(',', $trip_data->J4)[1]; // Extract the fourth part after the comma
+                                
+                                if ($numericValue == 1) {
+                                    echo 'btn-warning';
+                                } elseif ($numericValue == 2) {
+                                    echo 'btn-danger';
+                                } else {
+                                    echo 'btn-outline-primary'; // Default class if none of the conditions match.
+                                }
+                                ?>"
+                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                    echo "window.open('" . url('admin/ticketpreview/J4/' . $trip_data->trip_id) . "')";
+                                } else {
+                                    echo 'buttonClicked(this)';
+                                } ?>">J4</button>
                         </div>
                     </div>
 

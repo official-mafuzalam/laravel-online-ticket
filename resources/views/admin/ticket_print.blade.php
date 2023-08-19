@@ -43,11 +43,11 @@
             }
         }
     </style>
-    <script language="javascript">
+    {{-- <script language="javascript">
         window.onload = function() {
             window.print();
         }
-    </script>
+    </script> --}}
 
 </head>
 @php
@@ -360,5 +360,13 @@
             </table>
             <div align="center"><br /></div>
         </body>
+
+        {{-- @foreach ($tickets->where('ticket_id', $ticket->ticket_id) as $ticketGroup)
+            <input type="checkbox" name="" id="">
+            {{ $ticketGroup->seat }}
+            @unless ($loop->last)
+                ,
+            @endunless
+        @endforeach --}}
     @endunless
 @endforeach

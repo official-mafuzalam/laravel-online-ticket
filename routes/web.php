@@ -82,6 +82,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('/ticket_print/{id}', [HomeController::class, 'ticket_print'])->name('admin.ticket_print');
 
+        Route::get('/ticketpreview/{seat}/{tripId}', [HomeController::class, 'ticketpreview'])->name('admin.ticketpreview');
+
 
 
         // Trip sheet section

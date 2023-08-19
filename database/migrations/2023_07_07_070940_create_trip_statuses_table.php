@@ -21,56 +21,56 @@ return new class extends Migration {
             $table->string('stations');
             $table->integer('status')->default(1);
 
-            $table->integer('A1')->default(0);
-            $table->integer('A2')->default(0);
-            $table->integer('A3')->default(0);
-            $table->integer('A4')->default(0);
+            $table->string('A1')->default("0,Unsold");
+            $table->string('A2')->default("0,Unsold");
+            $table->string('A3')->default("0,Unsold");
+            $table->string('A4')->default("0,Unsold");
 
-            $table->integer('B1')->default(0);
-            $table->integer('B2')->default(0);
-            $table->integer('B3')->default(0);
-            $table->integer('B4')->default(0);
+            $table->string('B1')->default("0,Unsold");
+            $table->string('B2')->default("0,Unsold");
+            $table->string('B3')->default("0,Unsold");
+            $table->string('B4')->default("0,Unsold");
 
-            $table->integer('C1')->default(0);
-            $table->integer('C2')->default(0);
-            $table->integer('C3')->default(0);
-            $table->integer('C4')->default(0);
+            $table->string('C1')->default("0,Unsold");
+            $table->string('C2')->default("0,Unsold");
+            $table->string('C3')->default("0,Unsold");
+            $table->string('C4')->default("0,Unsold");
 
-            $table->integer('D1')->default(0);
-            $table->integer('D2')->default(0);
-            $table->integer('D3')->default(0);
-            $table->integer('D4')->default(0);
+            $table->string('D1')->default("0,Unsold");
+            $table->string('D2')->default("0,Unsold");
+            $table->string('D3')->default("0,Unsold");
+            $table->string('D4')->default("0,Unsold");
 
-            $table->integer('E1')->default(0);
-            $table->integer('E2')->default(0);
-            $table->integer('E3')->default(0);
-            $table->integer('E4')->default(0);
+            $table->string('E1')->default("0,Unsold");
+            $table->string('E2')->default("0,Unsold");
+            $table->string('E3')->default("0,Unsold");
+            $table->string('E4')->default("0,Unsold");
 
-            $table->integer('F1')->default(0);
-            $table->integer('F2')->default(0);
-            $table->integer('F3')->default(0);
-            $table->integer('F4')->default(0);
+            $table->string('F1')->default("0,Unsold");
+            $table->string('F2')->default("0,Unsold");
+            $table->string('F3')->default("0,Unsold");
+            $table->string('F4')->default("0,Unsold");
 
-            $table->integer('G1')->default(0);
-            $table->integer('G2')->default(0);
-            $table->integer('G3')->default(0);
-            $table->integer('G4')->default(0);
+            $table->string('G1')->default("0,Unsold");
+            $table->string('G2')->default("0,Unsold");
+            $table->string('G3')->default("0,Unsold");
+            $table->string('G4')->default("0,Unsold");
 
-            $table->integer('H1')->default(0);
-            $table->integer('H2')->default(0);
-            $table->integer('H3')->default(0);
-            $table->integer('H4')->default(0);
+            $table->string('H1')->default("0,Unsold");
+            $table->string('H2')->default("0,Unsold");
+            $table->string('H3')->default("0,Unsold");
+            $table->string('H4')->default("0,Unsold");
 
-            $table->integer('I1')->default(0);
-            $table->integer('I2')->default(0);
-            $table->integer('I3')->default(0);
-            $table->integer('I4')->default(0);
+            $table->string('I1')->default("0,Unsold");
+            $table->string('I2')->default("0,Unsold");
+            $table->string('I3')->default("0,Unsold");
+            $table->string('I4')->default("0,Unsold");
 
-            $table->integer('J1')->default(0);
-            $table->integer('J2')->default(0);
-            $table->integer('J3')->default(0);
-            $table->integer('J4')->default(0);
-            $table->integer('J5')->default(0);
+            $table->string('J1')->default("0,Unsold");
+            $table->string('J2')->default("0,Unsold");
+            $table->string('J3')->default("0,Unsold");
+            $table->string('J4')->default("0,Unsold");
+            $table->string('J5')->default("0,Unsold");
 
             $table->timestamps();
         });
