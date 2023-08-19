@@ -84,7 +84,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/A1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -103,7 +103,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/A2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -125,7 +125,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/A3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -144,7 +144,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/A4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -168,7 +168,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/B1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -187,7 +187,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/B2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -209,7 +209,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/B3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -228,7 +228,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/B4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -251,7 +251,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/C1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -270,7 +270,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/C2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -292,7 +292,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/C3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -311,7 +311,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/C4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -334,7 +334,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/D1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -353,7 +353,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/D2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -375,7 +375,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/D3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -394,7 +394,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/D4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -419,7 +419,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/E1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -438,7 +438,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/E2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -459,7 +459,7 @@
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/E3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -478,7 +478,7 @@
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/E4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -503,7 +503,7 @@
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/F1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -522,7 +522,7 @@
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/F2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -543,7 +543,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/F3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -562,7 +562,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/F4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -587,7 +587,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/G1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -606,7 +606,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/G2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -627,7 +627,7 @@
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/G3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -646,7 +646,7 @@
                                 echo 'btn-outline-primary'; // Default class if none of the conditions match.
                             }
                             ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/G4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -671,7 +671,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/H1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -690,7 +690,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/H2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -711,7 +711,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/H3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -730,7 +730,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/H4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -755,7 +755,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/I1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -774,7 +774,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/I2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -795,7 +795,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/I3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -814,7 +814,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/I4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -839,7 +839,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/J1/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -858,7 +858,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/J2/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -880,7 +880,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/J3/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';
@@ -899,7 +899,7 @@
                                     echo 'btn-outline-primary'; // Default class if none of the conditions match.
                                 }
                                 ?>"
-                                title="Counter: <?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
+                                title="<?php echo $counter; ?>" onclick="<?php if ($numericValue == 1 || $numericValue == 2) {
                                     echo "window.open('" . url('admin/ticketpreview/J4/' . $trip_data->trip_id) . "')";
                                 } else {
                                     echo 'buttonClicked(this)';

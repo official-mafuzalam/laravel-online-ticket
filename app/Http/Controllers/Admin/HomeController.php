@@ -109,88 +109,114 @@ class HomeController extends Controller
 
             // p($seats);
 
+            $allSeatsUnsold = true;
+
             foreach ($seats as $seat) {
+                $status = TripStatus::where($seat, "0,Unsold")->first();
 
-                $ticket = new SellTicketHis;
+                if (!$status) {
+                    $allSeatsUnsold = false;
+                    break; // No need to check further if one seat is not unsold
+                }
+            }
 
-                $ticket->trip_id = $request['trip_id'];
-                $ticket->coach_no = $request['coach_no'];
-                $ticket->ticket_id = $ticket_id;
+            if ($allSeatsUnsold) {
+                // All seats have the value "0,Unsold"
+                // Do something
+                // echo "Ticket sold success";
 
-                $ticket->route = $request['route'];
-                $ticket->date = $request['date'];
-                $ticket->time = $request['time'];
-                $ticket->seat = $seat;
+                foreach ($seats as $seat) {
 
-                $fare = $request['fare'];
-                $total_fare = $request['total_fare'];
-                $discount_fare = $request['discount_fare'];
+                    $ticket = new SellTicketHis;
 
-                $ticket->fare = $fare;
-                $ticket->discount = $discount_fare;
+                    $ticket->trip_id = $request['trip_id'];
+                    $ticket->coach_no = $request['coach_no'];
+                    $ticket->ticket_id = $ticket_id;
 
-                $ticket->discount_fare_per_seat = $fare - $discount_fare;
-                $ticket->total_fare = $total_fare;
+                    $ticket->route = $request['route'];
+                    $ticket->date = $request['date'];
+                    $ticket->time = $request['time'];
+                    $ticket->seat = $seat;
 
-                $ticket->station = $request['station'];
-                $ticket->mobile = $request['mobile'];
-                $ticket->name = $request['name'];
-                $ticket->gender = $request['gender'];
+                    $fare = $request['fare'];
+                    $total_fare = $request['total_fare'];
+                    $discount_fare = $request['discount_fare'];
 
-                $seller_name = session('user.user_name', 'default');
-                $seller_id = session('user.user_id', 'default');
-                $seller_counter = session('user.coun_name', 'default');
+                    $ticket->fare = $fare;
+                    $ticket->discount = $discount_fare;
 
-                $ticket->seller_name = $seller_name;
-                $ticket->seller_id = $seller_id;
-                $ticket->seller_counter = $seller_counter;
+                    $ticket->discount_fare_per_seat = $fare - $discount_fare;
+                    $ticket->total_fare = $total_fare;
 
-                $ticket->save();
+                    $ticket->station = $request['station'];
+                    $ticket->mobile = $request['mobile'];
+                    $ticket->name = $request['name'];
+                    $ticket->gender = $request['gender'];
+
+                    $seller_name = session('user.user_name', 'default');
+                    $seller_id = session('user.user_id', 'default');
+                    $seller_counter = session('user.coun_name', 'default');
+
+                    $ticket->seller_name = $seller_name;
+                    $ticket->seller_id = $seller_id;
+                    $ticket->seller_counter = $seller_counter;
+
+                    $ticket->save();
+
+                }
+
+
+
+
+
+                $booking_type = $request['booking_type'];
+                $gender = $request['gender'];
+
+                // $update_value = 0;
+
+                // if ($booking_type == 5) {
+                //     if ($gender == 1) {
+                //         $update_value = 1;
+                //     } else {
+                //         $update_value = 2;
+                //     }
+                // } else {
+                //     if ($gender == 1) {
+                //         $update_value = 5;
+                //     } else {
+                //         $update_value = 6;
+                //     }
+                // }
+
+
+
+
+                $seat = $request['seat'];
+                $trip_id = $request['trip_id'];
+
+                $seats = preg_split('/(?<=\d)(?=[A-Z])/', $seat); // split the string using a regular expression
+                $updates = [];
+                foreach ($seats as $seat) {
+                    $updates[$seat] = $gender . ',' . $seller_counter;
+                }
+
+                DB::table('trip_statuses')
+                    ->where('trip_id', $trip_id)
+                    ->update($updates);
+
+                // return redirect()->route('admin.ticket_print');
+
+                return redirect()->route('admin.ticket_print', ['id' => $ticket_id]);
+
+            } else {
+                // At least one seat is not "0,Unsold"
+                //  echo "Ticket already sold";
+
+                return redirect()->back()->withErrors(['message' => 'Ticket is sold out']);
+
 
             }
 
-
-
-
-
-            $booking_type = $request['booking_type'];
-            $gender = $request['gender'];
-
-            // $update_value = 0;
-
-            // if ($booking_type == 5) {
-            //     if ($gender == 1) {
-            //         $update_value = 1;
-            //     } else {
-            //         $update_value = 2;
-            //     }
-            // } else {
-            //     if ($gender == 1) {
-            //         $update_value = 5;
-            //     } else {
-            //         $update_value = 6;
-            //     }
-            // }
-
-
-
-
-            $seat = $request['seat'];
-            $trip_id = $request['trip_id'];
-
-            $seats = preg_split('/(?<=\d)(?=[A-Z])/', $seat); // split the string using a regular expression
-            $updates = [];
-            foreach ($seats as $seat) {
-                $updates[$seat] = $gender . ',' . $seller_counter;
-            }
-
-            DB::table('trip_statuses')
-                ->where('trip_id', $trip_id)
-                ->update($updates);
-
-            // return redirect()->route('admin.ticket_print');
-
-            return redirect()->route('admin.ticket_print', ['id' => $ticket_id]);
         }
     }
 
