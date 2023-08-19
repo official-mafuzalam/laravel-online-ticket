@@ -84,6 +84,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('/ticketpreview/{seat}/{tripId}', [HomeController::class, 'ticketpreview'])->name('admin.ticketpreview');
 
+        Route::post('/cancel_ticket', [HomeController::class, 'cancel_ticket'])->name('cancel_ticket');
+
 
 
         // Trip sheet section

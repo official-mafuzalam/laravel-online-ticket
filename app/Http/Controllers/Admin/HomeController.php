@@ -226,6 +226,41 @@ class HomeController extends Controller
     }
 
 
+    public function cancel_ticket(Request $request)
+    {
+
+        // p($request->toArray());
+
+        $trip_id = $request['trip_id'];
+        $seat = $request['seat'];
+
+        foreach ($seat as $key) {
+
+            $ticket = SellTicketHis::where('trip_id', $trip_id)->where('seat', $key)->first();
+
+            if ($ticket) {
+                $ticket->delete();
+            }
+
+            $trip_status = TripStatus::where('trip_id', $trip_id)->first();
+
+            if ($trip_status) {
+                $trip_status->$key = "0,Unsold";
+                $trip_status->save();
+            }
+
+
+        }
+
+        // // Show success notification
+        session()->flash('success-delete', 'Seat cancel successfully.');
+
+        return redirect()->route('admin.welcome');
+        // // echo $trip_id;
+
+        // // p($trip_status);
+
+    }
 
 
 

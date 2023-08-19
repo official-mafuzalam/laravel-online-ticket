@@ -3,12 +3,12 @@
 
 <head>
     <title>Print Ticket</title>
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style type="text/css">
         html,
         body,
         * {
-            padding: 0 !important;
-            margin: 0 !important;
             font-size: 9pt;
         }
 
@@ -43,11 +43,15 @@
             }
         }
     </style>
-    {{-- <script language="javascript">
-        window.onload = function() {
+    <script language="javascript">
+        // window.onload = function() {
+        //     window.print();
+        // }
+
+        function printPage() {
             window.print();
         }
-    </script> --}}
+    </script>
 
 </head>
 @php
@@ -61,7 +65,7 @@
         <body>
             <table border="0" cellpadding="2" cellspacing="25">
                 <tbody>
-                    <tr class="noPrint">
+                    <tr class="noPrint text-center">
                         <th width="219" style="width: 58mm;">Office-copy</th>
                         <th width="400" style="width: 80mm;">Passenger-copy</th>
                         <th width="215" style="width: 58mm;">Guide-copy</th>
@@ -128,23 +132,22 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4">Total Fare:
-                                        {{ $ticket->total_fare }} TK
+                                        {{-- Calculate the total fare by multiplying count with discount_fare_per_seat --}}
+                                        {{ count($tickets->where('ticket_id', $ticket->ticket_id)) * $ticket->discount_fare_per_seat }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4">Seat's:
-                                        <strong>
-                                            @foreach ($tickets->where('ticket_id', $ticket->ticket_id) as $ticketGroup)
-                                                {{ $ticketGroup->seat }}
-                                                @unless ($loop->last)
-                                                    ,
-                                                @endunless
-                                            @endforeach
-                                            {{-- Add the displayed Ticket ID to the array --}}
-                                            @php
-                                                $displayedTicketIds[] = $ticket->ticket_id;
-                                            @endphp
-                                        </strong>
+                                    <td colspan="4">Seat:
+                                        @foreach ($tickets->where('ticket_id', $ticket->ticket_id) as $ticketGroup)
+                                            {{ $ticketGroup->seat }}
+                                            @unless ($loop->last)
+                                                ,
+                                            @endunless
+                                        @endforeach
+                                        {{-- Add the displayed Ticket ID to the array --}}
+                                        @php
+                                            $displayedTicketIds[] = $ticket->ticket_id;
+                                        @endphp
                                     </td>
                                 </tr>
                                 <tr>
@@ -249,8 +252,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" nowrap>Total Fare:
-                                        {{ $ticket->total_fare }} TK
+                                    <td colspan="4">Total Fare:
+                                        {{-- Calculate the total fare by multiplying count with discount_fare_per_seat --}}
+                                        {{ count($tickets->where('ticket_id', $ticket->ticket_id)) * $ticket->discount_fare_per_seat }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -330,11 +334,13 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4">Total Fare:
-                                        {{ $ticket->total_fare }}
+                                        {{-- Calculate the total fare by multiplying count with discount_fare_per_seat --}}
+                                        {{ count($tickets->where('ticket_id', $ticket->ticket_id)) * $ticket->discount_fare_per_seat }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="4">Seat No:
+
                                         @foreach ($tickets->where('ticket_id', $ticket->ticket_id) as $ticketGroup)
                                             {{ $ticketGroup->seat }}
                                             @unless ($loop->last)
@@ -361,12 +367,50 @@
             <div align="center"><br /></div>
         </body>
 
-        {{-- @foreach ($tickets->where('ticket_id', $ticket->ticket_id) as $ticketGroup)
-            <input type="checkbox" name="" id="">
-            {{ $ticketGroup->seat }}
-            @unless ($loop->last)
-                ,
-            @endunless
-        @endforeach --}}
+        <div class="container noPrint p-4">
+
+            <button onclick="printPage()" class="btn btn-info">Print</button>
+
+
+        </div>
+
+        <div class="container noPrint">
+            <form id="cancelForm" action="{{ route('cancel_ticket') }}" method="post">
+                @csrf
+                <input type="hidden" name="trip_id" value="{{ $ticket->trip_id }}">
+                @foreach ($tickets->where('ticket_id', $ticket->ticket_id) as $ticketGroup)
+                    <input name="seat[]" class="form-check-input" type="checkbox"
+                        id="inlineCheckbox{{ $ticketGroup->seat }}" value="{{ $ticketGroup->seat }}">
+                    <label class="form-check-label"
+                        for="inlineCheckbox{{ $ticketGroup->seat }}">{{ $ticketGroup->seat }}</label>
+
+                    @unless ($loop->last)
+                        ,
+                    @endunless
+                @endforeach
+                <button class="btn btn-danger" type="button" onclick="confirmCancel()">Cancel</button>
+                <p id="errorText" style="color: red; display: none;">Please select at least one checkbox.</p>
+            </form>
+        </div>
     @endunless
 @endforeach
+
+<script>
+    function confirmCancel() {
+        var checkboxes = document.querySelectorAll('input[name="seat[]"]');
+        var atLeastOneChecked = Array.prototype.slice.call(checkboxes).some(checkbox => checkbox.checked);
+
+        if (atLeastOneChecked) {
+            document.getElementById('errorText').style.display = 'none';
+            var confirmation = confirm("Are you sure you want to cancel?");
+            if (confirmation) {
+                // User clicked "OK", submit the form
+                document.getElementById('cancelForm').submit();
+            } else {
+                // User clicked "Cancel", do nothing
+            }
+        } else {
+            document.getElementById('errorText').style.display = 'block';
+        }
+    }
+</script>
