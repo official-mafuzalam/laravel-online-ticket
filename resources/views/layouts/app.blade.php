@@ -16,7 +16,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+
+    <link rel="preload" as="style" href="{{ asset('build/assets/app-298ba296.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/assets/app-298ba296.css') }}" />
+    <link rel="modulepreload" href="{{ asset('build/assets/app-66e7f68a.js') }}" />
+    <script type="module" src="{{ asset('build/assets/app-66e7f68a.js') }}"></script>
+
 
 </head>
 
